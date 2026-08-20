@@ -1,0 +1,368 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="container" style="padding-top: 150px; padding-bottom: 80px;">
+    <div style="text-align: center; margin-bottom: 2rem;" data-aos="fade-up">
+        <h1 style="font-size: 3.5rem;">Darpan</h1>
+        <p style="color: var(--text-muted);">Wear the movement. All proceeds go to our projects, empowering communities
+            and fostering sustainability.</p>
+    </div>
+
+    <!-- Store Filters -->
+    <div class="store-filters" data-aos="fade-up" data-aos-delay="100">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="navodaya">Project Navodaya</button>
+        <button class="filter-btn" data-filter="vriksh">Project Vriksh</button>
+    </div>
+
+    <!-- NAVODAYA Section -->
+    <div class="project-section" id="navodaya-section" data-aos="fade-up">
+        <h2 class="store-section-title">NAVODAYA</h2>
+        <div class="product-grid" style="margin-bottom: 5rem;">
+            <!-- Hair Bow -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="0" data-title="Hair Bow"
+                data-price="₹79" data-img="/static/images/magazine/Navodaya/Hair_Bow.png"
+                data-desc="Crafted from recycled fabric collected during our college donation drives, this stylish hair bow promotes sustainable fashion while reducing textile waste. Each piece is carefully made in collaboration with our partner foundation, giving discarded cloth a beautiful new life.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Navodaya/Hair_Bow.png" alt="Hair Bow">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Hair Bow</h3>
+                    <p class="product-desc">Crafted from recycled fabric collected during our college donation drives,
+                        this stylish hair bow promotes sustainable fashion while reducing textile waste.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹79</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scrunchie -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="100" data-title="Scrunchie"
+                data-price="₹49" data-img="/static/images/magazine/Navodaya/Scrunchie.png"
+                data-desc="Our scrunchies are made from recycled cloth sourced through donation drives, transforming unused fabric into a trendy everyday accessory. They combine comfort, sustainability, and style while supporting ethical production practices.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Navodaya/Scrunchie.png" alt="Scrunchie">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Scrunchie</h3>
+                    <p class="product-desc">Our scrunchies are made from recycled cloth sourced through donation drives,
+                        transforming unused fabric into a trendy everyday accessory.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹49</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crochet Fruit Keychain -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="200"
+                data-title="Crochet Fruit Keychain" data-price="₹99"
+                data-img="/static/images/magazine/Navodaya/Crochet_Fruit_Keychain.png"
+                data-desc="These colorful crochet fruit keychains are handcrafted by a group of underprivileged women, providing them with sustainable livelihood opportunities. Each piece is uniquely designed, adding a playful and handmade charm to your everyday essentials.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Navodaya/Crochet_Fruit_Keychain.png" alt="Crochet Fruit Keychain">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Crochet Fruit Keychain</h3>
+                    <p class="product-desc">These colorful crochet fruit keychains are handcrafted by a group of
+                        underprivileged women, providing them with sustainable livelihood opportunities.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹99</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crochet Flower Keychain -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="300"
+                data-title="Crochet Flower Keychain" data-price="₹99"
+                data-img="/static/images/magazine/Navodaya/Crochet_Flower_Keychain.png"
+                data-desc="Beautifully handcrafted crochet flower keychains made by skilled women artisans from underprivileged communities. Each keychain reflects creativity, craftsmanship, and supports women’s empowerment through meaningful work.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Navodaya/Crochet_Flower_Keychain.png"
+                        alt="Crochet Flower Keychain">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Crochet Flower Keychain</h3>
+                    <p class="product-desc">Beautifully handcrafted crochet flower keychains made by skilled women
+                        artisans from underprivileged communities.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹99</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crochet Sunflower Keychain (Large) -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="400"
+                data-title="Crochet Sunflower Keychain (Large)" data-price="₹199"
+                data-img="/static/images/magazine/Navodaya/Crochet_Sunflower_Keychain(Large).jpeg"
+                data-desc="This large sunflower crochet keychain is beautifully handmade by underprivileged women artisans. It symbolizes positivity and empowerment while supporting skill-based livelihood opportunities for the community.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Navodaya/Crochet_Sunflower_Keychain(Large).jpeg"
+                        alt="Crochet Sunflower Keychain (Large)">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Crochet Sunflower Keychain</h3>
+                    <p class="product-desc">This large sunflower crochet keychain is beautifully handmade by
+                        underprivileged women artisans, symbolizing positivity.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹199</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crochet Heart Earrings -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="500"
+                data-title="Crochet Heart Earrings" data-price="₹79"
+                data-img="/static/images/magazine/Navodaya/Crochet_Heart_Earings.png"
+                data-desc="Handcrafted crochet heart earrings that blend creativity with social impact. Made by skilled women artisans, each pair supports empowerment and sustainable handmade craftsmanship.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Navodaya/Crochet_Heart_Earings.png" alt="Crochet Heart Earrings">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Crochet Heart Earrings</h3>
+                    <p class="product-desc">Handcrafted crochet heart earrings that blend creativity with social impact.
+                        Made by skilled women artisans.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹79</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crochet Flower Earrings -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="600"
+                data-title="Crochet Flower Earrings" data-price="₹119"
+                data-img="/static/images/magazine/Navodaya/Crochet_Flower_Earings.png"
+                data-desc="These delicate crochet flower earrings are handcrafted by underprivileged women artisans. They add a unique handmade touch to your style while supporting community-based craftsmanship.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Navodaya/Crochet_Flower_Earings.png"
+                        alt="Crochet Flower Earrings">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Crochet Flower Earrings</h3>
+                    <p class="product-desc">These delicate crochet flower earrings are handcrafted by underprivileged
+                        women artisans, adding a unique touch.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹119</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yin Yang Bracelets -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="700" data-title="Yin Yang Bracelets"
+                data-price="₹79"
+                data-img="/static/images/projects/Project Navodaya/Product_Photos/yinyang_bracelets.jpg"
+                data-desc="Inspired by the Yin Yang symbol of balance and harmony, these bracelets are handcrafted using durable black and white paracord. The woven knot design represents the unity of opposite forces—light and dark, strength and calm—coming together in perfect balance, creating a stylish and meaningful everyday accessory.">
+                <div class="product-image-container">
+                    <img src="/static/images/projects/Project Navodaya/Product_Photos/yinyang_bracelets.jpg"
+                        alt="Yin Yang Bracelets">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Yin Yang Bracelets</h3>
+                    <p class="product-desc">Inspired by the Yin Yang symbol of balance and harmony, these bracelets are
+                        handcrafted using durable black and white paracord.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹79</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crochet Bookmark -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="800" data-title="Crochet Bookmark"
+                data-price="₹79" data-img="/static/images/magazine/Navodaya/Crochet_Bookmark.png"
+                data-desc="Our crochet bookmarks are lovingly handmade by women artisans, turning simple threads into beautiful reading companions. Each purchase helps support sustainable livelihoods and promotes handmade artistry.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Navodaya/Crochet_Bookmark.png" alt="Crochet Bookmark">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Crochet Bookmark</h3>
+                    <p class="product-desc">Our crochet bookmarks are lovingly handmade by women artisans, turning
+                        simple threads into beautiful reading companions.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹79</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VRIKSH Section -->
+    <div class="project-section" id="vriksh-section" data-aos="fade-up">
+        <h2 class="store-section-title">VRIKSH</h2>
+        <div class="product-grid">
+            <!-- Resin Keychain -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="0" data-title="Resin Keychain"
+                data-price="₹149" data-img="/static/images/magazine/Vriksh/Resin_Keychain.png"
+                data-desc="These handcrafted resin keychains preserve real temple flowers, giving them a second life in a beautiful and meaningful form. Each piece captures the essence of devotion while promoting sustainability by preventing floral waste from being discarded.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Vriksh/Resin_Keychain.png" alt="Resin Keychain">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Resin Keychain</h3>
+                    <p class="product-desc">These handcrafted resin keychains preserve real temple flowers, giving them
+                        a second life in a beautiful and meaningful form.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹149</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resin Bracelet -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="100" data-title="Resin Bracelet"
+                data-price="₹199" data-img="/static/images/magazine/Vriksh/Resin_Bracelet.png"
+                data-desc="Our resin bracelets are delicately crafted using preserved temple flowers, turning sacred blooms into wearable keepsakes. Every bracelet represents a blend of spirituality, sustainability, and handmade artistry.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Vriksh/Resin_Bracelet.png" alt="Resin Bracelet">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Resin Bracelet</h3>
+                    <p class="product-desc">Our resin bracelets are delicately crafted using preserved temple flowers,
+                        turning sacred blooms into wearable keepsakes.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹199</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resin Pendant -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="200" data-title="Resin Pendant"
+                data-price="₹199" data-img="/static/images/magazine/Vriksh/Resin_Pendant.png"
+                data-desc="These elegant resin pendants feature real temple flowers carefully preserved to retain their natural beauty. Each pendant carries a story of devotion and sustainability, transforming floral waste into timeless jewellery.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Vriksh/Resin_Pendant.png" alt="Resin Pendant">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Resin Pendant</h3>
+                    <p class="product-desc">These elegant resin pendants feature real temple flowers carefully preserved
+                        to retain their natural beauty.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹199</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vintage Upcycled Bookmark -->
+            <div class="premium-product-card" data-aos="fade-up" data-aos-delay="300"
+                data-title="Vintage Upcycled Bookmark" data-price="₹69"
+                data-img="/static/images/magazine/Vriksh/Vintage_Upcycled_Bookmark.png"
+                data-desc="These aesthetic bookmarks are crafted from reused newspaper and cardboard, transforming everyday discarded materials into vintage-style reading companions. Each bookmark promotes creative upcycling while adding a unique and artistic touch to your books.">
+                <div class="product-image-container">
+                    <img src="/static/images/magazine/Vriksh/Vintage_Upcycled_Bookmark.png"
+                        alt="Vintage Upcycled Bookmark">
+                </div>
+                <div class="product-info" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h3 class="product-title">Upcycled Bookmark</h3>
+                    <p class="product-desc">These elegant bookmarks are crafted with preserved flowers, delicate leaves,
+                        and gold flakes embedded in clear resin, creating a nature-inspired reading companion.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹69</span>
+                        <button class="skeuomorphic-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Preview Modal -->
+<div class="product-modal-overlay" id="productModal">
+    <div class="product-modal-container">
+        <button class="modal-close" id="closeModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="modal-content">
+            <div class="modal-image-side">
+                <img src="" alt="Product Image" id="modalImg">
+            </div>
+            <div class="modal-info-side">
+                <h2 id="modalTitle">Product Title</h2>
+                <div class="modal-price" id="modalPrice">₹0</div>
+                <p id="modalDesc">Detailed product description goes here.</p>
+                <div class="modal-actions">
+                    <button class="skeuomorphic-btn primary">Add to Cart</button>
+                    <button class="modal-secondary-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('Store Page Scripts Initialized');
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sections = document.querySelectorAll('.project-section');
+        const cards = document.querySelectorAll('.premium-product-card');
+        const modal = document.getElementById('productModal');
+        const closeModal = document.getElementById('closeModal');
+
+        // Filter Logic
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                sections.forEach(section => {
+                    const sectionId = section.id;
+                    if (filter === 'all' || sectionId === filter + '-section') {
+                        section.style.display = 'block';
+                        if (window.AOS) AOS.refresh();
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Logic
+        cards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                console.log('Product card clicked:', card.getAttribute('data-title'));
+                // Don't open modal if clicking the button directly
+                if (e.target.closest('.skeuomorphic-btn')) return;
+
+                const title = card.getAttribute('data-title');
+                const price = card.getAttribute('data-price');
+                const img = card.getAttribute('data-img');
+                const desc = card.getAttribute('data-desc');
+
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalPrice').textContent = price;
+                document.getElementById('modalImg').src = img;
+                document.getElementById('modalDesc').textContent = desc;
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+</script>
+
+{% endblock %}

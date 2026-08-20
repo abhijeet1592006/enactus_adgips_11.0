@@ -1,0 +1,517 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    /* Theme Overrides for Astitva - Matching Parent Page */
+    :root {
+        --astitva-beige: #F5F5DC;
+        --astitva-brown: #6d3f2899;
+        --astitva-sage: #A7BEB2;
+    }
+
+    /* Magazine Hero - Dark Dark Brown without grains */
+    .project-detail-hero {
+        background: linear-gradient(rgba(55, 32, 20, 0.727), rgba(55, 32, 20, 0.892)), url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1920&q=80');
+        background-position: center;
+        background-size: cover;
+        padding-top: 8rem;
+        padding-bottom: 5rem;
+        color: #fff;
+    }
+
+    .project-badge {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #F5F5DC !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .back-link {
+        color: var(--astitva-sage) !important;
+    }
+
+    .magazine-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .filter-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.75rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .filter-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+        background: var(--astitva-sage);
+        color: #fff;
+        border-color: var(--astitva-sage);
+        box-shadow: 0 4px 15px rgba(167, 190, 178, 0.3);
+    }
+
+    /* Magazine Viewer Section */
+    .magazine-viewer-section {
+        position: relative;
+        overflow: hidden;
+        background: #fafafa;
+        padding: 5rem 0;
+    }
+
+    .glass-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: 0;
+        opacity: 0.2;
+        animation: floatBlob 15s infinite alternate ease-in-out;
+    }
+
+    .blob-1 {
+        top: 10%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
+        background: var(--astitva-brown);
+    }
+
+    .blob-2 {
+        bottom: -10%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: var(--astitva-sage);
+        animation-delay: -5s;
+    }
+
+    .blob-3 {
+        top: 40%;
+        left: 40%;
+        width: 400px;
+        height: 400px;
+        background: var(--astitva-brown);
+        animation-delay: -10s;
+        opacity: 0.1;
+    }
+
+    @keyframes floatBlob {
+        0% {
+            transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(50px, -80px) scale(1.1) rotate(20deg);
+        }
+    }
+
+    /* Magazine Intro Grid */
+    .magazine-intro-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 4rem;
+        margin-bottom: 4rem;
+        align-items: center;
+        background: #fff;
+        padding: 3.5rem;
+        border-radius: 24px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .intro-text-side {
+        text-align: left;
+    }
+
+    .section-tag {
+        background: rgba(167, 190, 178, 0.1) !important;
+        color: var(--astitva-sage) !important;
+        border: 1px solid rgba(167, 190, 178, 0.2) !important;
+        padding: 6px 16px;
+        border-radius: 20px;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    .gradient-text {
+        font-weight: 800;
+        font-size: 3rem;
+        margin: 0.5rem 0 1.5rem;
+        color: var(--astitva-brown);
+        background: none;
+        -webkit-text-fill-color: initial;
+    }
+
+    .edition-description p {
+        color: #555;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .skeuo-btn {
+        margin-top: 1rem !important;
+        display: inline-flex !important;
+        align-items: center;
+        gap: 0.75rem;
+        background: var(--astitva-brown) !important;
+        padding: 14px 32px;
+        font-weight: 600;
+        border-radius: 12px;
+        color: white !important;
+        border: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(109, 63, 40, 0.2);
+    }
+
+    .skeuo-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(109, 63, 40, 0.3);
+        background: #55311f !important;
+    }
+
+    .intro-image-side .image-box {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        aspect-ratio: 4/5;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .intro-image-side .image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .intro-image-side .image-box:hover img {
+        transform: scale(1.05);
+    }
+
+    /* PDF Viewer Wrapper */
+    .pdf-viewer-wrapper {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 24px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+        position: relative;
+    }
+
+    .pdf-viewer-inner {
+        background: #f8f9fa;
+        border-radius: 16px;
+        padding: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .pdf-viewer-inner iframe {
+        border-radius: 8px;
+        display: block;
+        border: none;
+        background: #fff;
+    }
+
+    @media (max-width: 992px) {
+        .magazine-intro-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            padding: 2.5rem;
+        }
+
+        .intro-text-side {
+            text-align: center;
+        }
+
+        .intro-image-side {
+            order: -1;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .gradient-text {
+            font-size: 2.2rem;
+        }
+    }
+</style>
+
+<!-- Magazine Hero -->
+<section class="project-detail-hero" data-aos="fade">
+    <div class="container">
+        <div class="project-hero-content" data-aos="fade-up">
+            <a href="/project/astitva" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back to Project Astitva
+            </a>
+            <div class="project-badge">Gutargu & Astitva Editions</div>
+            <h1>Our Magazine Collection</h1>
+            <p class="project-tagline">Explore stories of strength, independence, and real impact.</p>
+
+            <!-- Quick Edition Selector (Filters) -->
+            <div class="magazine-filters">
+                <button class="filter-btn active" onclick="showEdition('edition7')">Edition 7 (10.0)</button>
+                <button class="filter-btn" onclick="showEdition('edition6')">Edition 6 (9.0)</button>
+                <button class="filter-btn" onclick="showEdition('edition5')">Edition 5 (8.0)</button>
+                <button class="filter-btn" onclick="showEdition('edition4')">Edition 4 (7.0)</button>
+                <button class="filter-btn" onclick="showEdition('edition3')">Edition 3 (6.0)</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Magazine Viewer Section -->
+<section class="magazine-viewer-section">
+    <div class="glass-blob blob-1"></div>
+    <div class="glass-blob blob-2"></div>
+    <div class="glass-blob blob-3"></div>
+
+    <div class="container" style="position: relative; z-index: 1;">
+
+        <!-- EDITION 7 -->
+        <div id="edition7" class="edition-container" style="display: block;">
+            <div class="magazine-intro-grid" data-aos="fade-up">
+                <div class="intro-text-side">
+                    <span class="section-tag">Latest Release: Media Manipulation</span>
+                    <h2 class="gradient-text">Gutargu Edition 7</h2>
+                    <div class="edition-description">
+                        <p>Gutargu Edition 7 deconstructs the invisible strings of Media Manipulation and its profound
+                            impact on our perception of reality. This issue explores the psychological tactics used to
+                            filter information, from the strategic spread of misinformation to the subtle biases
+                            embedded within digital algorithms.</p>
+                        <p>By examining how narratives are framed to influence public opinion, the magazine empowers
+                            readers to develop a more critical, analytical lens. It serves as an essential guide for
+                            navigating the complexities of the modern information age.</p>
+                    </div>
+                    <div class="edition-actions">
+                        <a href="{{ url_for('static', filename='magazines/edition_7.pdf') }}" target="_blank"
+                            class="skeuo-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                <div class="intro-image-side">
+                    <div class="image-box">
+                        <img src="/static/media/edition_7_cover.png" alt="Gutargu Edition 7 Theme">
+                    </div>
+                </div>
+            </div>
+
+            <div class="pdf-viewer-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <div class="pdf-viewer-inner">
+                    <iframe src="{{ url_for('static', filename='magazines/edition_7.pdf') }}#view=FitH" width="100%"
+                        height="800px"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDITION 6 -->
+        <div id="edition6" class="edition-container" style="display: none;">
+            <div class="magazine-intro-grid">
+                <div class="intro-text-side">
+                    <span class="section-tag">Latest Release: Unspoken</span>
+                    <h2 class="gradient-text">ASTITVA Edition 6 (2025)</h2>
+                    <div class="edition-description">
+                        <p>Gutargu Edition 6, titled "Unspoken", is a powerful movement dedicated to those navigating
+                            the maze of their own minds. This issue breaks the silence surrounding mental health,
+                            challenging long-standing taboos and shattering stigmas that persist in society.</p>
+                        <p>By amplifying voices often lost to whispers, it serves as a manifesto for change, urging
+                            readers to prioritize their well-being and join a revolution of radical empathy.</p>
+                    </div>
+                    <div class="edition-actions">
+                        <a href="{{ url_for('static', filename='magazines/edition_6.pdf') }}" target="_blank"
+                            class="skeuo-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                <div class="intro-image-side">
+                    <div class="image-box">
+                        <img src="/static/media/edition_6_cover.png" alt="Astitva Edition 6 Theme">
+                    </div>
+                </div>
+            </div>
+
+            <div class="pdf-viewer-wrapper">
+                <div class="pdf-viewer-inner">
+                    <iframe src="{{ url_for('static', filename='magazines/edition_6.pdf') }}#view=FitH" width="100%"
+                        height="800px"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDITION 5 -->
+        <div id="edition5" class="edition-container" style="display: none;">
+            <div class="magazine-intro-grid">
+                <div class="intro-text-side">
+                    <span class="section-tag">Human Rights: Global Crisis</span>
+                    <h2 class="gradient-text">Gutargu Astitva Edition 5</h2>
+                    <div class="edition-description">
+                        <p>Gutargu Edition 5 is a harrowing look into the global crisis of Human Trafficking. This
+                            edition exposes the bondage, detailing how millions are coerced into forced labor and sexual
+                            exploitation through fraud and deception.</p>
+                        <p>It serves as a call to action, providing red flags for identification and spotlighting NGOs
+                            that lead the fight for rescue and rehabilitation.</p>
+                    </div>
+                    <div class="edition-actions">
+                        <a href="{{ url_for('static', filename='magazines/edition_5.pdf') }}" target="_blank"
+                            class="skeuo-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                <div class="intro-image-side">
+                    <div class="image-box">
+                        <img src="/static/media/edition_5_cover.png" alt="Astitva Edition 5 Theme">
+                    </div>
+                </div>
+            </div>
+
+            <div class="pdf-viewer-wrapper">
+                <div class="pdf-viewer-inner">
+                    <iframe src="{{ url_for('static', filename='magazines/edition_5.pdf') }}#view=FitH" width="100%"
+                        height="800px"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDITION 4 -->
+        <div id="edition4" class="edition-container" style="display: none;">
+            <div class="magazine-intro-grid">
+                <div class="intro-text-side">
+                    <span class="section-tag">Economic Resilience</span>
+                    <h2 class="gradient-text">Gutargu Edition 4</h2>
+                    <div class="edition-description">
+                        <p>Gutargu Edition 4 documents the resilience and struggle of local enterprises navigating
+                            lockdowns, supply chain disruptions, and shifting consumer behaviors during the pandemic.
+                        </p>
+                        <p>By highlighting the vulnerability of the unorganized sector, the magazine serves as both a
+                            record of a historic era and a call to support the backbone of our economy.</p>
+                    </div>
+                    <div class="edition-actions">
+                        <a href="{{ url_for('static', filename='magazines/edition_4.pdf') }}" target="_blank"
+                            class="skeuo-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                <div class="intro-image-side">
+                    <div class="image-box">
+                        <img src="/static/media/edition_4_cover.png" alt="Gutargu Edition 4 Theme">
+                    </div>
+                </div>
+            </div>
+
+            <div class="pdf-viewer-wrapper">
+                <div class="pdf-viewer-inner">
+                    <iframe src="{{ url_for('static', filename='magazines/edition_4.pdf') }}#view=FitH" width="100%"
+                        height="800px"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDITION 3 -->
+        <div id="edition3" class="edition-container" style="display: none;">
+            <div class="magazine-intro-grid">
+                <div class="intro-text-side">
+                    <span class="section-tag">Equality & Dignity</span>
+                    <h2 class="gradient-text">Guturgu Edition 3</h2>
+                    <div class="edition-description">
+                        <p>Gutargu Edition 3 is a comprehensive exploration of the LGBTQ+ community, focusing on the
+                            journey from historical roots to the modern-day fight for dignity.</p>
+                        <p>By addressing the persistent stigmas of discrimination and the emotional hardships of "coming
+                            out," it serves as a call for radical empathy and social revolution.</p>
+                    </div>
+                    <div class="edition-actions">
+                        <a href="{{ url_for('static', filename='magazines/edition_3.pdf') }}" target="_blank"
+                            class="skeuo-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                <div class="intro-image-side">
+                    <div class="image-box">
+                        <img src="/static/media/edition_3_cover.png" alt="Gutargu Edition 3 Theme">
+                    </div>
+                </div>
+            </div>
+
+            <div class="pdf-viewer-wrapper">
+                <div class="pdf-viewer-inner">
+                    <iframe src="{{ url_for('static', filename='magazines/edition_3.pdf') }}#view=FitH" width="100%"
+                        height="800px"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    function showEdition(editionId) {
+        const containers = document.querySelectorAll('.edition-container');
+        containers.forEach(container => container.style.display = 'none');
+        const target = document.getElementById(editionId);
+        if (target) {
+            target.style.display = 'block';
+            target.style.animation = 'fadeIn 0.5s ease forwards';
+        }
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+    }
+
+    const style = document.createElement('style');
+    style.innerHTML = `@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }`;
+    document.head.appendChild(style);
+</script>
+{% endblock %}

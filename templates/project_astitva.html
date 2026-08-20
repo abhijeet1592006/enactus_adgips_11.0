@@ -1,0 +1,596 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    /* Theme Overrides for Astitva */
+    :root {
+        --astitva-beige: #F5F5DC;
+        --astitva-dark-brown: #4A2C1D;
+        --astitva-sage: #9BA8A0;
+        --textured-beige: linear-gradient(rgba(245, 245, 220, 0.9), rgba(245, 245, 220, 1)), url('https://grainy-gradients.vercel.app/noise.svg');
+    }
+
+    .astitva-textured {
+        background: var(--textured-beige) !important;
+        background-blend-mode: overlay !important;
+        color: var(--astitva-dark-brown) !important;
+    }
+
+    .astitva-textured h2,
+    .astitva-textured p,
+    .astitva-textured .section-tag {
+        color: var(--astitva-dark-brown) !important;
+    }
+
+    /* Update all buttons on this page */
+    /* Buttons are handled below in project-cta-section specific styles */
+
+    .success-stories-section {
+        background-color: var(--astitva-sage) !important;
+        background-image: none !important;
+    }
+
+    .project-cta-section {
+        background-color: var(--astitva-dark-brown) !important;
+        background-image: url('https://grainy-gradients.vercel.app/noise.svg') !important;
+        background-blend-mode: overlay !important;
+        padding: 100px 0 !important;
+    }
+
+    .project-cta-section h2 {
+        color: var(--astitva-beige) !important;
+        font-weight: 800 !important;
+        font-size: 2.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .project-cta-section p {
+        color: rgba(245, 245, 220, 0.8) !important;
+        font-size: 1.1rem !important;
+        max-width: 600px !important;
+        margin: 0 auto 2.5rem !important;
+    }
+
+    .project-cta-section .btn-primary,
+    .project-cta-section .btn-secondary {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        border-radius: 50px !important;
+        padding: 12px 32px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .project-cta-section .btn-primary {
+        background: var(--astitva-beige) !important;
+        color: var(--astitva-dark-brown) !important;
+        border: none !important;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .project-cta-section .btn-secondary {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid var(--astitva-beige) !important;
+        color: var(--astitva-beige) !important;
+        backdrop-filter: blur(5px) !important;
+    }
+
+    .publication-cta,
+    .btn-primary {
+        background: var(--astitva-dark-brown) !important;
+        background-image: url('https://grainy-gradients.vercel.app/noise.svg') !important;
+        background-blend-mode: overlay !important;
+        border: none !important;
+        color: #fff !important;
+    }
+
+    .section-tag,
+    .project-badge {
+        background: rgba(0, 0, 0, 0.05) !important;
+        color: #000 !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        padding: 8px 24px !important;
+        border-radius: 50px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1.5px !important;
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        backdrop-filter: blur(10px) !important;
+        display: inline-block !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .hero-stat-number {
+        color: #fff !important;
+    }
+
+    .section-label,
+    .highlight-icon,
+    .story-author strong {
+        color: var(--astitva-dark-brown) !important;
+    }
+
+    .highlight-icon {
+        background: rgba(74, 44, 29, 0.1) !important;
+    }
+
+    .pub-icon {
+        background: linear-gradient(135deg, rgba(74, 44, 29, 0.1) 0%, rgba(109, 63, 40, 0.05) 100%) !important;
+        color: #4A2C1D !important;
+    }
+
+    .info-number {
+        color: #4A2C1D !important;
+    }
+
+    .blog-date {
+        color: #4A2C1D !important;
+    }
+
+    .service-icon {
+        background: linear-gradient(rgba(74, 44, 29, 0.9), rgba(74, 44, 29, 1)), url('https://grainy-gradients.vercel.app/noise.svg') !important;
+        background-blend-mode: overlay !important;
+        color: #fff !important;
+    }
+
+    .story-card {
+        background: var(--astitva-dark-brown) !important;
+        border: none !important;
+        color: #fff !important;
+        border-radius: 24px !important;
+        padding: 2.5rem !important;
+    }
+
+    .story-card blockquote,
+    .story-card .story-author span,
+    .story-card .story-author strong {
+        color: #fff !important;
+    }
+</style>
+
+<!-- Project Hero -->
+<section class="project-detail-hero"
+    style="background: linear-gradient(rgba(55, 32, 20, 0.95), rgba(55, 32, 20, 0.816)), url('/static/images/projects/Astitva_card.png'); background-position: center; background-size: cover; color: #fff; padding-top: 8rem;">
+    <div class="container">
+        <div class="project-hero-content" data-aos="fade-up">
+            <a href="/projects" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back to Projects
+            </a>
+            <div class="project-badge">Social Cause</div>
+            <h1>Project Astitva</h1>
+            <p class="project-tagline">Identity. Strength. Independence.</p>
+
+            <div class="project-hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">Organic</span>
+                    <span class="hero-stat-label">Fertilizer</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">Eco-Friendly</span>
+                    <span class="hero-stat-label">Production</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">Farmer</span>
+                    <span class="hero-stat-label">Empowerment</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Overview -->
+<section class="project-overview-section">
+    <div class="container">
+        <div class="overview-grid">
+            <div class="overview-content" data-aos="fade-right">
+                <span class="section-label" style="color: #000;">Overview</span>
+                <h2>Sustaining Agriculture, Empowering Farmers</h2>
+                <p>Project Astitva is a sustainable agricultural initiative that bridges environmental conservation with
+                    farmer empowerment. The project focuses on creating high-quality, eco-friendly organic fertilizers
+                    using natural waste components like cow dung (Gobar), crop residue, and kitchen compost.</p>
+                <p>Designed to combat the adverse effects of chemical fertilizers—such as soil degradation, water
+                    pollution, and increased farming costs—Astitva offers a natural alternative that restores soil
+                    fertility, improves crop yield, and promotes sustainable farming practices.</p>
+
+                <div class="overview-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon"
+                            style="background: rgba(74, 44, 29, 0.1); color: var(--astitva-dark-brown);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Eco-Friendly Composting</h4>
+                            <p>Transforming agricultural and natural waste into nutrient-rich organic fertilizer without
+                                harmful chemicals.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"
+                            style="background: rgba(74, 44, 29, 0.1); color: var(--astitva-dark-brown);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Soil & Health Benefits</h4>
+                            <p>Restores soil microbiology, increases water retention, and enables the production of
+                                chemical-free, healthier food.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"
+                            style="background: rgba(74, 44, 29, 0.1); color: var(--astitva-dark-brown);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Farmer Empowerment</h4>
+                            <p>Reduces dependency on expensive synthetic fertilizers, decreasing production costs and
+                                increasing agricultural profitability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overview-image" data-aos="fade-left">
+                <img src="{{ url_for('static', filename='images/projects/Project Astitva/Overview/Copy of Project Astitva.png') }}"
+                    alt="Overview image of Astitva"
+                    style="width: 100%; height: auto; object-fit: contain; border-radius: 12px; max-height: 500px; background: #f9f9f9;">
+                <div class="image-caption">
+                    <span>Handicraft Workshop at Dwarka Community Center</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Magazine & Blogs Section -->
+<section class="products-services-section" style="background: linear-gradient(180deg, #faf8f5 0%, #fff 100%);">
+    <div class="container">
+        <div class="section-header centered" data-aos="fade-up">
+            <span class="section-tag" style="background: rgba(0, 0, 0, 0.05); color: #000;">Our
+                Publications</span>
+            <h2>Magazine & Blogs</h2>
+            <p>Amplifying women's voices through powerful storytelling</p>
+        </div>
+
+        <div class="publications-grid" data-aos="fade-up">
+            <!-- Magazine Section -->
+            <div class="publication-card magazine-card">
+                <div class="publication-header">
+                    <div class="pub-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                    </div>
+                    <h3>Astitva Magazine</h3>
+                    <p>Quarterly publication featuring stories of resilience, success, and transformation</p>
+                </div>
+
+                <div class="magazine-showcase">
+                    <div class="magazine-covers">
+                        <div class="magazine-cover">
+                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=300&q=80"
+                                alt="Magazine Cover 1">
+                            <span>Issue 15</span>
+                        </div>
+                        <div class="magazine-cover featured">
+                            <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=300&q=80"
+                                alt="Magazine Cover 2">
+                            <span>Latest Magazine</span>
+                        </div>
+                        <div class="magazine-cover">
+                            <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=300&q=80"
+                                alt="Magazine Cover 3">
+                            <span>Issue 13</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="magazine-info">
+                    <div class="info-item">
+                        <span class="info-number">7</span>
+                        <span class="info-label">Editions Published</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-number">500+</span>
+                        <span class="info-label">Stories Featured</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-number">10k+</span>
+                        <span class="info-label">Readers</span>
+                    </div>
+                </div>
+
+                <a href="/astitva/magazines" class="publication-cta">
+                    Read Latest Magazine
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Blog Section -->
+            <div class="publication-card blog-card">
+                <div class="publication-header">
+                    <div class="pub-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </div>
+                    <h3>Astitva Blog</h3>
+                    <p>Digital stories, interviews, and features updated weekly</p>
+                </div>
+
+                <div class="blog-posts-preview">
+                    <div class="blog-post-item">
+                        <span class="blog-date">feb 12,</span>
+                        <h4>Project Vriksh: The Real Problem With Flower Waste in India and Why Students Should Care
+                        </h4>
+                        <p>Varanasi- the city known for its sacred Ganga Ghats, was once found in filthy white thick
+                            foam all across many ghats.</p>
+                    </div>
+                    <div class="blog-post-item">
+                        <span class="blog-date">feb 12,</span>
+                        <h4>Impact of Fast Fashion on our Planet</h4>
+                        <p>Fast fashion has become the “instant noodles of style” — quick, cheap, tempting, and
+                            disastrously unhealthy for the planet.</p>
+                    </div>
+                    <div class="blog-post-item">
+                        <span class="blog-date">feb 11,</span>
+                        <h4>The Reality Gap: Is Your Social Feed Lying to You?</h4>
+                        <p>We like to think of social media as a window to the world. You open the app, and you see
+                            what’s happening. Simple, right?</p>
+                    </div>
+                </div>
+
+                <a href="https://medium.com/@enactusadgips" target="_blank" rel="noopener noreferrer"
+                    class="publication-cta">
+                    Explore All Blogs
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="products-services-section">
+    <div class="container">
+        <div class="section-header centered" data-aos="fade-up">
+            <span class="section-tag" style="background: rgba(0, 0, 0, 0.05); color: #000;">Sustainable
+                Agriculture</span>
+            <h2>Our Impact Network</h2>
+            <p>Advancing eco-friendly farming and rural development</p>
+        </div>
+
+        <div class="services-grid" data-aos="fade-up">
+            <div class="service-card">
+                <div class="service-icon"
+                    style="background: linear-gradient(rgba(74, 44, 29, 0.9), rgba(74, 44, 29, 1)), url('https://grainy-gradients.vercel.app/noise.svg'); background-blend-mode: overlay;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h3>Natural Waste Collection</h3>
+                <p>Gathering agricultural residues, cow dung (Gobar), and kitchen compost from local sources.</p>
+                <ul class="service-features">
+                    <li>Waste diversion</li>
+                    <li>Community sourcing</li>
+                    <li>Resource optimization</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"
+                    style="background: linear-gradient(rgba(74, 44, 29, 0.9), rgba(74, 44, 29, 1)), url('https://grainy-gradients.vercel.app/noise.svg'); background-blend-mode: overlay;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3>Aerobic Composting</h3>
+                <p>Scientific breakdown of organic matter to create nutrient-dense natural fertilizer.</p>
+                <ul class="service-features">
+                    <li>Microbial enrichment</li>
+                    <li>Chemical-free process</li>
+                    <li>Odor reduction</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"
+                    style="background: linear-gradient(rgba(74, 44, 29, 0.9), rgba(74, 44, 29, 1)), url('https://grainy-gradients.vercel.app/noise.svg'); background-blend-mode: overlay;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    </svg>
+                </div>
+                <h3>Soil Health Workshops</h3>
+                <p>Educating farmers on the long-term benefits of organic farming and natural soil restoration.</p>
+                <ul class="service-features">
+                    <li>Sustainable farming education</li>
+                    <li>Demonstration plots</li>
+                    <li>Transition guidance</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"
+                    style="background: linear-gradient(rgba(74, 44, 29, 0.9), rgba(74, 44, 29, 1)), url('https://grainy-gradients.vercel.app/noise.svg'); background-blend-mode: overlay;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <line x1="9" y1="21" x2="9" y2="9"></line>
+                    </svg>
+                </div>
+                <h3>Market Supply Chain</h3>
+                <p>Connecting Astitva organic fertilizer to local nurseries, farmers, and urban gardeners.</p>
+                <ul class="service-features">
+                    <li>Affordable pricing</li>
+                    <li>Local distribution</li>
+                    <li>Cost savings for farmers</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Impact Gallery -->
+<section class="impact-gallery-section" style="background-color: #f7f9fc; padding-top: 60px; padding-bottom: 60px;">
+    <div class="container">
+        <div class="section-header centered" data-aos="fade-up">
+            <span class="section-tag" style="background: rgba(0, 0, 0, 0.05); color: #000;">Our Journey</span>
+            <h2>Impact Gallery</h2>
+            <p>Moments that define our mission</p>
+        </div>
+
+        <div class="gallery-grid" data-aos="fade-up">
+            <div class="gallery-item large">
+                <img src="{{ url_for('static', filename='images/projects/Project Astitva/Gallery/Big1.jpeg') }}"
+                    alt="Astitva Gallery" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item large">
+                <img src="{{ url_for('static', filename='images/projects/Project Astitva/Gallery/Big2.jpeg') }}"
+                    alt="Astitva Gallery" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Astitva/Gallery/Small1.jpg') }}"
+                    alt="Astitva Gallery" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Astitva/Gallery/Small2.jpg') }}"
+                    alt="Astitva Gallery" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Astitva/Gallery/Small3.jpeg') }}"
+                    alt="Astitva Gallery" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Astitva/Gallery/Small4.jpeg') }}"
+                    alt="Astitva Gallery" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item large">
+                <img src="{{ url_for('static', filename='images/projects/Project Astitva/Gallery/Small5.jpg') }}"
+                    alt="Astitva Gallery" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Success Stories -->
+<section class="success-stories-section" style="background-color: var(--astitva-sage); padding: 100px 0;">
+    <div class="container">
+        <div class="section-header centered" data-aos="fade-up">
+            <span class="section-tag"
+                style="background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2);">Real
+                Stories</span>
+            <h2 style="color: #333; font-weight: 800; font-size: 3rem;">Voices of Astitva</h2>
+        </div>
+
+        <div class="stories-carousel" data-aos="fade-up">
+            <div class="story-card"
+                style="background: var(--astitva-dark-brown); border: none; border-radius: 24px; padding: 2.5rem; display: flex; align-items: center; gap: 2rem;">
+                <div class="story-image"
+                    style="width: 100px; height: 100px; flex-shrink: 0; overflow: hidden; border-radius: 50%; border: 3px solid rgba(255,255,255,0.1);">
+                    <img src="{{ url_for('static', filename='images/projects/Project Astitva/Voice_Of_Astitva/WhatsApp Image 2026-03-15 at 12.17.17 AM.jpeg') }}"
+                        alt="Local Farmer" style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="story-content">
+                    <blockquote
+                        style="color: #ffffff; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.2rem; font-style: italic; border: none; padding: 0;">
+                        "Switching to Astitva's organic fertilizer has not only improved the quality of our crop but
+                        significantly reduced my dependence on expensive chemical alternatives."</blockquote>
+                    <div class="story-author">
+                        <strong style="color: #fff; display: block; font-size: 1.2rem; margin-bottom: 0.2rem;">Local
+                            Farmer</strong>
+                        <span style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Sustainable Agriculture
+                            Program</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-card"
+                style="background: var(--astitva-dark-brown); border: none; border-radius: 24px; padding: 2.5rem; display: flex; align-items: center; gap: 2rem;">
+                <div class="story-image"
+                    style="width: 100px; height: 100px; flex-shrink: 0; overflow: hidden; border-radius: 50%; border: 3px solid rgba(255,255,255,0.1);">
+                    <img src="{{ url_for('static', filename='images/projects/Project Astitva/Voice_Of_Astitva/WhatsApp Image 2026-03-15 at 12.17.17 AM (1).jpeg') }}"
+                        alt="Community Partner" style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+                <div class="story-content">
+                    <blockquote
+                        style="color: #fff; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.2rem; font-style: italic; border: none; padding: 0;">
+                        "We are thrilled to use an eco-friendly fertilizer derived from natural waste. It nourishes our
+                        plants while keeping our environmental impact low."</blockquote>
+                    <div class="story-author">
+                        <strong style="color: #fff; display: block; font-size: 1.2rem; margin-bottom: 0.2rem;">Urban
+                            Gardener</strong>
+                        <span style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Community Green Space
+                            Project</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Get Involved CTA -->
+<section class="project-cta-section">
+    <div class="container">
+        <div class="project-cta-content" data-aos="fade-up">
+            <h2>Support Socal Cause</h2>
+            <p>Share a story, donate materials, or volunteer as a trainer.
+                Every contribution amplifies a woman's voice.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://medium.com/@enactusadgips" target="_blank" rel="noopener noreferrer"
+                    class="btn-primary">Our Blogs</a>
+                <a href="/team" class="btn-secondary">Our Team</a>
+                <a href="https://www.instagram.com/project_astitva_?igsh=MW9seGE2Zmc5dmhldQ==" target="_blank"
+                    rel="noopener noreferrer" class="btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,1390 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!-- Flash Messages -->
+<div class="flash-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="flash-msg {{ 'flash-success' if category == 'success' else 'flash-error' }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+
+<!-- Events Hero Section -->
+<section class="events-hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="container">
+        <div class="events-hero-content">
+            <span class="overline">CURATING IMPACTFUL EXPERIENCES</span>
+            <h1 class="hero-title">
+                Join The <span class="highlight-word">Movement</span>
+            </h1>
+            <p class="hero-description">
+                Join to engage in initiatives that create measurable social change.
+            </p>
+            <div class="hero-event-stats">
+                <div class="hero-stat-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span><strong>{{ events|length }}</strong> Events</span>
+                </div>
+                <div class="hero-stat-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span><strong>{{ events|selectattr('is_open', 'equalto', true)|list|length }}</strong> Open
+                        Now</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Upcoming Events Section -->
+<section class="upcoming-events-section">
+    <div class="container">
+        <div class="section-header centered">
+            <span class="section-tag">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" style="vertical-align: -3px; margin-right: 6px;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Upcoming Events
+            </span>
+            <h2>THE EXPERIENCE AWAITS — SO SHOULD YOU?</h2>
+            <p>Align with us for our upcoming engagements designed to inspire and empower.</p>
+        </div>
+
+        {% set open_events = events|selectattr('is_open', 'equalto', true)|list %}
+
+        {% if open_events %}
+        <div class="events-grid">
+            {% for event in open_events %}
+            <div class="event-card-modern" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+                <!-- Event Image -->
+                <div class="event-image-wrapper">
+                    <img src="{{ event.image_url }}" alt="{{ event.title }}">
+                    <div class="event-image-overlay"></div>
+                    <div class="event-date-badge-float">
+                        <span class="day">{{ event.date_day }}</span>
+                        <span class="month">{{ event.date_month }}</span>
+                    </div>
+                    <span class="event-status-badge open">
+                        <span class="status-dot"></span>
+                        Registration Open
+                    </span>
+                </div>
+
+                <!-- Event Content -->
+                <div class="event-content">
+                    <div class="event-title-row">
+                        <h3>{{ event.title }}</h3>
+                        <span class="event-type-badge {{ 'team' if event.event_type == 'team' else 'solo' }}">
+                            {% if event.event_type == 'team' %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            Team Event
+                            {% else %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            Solo Event
+                            {% endif %}
+                        </span>
+                    </div>
+                    <p class="event-short-desc">{{ event.short_desc }}</p>
+
+                    <div class="event-meta">
+                        <div class="meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                            </svg>
+                            <span>{{ event.registrations|length }} Registered</span>
+                        </div>
+                        {% if event.event_type == 'team' and event.min_team_size and event.max_team_size %}
+                        <div class="meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span>{{ event.min_team_size }}-{{ event.max_team_size }} Members</span>
+                        </div>
+                        {% endif %}
+                        {% if event.venue %}
+                        <div class="meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>{{ event.venue }}</span>
+                        </div>
+                        {% endif %}
+                        {% if event.start_date %}
+                        <div class="meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>
+                                {% if event.start_date == event.end_date or not event.end_date %}
+                                {{ event.start_date }}
+                                {% else %}
+                                {{ event.start_date }} to {{ event.end_date }}
+                                {% endif %}
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+
+
+
+                    {% if event.max_registrations and event.registrations|length >= event.max_registrations %}
+                    <button class="btn-expand-event disabled"
+                        style="opacity: 0.6; cursor: not-allowed; background: #6b7280; color: #fff;">
+                        Registration Full
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                    </button>
+                    {% else %}
+                    <button class="btn-expand-event js-open-modal" data-event-id="{{ event.id }}">
+                        Register Now
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-events-state">
+            <div class="empty-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+            </div>
+            <h3>No Upcoming Events</h3>
+            <p>We're planning something exciting! Check back soon for new events.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Past Events Section -->
+{% set closed_events = events|selectattr('is_open', 'equalto', false)|list %}
+{% if closed_events %}
+<section class="past-events-section">
+    <div class="container">
+        <div class="section-header centered">
+            <span class="section-tag" style="background: rgba(26, 60, 52, 0.1); color: #1a3c34;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" style="vertical-align: -3px; margin-right: 6px;">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                EVENT ARCHIVE
+            </span>
+            <h2>OUR EVENT PORTFOLIO</h2>
+            <p>A showcase of initiatives, engagements, and experiences we’ve proudly delivered.</p>
+        </div>
+
+        <div class="past-events-grid">
+            {% for event in closed_events %}
+            <div class="past-event-card" data-aos="fade-up">
+                <div class="past-event-image">
+                    <img src="{{ event.image_url }}" alt="{{ event.title }}">
+                    <div class="past-overlay"></div>
+                </div>
+                <div class="past-event-info">
+                    <div class="past-date">
+                        <span class="day">{{ event.date_day }}</span>
+                        <span class="month">{{ event.date_month }}</span>
+                    </div>
+                    <div class="past-details">
+                        <h4>{{ event.title }}</h4>
+                        <p>{{ event.short_desc }}</p>
+                        <span class="past-badge">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                            </svg>
+                            {{ event.registrations|length }} Attended
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Events CTA Section -->
+<section class="events-cta-section">
+    <div class="container">
+        <div class="events-cta-content">
+            <h2>LET’S CREATE IMPACT TOGETHER</h2>
+            <p>Partner with us to co-host events that inspire innovation and meaningful change.</p>
+            <div class="cta-buttons">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=enactusadgips@gmail.com" target="_blank" rel="noopener noreferrer" class="btn-primary">Contact Us</a>
+                <a href="/about" class="btn-secondary">Learn More About Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Event Registration Modals -->
+{% for event in events %}
+{% if event.is_open %}
+<div class="event-modal" id="event-modal-{{ event.id }}">
+    <div class="modal-backdrop js-close-modal" data-event-id="{{ event.id }}"></div>
+    <div class="modal-container">
+        <button class="modal-close js-close-modal" data-event-id="{{ event.id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="modal-header">
+            <img src="{{ event.image_url }}" alt="{{ event.title }}">
+            <div class="modal-header-overlay"></div>
+            <div class="modal-header-content">
+                <div class="modal-date-badge">
+                    <span class="day">{{ event.date_day }}</span>
+                    <span class="month">{{ event.date_month }}</span>
+                </div>
+                <h2>{{ event.title }}</h2>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-info">
+                <h4>About This Event</h4>
+                <p>{{ event.full_desc }}</p>
+
+                <div class="modal-meta-grid">
+                    {% if event.venue %}
+                    <div class="modal-meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div>
+                            <span class="meta-label">Venue</span>
+                            <span class="meta-value">{{ event.venue }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if event.event_time %}
+                    <div class="modal-meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <div>
+                            <span class="meta-label">Time</span>
+                            <span class="meta-value">{{ event.event_time }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="modal-meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        <div>
+                            <span class="meta-label">Registered</span>
+                            <span class="meta-value">{{ event.registrations|length }} participants</span>
+                        </div>
+                    </div>
+                    {% if event.start_date %}
+                    <div class="modal-meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <div>
+                            <span class="meta-label">Date{% if event.start_date != event.end_date and event.end_date
+                                %}s{% endif %}</span>
+                            <span class="meta-value">
+                                {% if event.start_date == event.end_date or not event.end_date %}
+                                {{ event.start_date }}
+                                {% else %}
+                                {{ event.start_date }} to {{ event.end_date }}
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if event.event_link and not (event.max_registrations and event.registrations|length >=
+                    event.max_registrations) %}
+                    <div class="modal-meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                        <div>
+                            <span class="meta-label">Form Link</span>
+                            <a href="{{ event.event_link }}" target="_blank" class="meta-value"
+                                style="color: #c4704f; text-decoration: underline;">Open Registration Form</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if event.brochure_link %}
+                    <div class="modal-meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <div>
+                            <span class="meta-label">Event Brochure</span>
+                            <a href="{{ event.brochure_link }}" target="_blank" class="meta-value"
+                                style="color: #d4a553; text-decoration: underline;">View Brochure</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="modal-form">
+                {% if event.max_registrations and event.registrations|length >= event.max_registrations %}
+                <div class="registration-closed-message" style="text-align: center; padding: 2rem; color: #ef4444;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" style="margin-bottom: 1rem;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #1f2937;">Registration Full</h3>
+                    <p style="color: #6b7280;">Sorry, all spots for this event have been filled.</p>
+                </div>
+                {% else %}
+                <h4>Register Now</h4>
+
+
+                <form action="{{ url_for('register_event') }}" method="POST">
+                    <input type="hidden" name="event_id" value="{{ event.id }}">
+                    <input type="hidden" name="event_type" value="{{ event.event_type }}">
+
+                    {% if event.event_type == 'team' %}
+                    <!-- Team Event Registration Fields -->
+                    <div class="form-group">
+                        <label>Team Name *</label>
+                        <input type="text" name="team_name" class="form-input" placeholder="Enter your team name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Number of Members *</label>
+                        <input type="number" name="team_size" class="form-input"
+                            placeholder="Enter number of team members" min="{{ event.min_team_size or 2 }}"
+                            max="{{ event.max_team_size or 10 }}" required>
+                        {% if event.min_team_size and event.max_team_size %}
+                        <small class="form-hint">Team size: {{ event.min_team_size }} - {{ event.max_team_size }}
+                            members</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Team Leader Name *</label>
+                        <input type="text" name="name" class="form-input" placeholder="Enter team leader's full name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Leader Email ID *</label>
+                        <input type="email" name="email" class="form-input" placeholder="leader.email@college.edu"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Leader Contact No. *</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>College Name *</label>
+                        <input type="text" name="college" class="form-input" placeholder="Enter your college name"
+                            required>
+                    </div>
+
+                    {% else %}
+                    <!-- Solo Event Registration Fields -->
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Student ID / Enrollment No. *</label>
+                        <input type="text" name="student_id" class="form-input" placeholder="e.g., 2024001" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email ID *</label>
+                        <input type="email" name="email" class="form-input" placeholder="your.email@college.edu"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contact No. *</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Branch *</label>
+                        <input type="text" name="branch" class="form-input" placeholder="e.g., Computer Science"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>College Name *</label>
+                        <input type="text" name="college" class="form-input" placeholder="Enter your college name"
+                            required>
+                    </div>
+                    {% endif %}
+
+                    <button type="submit" class="btn-submit-registration">
+                        Confirm Registration
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+<style>
+    /* =========================================
+   EVENTS PAGE STYLES
+   ========================================= */
+
+    .flash-msg.flash-success {
+        border-color: #16a34a;
+        background-color: rgba(22, 163, 74, 0.1);
+        color: #16a34a;
+    }
+
+    .flash-msg.flash-error {
+        border-color: #dc2626;
+        background-color: rgba(220, 38, 38, 0.1);
+        color: #dc2626;
+    }
+
+    /* Events Hero */
+    .events-hero {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        background: linear-gradient(135deg, #0a1a15 0%, #1a3c34 50%, #0f2922 100%);
+        overflow: hidden;
+        padding-top: 100px;
+    }
+
+    .events-hero .hero-bg-pattern {
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(circle at 20% 80%, rgba(212, 165, 83, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(196, 112, 79, 0.08) 0%, transparent 50%),
+            url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+    }
+
+    .events-hero-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .events-hero .overline {
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #d4a553;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+
+    .events-hero .hero-title {
+        font-size: clamp(3.5rem, 10vw, 7rem);
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 2rem;
+        color: #fff;
+    }
+
+    .events-hero .hero-title .highlight-word {
+        color: #d4a553;
+    }
+
+    .events-hero .hero-description {
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 550px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.7;
+    }
+
+    .hero-event-stats {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .hero-stat-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        padding: 0.875rem 1.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.95rem;
+    }
+
+    .hero-stat-badge svg {
+        color: #d4a553;
+    }
+
+    .hero-stat-badge strong {
+        color: #fff;
+        font-weight: 700;
+    }
+
+    /* Upcoming Events Section */
+    .upcoming-events-section {
+        padding: 6rem 0;
+        background: linear-gradient(180deg, #f7f4f0 0%, #fafaf9 100%);
+        margin-top: -80px;
+        position: relative;
+        z-index: 10;
+        border-radius: 40px 40px 0 0;
+    }
+
+    /* Events Grid */
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 2.5rem;
+    }
+
+    /* Modern Event Card */
+    .event-card-modern {
+        background: #fff;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(26, 60, 52, 0.06);
+        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .event-card-modern:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 30px 60px rgba(26, 60, 52, 0.15);
+    }
+
+    /* Event Image */
+    .event-image-wrapper {
+        position: relative;
+        height: 280px;
+        overflow: hidden;
+    }
+
+    .event-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .event-card-modern:hover .event-image-wrapper img {
+        transform: scale(1.08);
+    }
+
+    .event-image-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 40%, rgba(26, 60, 52, 0.8) 100%);
+    }
+
+    .event-date-badge-float {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: #fff;
+        padding: 0.75rem 1rem;
+        border-radius: 14px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        z-index: 2;
+    }
+
+    .event-date-badge-float .day {
+        display: block;
+        font-family: 'Sora', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1a3c34;
+        line-height: 1;
+    }
+
+    .event-date-badge-float .month {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #c4704f;
+    }
+
+    .event-status-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        backdrop-filter: blur(10px);
+        z-index: 2;
+    }
+
+    .event-status-badge.open {
+        background: rgba(34, 197, 94, 0.9);
+        color: #fff;
+    }
+
+    .event-status-badge .status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #fff;
+        animation: pulse-dot 2s ease infinite;
+    }
+
+    @keyframes pulse-dot {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    /* Event Content */
+    .event-content {
+        padding: 2rem;
+    }
+
+    .event-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .event-title-row h3 {
+        font-size: 1.5rem;
+        color: #1a3c34;
+        margin: 0;
+    }
+
+    .event-type-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.9rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        flex-shrink: 0;
+    }
+
+    .event-type-badge.solo {
+        background: rgba(59, 130, 246, 0.12);
+        color: #2563eb;
+    }
+
+    .event-type-badge.team {
+        background: rgba(139, 92, 246, 0.12);
+        color: #7c3aed;
+    }
+
+    .event-type-badge svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .event-content h3 {
+        font-size: 1.5rem;
+        color: #1a3c34;
+        margin-bottom: 0.75rem;
+    }
+
+    .event-short-desc {
+        color: #5a6b68;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+    }
+
+    .event-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #f0ebe5;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: #7a8b88;
+    }
+
+    .meta-item svg {
+        color: #c4704f;
+    }
+
+    .btn-expand-event {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #c4704f 0%, #d4855f 100%);
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-expand-event:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(196, 112, 79, 0.35);
+    }
+
+    .btn-expand-event svg {
+        transition: transform 0.3s ease;
+    }
+
+    .btn-expand-event:hover svg {
+        transform: translateX(5px);
+    }
+
+    /* Empty State */
+    .empty-events-state {
+        text-align: center;
+        padding: 5rem 2rem;
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 4px 20px rgba(26, 60, 52, 0.04);
+    }
+
+    .empty-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 2rem;
+        background: linear-gradient(135deg, rgba(212, 165, 83, 0.1) 0%, rgba(196, 112, 79, 0.05) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #c4704f;
+    }
+
+    .empty-events-state h3 {
+        font-size: 1.5rem;
+        color: #1a3c34;
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-events-state p {
+        color: #7a8b88;
+        font-size: 1rem;
+    }
+
+    /* Past Events Section */
+    .past-events-section {
+        padding: 6rem 0;
+        background: #fff;
+    }
+
+    .past-events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 2rem;
+    }
+
+    .past-event-card {
+        display: flex;
+        background: #faf8f5;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        border: 1px solid #f0ebe5;
+    }
+
+    .past-event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(26, 60, 52, 0.08);
+        border-color: transparent;
+    }
+
+    .past-event-image {
+        width: 140px;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    .past-event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(50%);
+        transition: filter 0.4s ease;
+    }
+
+    .past-event-card:hover .past-event-image img {
+        filter: grayscale(0%);
+    }
+
+    .past-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent 0%, #faf8f5 100%);
+    }
+
+    .past-event-info {
+        display: flex;
+        gap: 1.25rem;
+        padding: 1.5rem;
+        flex: 1;
+    }
+
+    .past-date {
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    .past-date .day {
+        display: block;
+        font-family: 'Sora', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1a3c34;
+        line-height: 1;
+    }
+
+    .past-date .month {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #7a8b88;
+    }
+
+    .past-details h4 {
+        font-size: 1.1rem;
+        color: #1a3c34;
+        margin-bottom: 0.35rem;
+    }
+
+    .past-details p {
+        font-size: 0.9rem;
+        color: #7a8b88;
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+    }
+
+    .past-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #5a6b68;
+        background: rgba(26, 60, 52, 0.06);
+        padding: 0.35rem 0.75rem;
+        border-radius: 8px;
+    }
+
+    /* Events CTA Section */
+    .events-cta-section {
+        padding: 6rem 0;
+        background: linear-gradient(135deg, #1a3c34 0%, #2a5c4d 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .events-cta-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .events-cta-content {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .events-cta-content h2 {
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        color: #fff;
+        margin-bottom: 1rem;
+    }
+
+    .events-cta-content p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+        max-width: 500px;
+        margin: 0 auto 2rem;
+    }
+
+    /* =========================================
+   EVENT MODAL STYLES
+   ========================================= */
+    .event-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .event-modal.active {
+        display: flex;
+    }
+
+    .modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 20, 25, 0.85);
+        backdrop-filter: blur(8px);
+    }
+
+    .modal-container {
+        position: relative;
+        width: 100%;
+        max-width: 700px;
+        max-height: 90vh;
+        background: #fff;
+        border-radius: 24px;
+        overflow: hidden;
+        overflow-y: auto;
+        animation: modalSlideIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1a3c34;
+        z-index: 10;
+        transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+        background: #fff;
+        transform: rotate(90deg);
+    }
+
+    .modal-header {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .modal-header img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .modal-header-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 0%, rgba(26, 60, 52, 0.9) 100%);
+    }
+
+    .modal-header-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem;
+        display: flex;
+        align-items: flex-end;
+        gap: 1.5rem;
+    }
+
+    .modal-date-badge {
+        background: #fff;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    .modal-date-badge .day {
+        display: block;
+        font-family: 'Sora', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1a3c34;
+        line-height: 1;
+    }
+
+    .modal-date-badge .month {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #c4704f;
+    }
+
+    .modal-header-content h2 {
+        font-size: 1.75rem;
+        color: #fff;
+        margin: 0;
+    }
+
+    .modal-body {
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .modal-info h4,
+    .modal-form h4 {
+        font-size: 1.1rem;
+        color: #1a3c34;
+        margin-bottom: 1rem;
+    }
+
+    .modal-info p {
+        color: #5a6b68;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-meta-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .modal-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+        background: #faf8f5;
+        border-radius: 12px;
+    }
+
+    .modal-meta-item svg {
+        color: #c4704f;
+        flex-shrink: 0;
+    }
+
+    .meta-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #7a8b88;
+    }
+
+    .meta-value {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #1a3c34;
+    }
+
+    /* Modal Form */
+    .modal-form {
+        background: #faf8f5;
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+
+    .modal-form .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .modal-form .form-group label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #5a6b68;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+    }
+
+    .modal-form .form-input {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        background: #fff;
+        border: 2px solid #e8e4df;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        color: #1a3c34;
+        transition: all 0.3s ease;
+    }
+
+    .modal-form .form-input:focus {
+        outline: none;
+        border-color: #c4704f;
+        box-shadow: 0 0 0 3px rgba(196, 112, 79, 0.1);
+    }
+
+    .btn-submit-registration {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #c4704f 0%, #d4855f 100%);
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 0.5rem;
+    }
+
+    .btn-submit-registration:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(196, 112, 79, 0.35);
+    }
+
+    /* =========================================
+   RESPONSIVE STYLES
+   ========================================= */
+    @media (max-width: 1024px) {
+        .events-grid {
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        }
+
+        .past-events-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .events-hero {
+            min-height: 60vh;
+        }
+
+        .events-hero .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+        }
+
+        .hero-event-stats {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .events-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .modal-body {
+            grid-template-columns: 1fr;
+        }
+
+        .past-event-card {
+            flex-direction: column;
+        }
+
+        .past-event-image {
+            width: 100%;
+            height: 150px;
+        }
+
+        .past-overlay {
+            background: linear-gradient(180deg, transparent 0%, #faf8f5 100%);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Event Delegation for Opening Modals
+        document.body.addEventListener('click', function (e) {
+            // Handle Open Modal
+            const openBtn = e.target.closest('.js-open-modal');
+            if (openBtn) {
+                const eventId = openBtn.getAttribute('data-event-id');
+                const modal = document.getElementById('event-modal-' + eventId);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            // Handle Close Modal (Button or Backdrop)
+            const closeBtn = e.target.closest('.js-close-modal');
+            if (closeBtn) {
+                const eventId = closeBtn.getAttribute('data-event-id');
+                const modal = document.getElementById('event-modal-' + eventId);
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+    });
+
+    // Keep old functions for fallback/compatibility if needed externally
+    function openEventModal(eventId) {
+        const modal = document.getElementById('event-modal-' + eventId);
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeEventModal(eventId) {
+        const modal = document.getElementById('event-modal-' + eventId);
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.event-modal.active').forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = '';
+        }
+    });
+</script>
+
+{% endblock %}

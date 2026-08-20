@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event | Admin | Enactus</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0f1419;
+            --bg-card: #1a1f26;
+            --bg-hover: #252b35;
+            --text-primary: #fff;
+            --text-secondary: #8b949e;
+            --accent-gold: #d4a553;
+            --accent-terracotta: #c4704f;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .btn-back svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        small {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Edit Event</h1>
+            <a href="/admin" class="btn-back">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back to Admin
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Event Details</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="form-group">
+                        <label>Event Title *</label>
+                        <input type="text" name="title" class="form-input" value="{{ event.title }}" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Start Date *</label>
+                            <input type="date" name="start_date" class="form-input" value="{{ event.start_date }}"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="date" name="end_date" class="form-input" value="{{ event.end_date }}">
+                            <small>Same as start if single-day event</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Event Time</label>
+                            <input type="time" name="time" class="form-input" value="{{ event.event_time }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Venue/Location</label>
+                            <input type="text" name="venue" class="form-input" value="{{ event.venue or '' }}"
+                                placeholder="e.g. Main Auditorium">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Max Registrations</label>
+                        <input type="number" name="max_registrations" class="form-input"
+                            value="{{ event.max_registrations or '' }}" placeholder="Leave empty for unlimited">
+                        <small>Currently {{ event.registrations|length }} registered</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Short Description * (Shown on card)</label>
+                        <input type="text" name="short_desc" class="form-input" value="{{ event.short_desc }}"
+                            maxlength="200" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Full Description * (Shown in details)</label>
+                        <textarea name="full_desc" class="form-textarea" rows="5"
+                            required>{{ event.full_desc }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cover Image URL *</label>
+                        <input type="url" name="image_url" class="form-input" value="{{ event.image_url }}" required>
+                        <small>Current image: {{ event.image_url[:50] }}...</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Event Link / Form URL</label>
+                        <input type="url" name="event_link" class="form-input" value="{{ event.event_link or '' }}"
+                            placeholder="https://forms.google.com/... or external registration link">
+                        <small>External registration form or additional event link</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Brochure Link</label>
+                        <input type="url" name="brochure_link" class="form-input"
+                            value="{{ event.brochure_link or '' }}"
+                            placeholder="https://drive.google.com/... or PDF link">
+                        <small>Link to event brochure or document</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Event Type</label>
+                        <select name="event_type" class="form-input" id="editEventType"
+                            onchange="toggleEditTeamFields()">
+                            <option value="solo" {{ 'selected' if event.event_type=='solo' else '' }}>Solo Event
+                            </option>
+                            <option value="team" {{ 'selected' if event.event_type=='team' else '' }}>Team Event
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-row" id="editTeamSizeFields"
+                        style="{{ '' if event.event_type == 'team' else 'display: none;' }}">
+                        <div class="form-group">
+                            <label>Min Team Size</label>
+                            <input type="number" name="min_team_size" class="form-input"
+                                value="{{ event.min_team_size or '' }}" placeholder="e.g. 2" min="2">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Team Size</label>
+                            <input type="number" name="max_team_size" class="form-input"
+                                value="{{ event.max_team_size or '' }}" placeholder="e.g. 5" min="2">
+                        </div>
+                    </div>
+
+                    <script>
+                        function toggleEditTeamFields() {
+                            const eventType = document.getElementById('editEventType').value;
+                            const teamFields = document.getElementById('editTeamSizeFields');
+                            teamFields.style.display = eventType === 'team' ? 'grid' : 'none';
+                        }
+                    </script>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Update Event
+                        </button>
+                        <a href="/admin" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

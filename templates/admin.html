@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Enactus</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sidebar-width: 280px;
+            --header-height: 70px;
+            --bg-dark: #0f1419;
+            --bg-card: #1a1f26;
+            --bg-hover: #252b35;
+            --text-primary: #fff;
+            --text-secondary: #8b949e;
+            --accent-gold: #d4a553;
+            --accent-terracotta: #c4704f;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+            --accent-blue: #3b82f6;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 22px;
+            height: 22px;
+            color: #fff;
+        }
+
+        .logo-text {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: var(--accent-gold);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 1.5rem 1rem;
+            overflow-y: auto;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            padding: 0 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-bottom: 0.25rem;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: rgba(212, 165, 83, 0.15);
+            color: var(--accent-gold);
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .nav-item .badge {
+            margin-left: auto;
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+        }
+
+        .sidebar-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .user-card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-hover);
+            border-radius: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .main-header {
+            position: sticky;
+            top: 0;
+            height: var(--header-height);
+            background: rgba(15, 20, 25, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 50;
+        }
+
+        .header-title h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .header-title p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 165, 83, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+
+        .btn-success {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-success:hover {
+            background: rgba(34, 197, 94, 0.25);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 2rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon.gold {
+            background: rgba(212, 165, 83, 0.15);
+            color: var(--accent-gold);
+        }
+
+        .stat-icon.green {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--accent-green);
+        }
+
+        .stat-icon.blue {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent-blue);
+        }
+
+        .stat-icon.red {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+
+        .stat-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .stat-trend {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+        }
+
+        .stat-trend.up {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--accent-green);
+        }
+
+        .stat-trend.down {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+
+        .stat-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Section Title */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Grid Layout */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 165, 83, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Table Styles */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            background: var(--bg-hover);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .data-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Event Row */
+        .event-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .event-date-badge {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-hover);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .event-date-badge .day {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-date-badge .month {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .event-details h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .event-details p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-badge.open {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--accent-green);
+        }
+
+        .status-badge.closed {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+
+        .status-badge.past {
+            background: rgba(139, 148, 158, 0.15);
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        /* Registration Count */
+        .reg-count {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .reg-count svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Action Buttons */
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .action-btn.edit:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .action-btn.toggle:hover {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        .action-btn.delete:hover {
+            color: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
+        .action-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Registration List */
+        .reg-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .reg-item:last-child {
+            border-bottom: none;
+        }
+
+        .reg-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .reg-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .reg-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .reg-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .reg-event-badge {
+            background: rgba(212, 165, 83, 0.15);
+            color: var(--accent-gold);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h4 {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Flash Messages */
+        .flash-container {
+            position: fixed;
+            top: calc(var(--header-height) + 1rem);
+            right: 2rem;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .flash-message {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .flash-message.success {
+            background: rgba(34, 197, 94, 0.95);
+            color: #fff;
+        }
+
+        .flash-message.error {
+            background: rgba(239, 68, 68, 0.95);
+            color: #fff;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-gold);
+            background: rgba(212, 165, 83, 0.15);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-header h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* Search & Filter */
+        .search-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--text-secondary);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            background: var(--bg-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            background: var(--bg-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            min-width: 150px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                </div>
+                <span class="logo-text">enactus<span>.</span></span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Overview</div>
+                <a href="#dashboard" class="nav-item active" onclick="showSection('dashboard')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <rect x="3" y="3" width="7" height="9"></rect>
+                        <rect x="14" y="3" width="7" height="5"></rect>
+                        <rect x="14" y="12" width="7" height="9"></rect>
+                        <rect x="3" y="16" width="7" height="5"></rect>
+                    </svg>
+                    Dashboard
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Management</div>
+                <a href="#events" class="nav-item" onclick="showSection('events')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Events
+                    <span class="badge">{{ events|length }}</span>
+                </a>
+                <a href="#registrations" class="nav-item" onclick="showSection('registrations')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    Registrations
+                    <span class="badge">{{ regs|length }}</span>
+                </a>
+                <a href="#create-event" class="nav-item" onclick="showSection('create-event')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                    Create Event
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Quick Links</div>
+                <a href="/" class="nav-item" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    View Website
+                </a>
+                <a href="/events" class="nav-item" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Public Events
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="user-avatar">A</div>
+                <div class="user-info">
+                    <div class="user-name">Admin</div>
+                    <div class="user-role">Super Admin</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-title">
+                <h1>Admin Dashboard</h1>
+                <p>Manage events, registrations, and more</p>
+            </div>
+            <div class="header-actions">
+                <a href="/export_all_pdf" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Export All PDF
+                </a>
+                <a href="/export_all_excel" class="btn btn-primary" style="background: #217346;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    Export All Excel
+                </a>
+                <a href="/logout" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Logout
+                </a>
+            </div>
+        </header>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {% if category == 'success' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                </svg>
+                {% endif %}
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-area section-content active">
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon gold">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">{{ events|length }}</div>
+                    <div class="stat-label">Total Events</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon green">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">{{ events|selectattr('is_open', 'equalto', true)|list|length }}</div>
+                    <div class="stat-label">Active Events</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">{{ regs|length }}</div>
+                    <div class="stat-label">Total Registrations</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon red">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">{{ events|selectattr('is_open', 'equalto', false)|list|length }}</div>
+                    <div class="stat-label">Closed Events</div>
+                </div>
+            </div>
+
+            <!-- Quick Overview -->
+            <div class="grid-3">
+                <!-- Recent Events -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recent Events</h3>
+                        <a href="#events" onclick="showSection('events')" class="btn btn-secondary"
+                            style="padding: 0.5rem 1rem; font-size: 0.8rem;">View All</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Status</th>
+                                    <th>Registrations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for event in events[:5] %}
+                                <tr>
+                                    <td>
+                                        <div class="event-info">
+                                            <div class="event-date-badge">
+                                                <span class="day">{{ event.date_day }}</span>
+                                                <span class="month">{{ event.date_month }}</span>
+                                            </div>
+                                            <div class="event-details">
+                                                <h4>{{ event.title }}</h4>
+                                                <p>{{ event.short_desc[:40] }}...</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% if event.is_open %}
+                                        <span class="status-badge open"><span class="status-dot"></span> Open</span>
+                                        {% else %}
+                                        <span class="status-badge closed"><span class="status-dot"></span> Closed</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="reg-count">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="9" cy="7" r="4"></circle>
+                                            </svg>
+                                            {{ event.registrations|length }}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="3">
+                                        <div class="empty-state">
+                                            <p>No events created yet</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Recent Registrations -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recent Registrations</h3>
+                    </div>
+                    <div class="card-body" style="padding: 0; max-height: 400px; overflow-y: auto;">
+                        {% for reg in regs[-5:]|reverse %}
+                        <div class="reg-item">
+                            <div class="reg-avatar">{{ reg.name[0] }}</div>
+                            <div class="reg-info">
+                                <div class="reg-name">{{ reg.name }}</div>
+                                <div class="reg-meta">
+                                    <span>{{ reg.email }}</span>
+                                </div>
+                            </div>
+                            <span class="reg-event-badge">{{ reg.event.title[:15] }}...</span>
+                        </div>
+                        {% else %}
+                        <div class="empty-state">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                            </svg>
+                            <h4>No registrations yet</h4>
+                            <p>Registrations will appear here</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Management Section -->
+        <section id="events-section" class="content-area section-content">
+            <div class="section-title">
+                <h2>Event Management</h2>
+                <button class="btn btn-primary" onclick="showSection('create-event')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                    Create Event
+                </button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="filterEvents('all')">All Events</button>
+                <button class="tab-btn" onclick="filterEvents('open')">Open</button>
+                <button class="tab-btn" onclick="filterEvents('closed')">Closed</button>
+            </div>
+
+            <div class="card">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Registrations</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="events-table-body">
+                            {% for event in events %}
+                            <tr class="event-row" data-status="{{ 'open' if event.is_open else 'closed' }}">
+                                <td>
+                                    <div class="event-info">
+                                        <div class="event-date-badge">
+                                            <span class="day">{{ event.date_day }}</span>
+                                            <span class="month">{{ event.date_month }}</span>
+                                        </div>
+                                        <div class="event-details">
+                                            <h4>{{ event.title }}</h4>
+                                            <p>{{ event.short_desc[:50] }}...</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{ event.date_day }} {{ event.date_month }}</td>
+                                <td>
+                                    {% if event.is_open %}
+                                    <span class="status-badge open"><span class="status-dot"></span> Registration
+                                        Open</span>
+                                    {% else %}
+                                    <span class="status-badge closed"><span class="status-dot"></span> Closed</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="reg-count">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                        </svg>
+                                        {{ event.registrations|length }} registered
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="action-btns">
+                                        <a href="/export_event_pdf/{{ event.id }}" class="action-btn" title="Export PDF"
+                                            style="color: var(--accent-green);">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                <polyline points="7 10 12 15 17 10"></polyline>
+                                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                                            </svg>
+                                        </a>
+                                        <a href="/export_event_excel/{{ event.id }}" class="action-btn"
+                                            title="Export Excel" style="color: #217346;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                                </path>
+                                                <polyline points="14 2 14 8 20 8"></polyline>
+                                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                            </svg>
+                                        </a>
+                                        <a href="/edit_event/{{ event.id }}" class="action-btn edit" title="Edit Event">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
+                                                </path>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                        <form action="/toggle_event/{{ event.id }}" method="POST"
+                                            style="display: inline;">
+                                            <button type="submit" class="action-btn toggle"
+                                                title="{{ 'Close Registration' if event.is_open else 'Open Registration' }}">
+                                                {% if event.is_open %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                </svg>
+                                                {% else %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                    <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+                                                </svg>
+                                                {% endif %}
+                                            </button>
+                                        </form>
+                                        <form action="/delete_event/{{ event.id }}" method="POST"
+                                            style="display: inline;"
+                                            onsubmit="return confirm('Are you sure you want to delete this event? This will also delete all registrations.');">
+                                            <button type="submit" class="action-btn delete" title="Delete Event">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5">
+                                    <div class="empty-state">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                                        </svg>
+                                        <h4>No events yet</h4>
+                                        <p>Create your first event to get started</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registrations Section -->
+        <section id="registrations-section" class="content-area section-content">
+            <div class="section-title">
+                <h2>Registration Management</h2>
+                <span style="color: var(--text-secondary);">{{ regs|length }} total registrations</span>
+            </div>
+
+            <!-- Search & Filter -->
+            <div class="search-filter">
+                <div class="search-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="search-registrations" placeholder="Search by name or email..."
+                        onkeyup="searchRegistrations()">
+                </div>
+                <select class="filter-select" id="filter-event" onchange="filterRegistrations()">
+                    <option value="all">All Events</option>
+                    {% for event in events %}
+                    <option value="{{ event.id }}">{{ event.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="card">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Participant</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Student ID / Team Size</th>
+                                <th>Branch</th>
+                                <th>College</th>
+                                <th>Event</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registrations-table-body">
+                            {% for reg in regs %}
+                            <tr class="reg-row" data-event="{{ reg.event_id }}"
+                                data-name="{{ (reg.team_name or reg.name or '')|lower }}"
+                                data-email="{{ (reg.leader_email or reg.email or '')|lower }}">
+                                <!-- Name / Team Name -->
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div class="reg-avatar">{{ (reg.team_name or reg.name or 'U')[0] }}</div>
+                                        <div>
+                                            {% if reg.registration_type == 'team' %}
+                                            <span style="font-weight: 600; color: #d4a553;">{{ reg.team_name or 'Team'
+                                                }}</span>
+                                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Leader: {{
+                                                reg.leader_name or reg.name or 'N/A' }}</div>
+                                            {% else %}
+                                            <span style="font-weight: 600;">{{ reg.name or 'N/A' }}</span>
+                                            <span
+                                                style="display: block; font-size: 0.7rem; color: var(--accent-blue);">Solo</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- Email -->
+                                <td style="font-size: 0.85rem;">{{ reg.leader_email or reg.email or 'N/A' }}</td>
+                                <!-- Phone -->
+                                <td style="font-size: 0.85rem;">{{ reg.leader_contact or reg.contact_no or 'N/A' }}</td>
+                                <!-- Student ID / Team Size -->
+                                <td>
+                                    {% if reg.registration_type == 'team' %}
+                                    <span style="font-weight: 500; color: #22c55e;">{{ reg.team_size or '?' }}
+                                        members</span>
+                                    {% else %}
+                                    <span style="font-weight: 500;">{{ reg.student_id or 'N/A' }}</span>
+                                    {% endif %}
+                                </td>
+                                <!-- Branch -->
+                                <td style="font-size: 0.85rem;">
+                                    {% if reg.registration_type == 'team' %}
+                                    <span style="color: var(--text-secondary);">—</span>
+                                    {% else %}
+                                    {{ reg.branch or 'N/A' }}
+                                    {% endif %}
+                                </td>
+                                <!-- College -->
+                                <td style="font-size: 0.85rem; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                                    title="{{ reg.college_name or 'N/A' }}">
+                                    {{ reg.college_name or 'N/A' }}
+                                </td>
+                                <!-- Event -->
+                                <td>
+                                    <span class="reg-event-badge">{{ reg.event.title }}</span>
+                                    {% if reg.registration_type == 'team' %}
+                                    <span
+                                        style="display: block; font-size: 0.65rem; color: #d4a553; margin-top: 0.15rem;">Team
+                                        Event</span>
+                                    {% endif %}
+                                </td>
+                                <!-- Actions -->
+                                <td>
+                                    <div class="action-btns">
+                                        <form action="/delete_registration/{{ reg.id }}" method="POST"
+                                            style="display: inline;"
+                                            onsubmit="return confirm('Delete this registration?');">
+                                            <button type="submit" class="action-btn delete" title="Delete Registration">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="8">
+                                    <div class="empty-state">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                        </svg>
+                                        <h4>No registrations yet</h4>
+                                        <p>Registrations will appear here when people sign up for events</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Create Event Section -->
+        <section id="create-event-section" class="content-area section-content">
+            <div class="section-title">
+                <h2>Create New Event</h2>
+            </div>
+
+            <div class="card" style="max-width: 800px;">
+                <div class="card-header">
+                    <h3>Event Details</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/add_event" method="POST">
+                        <div class="form-group">
+                            <label>Event Title *</label>
+                            <input type="text" name="title" class="form-input"
+                                placeholder="e.g. Social Entrepreneurship Summit" required>
+                        </div>
+
+                        <!-- Event Type Selector -->
+                        <div class="form-group">
+                            <label>Event Type *</label>
+                            <select name="event_type" class="form-select" id="eventType" onchange="toggleTeamFields()"
+                                required>
+                                <option value="solo">Solo Event (Individual Registration)</option>
+                                <option value="team">Team Event (Group Registration)</option>
+                            </select>
+                        </div>
+
+                        <!-- Team Size Fields (Hidden by default) -->
+                        <div class="form-row" id="teamSizeFields" style="display: none;">
+                            <div class="form-group">
+                                <label>Min Team Size</label>
+                                <input type="number" name="min_team_size" class="form-input" placeholder="e.g. 2"
+                                    min="2">
+                            </div>
+                            <div class="form-group">
+                                <label>Max Team Size</label>
+                                <input type="number" name="max_team_size" class="form-input" placeholder="e.g. 5"
+                                    min="2">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Start Date *</label>
+                                <input type="date" name="start_date" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" name="end_date" class="form-input"
+                                    placeholder="Same as start date if single day">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Event Time</label>
+                                <input type="time" name="time" class="form-input" placeholder="10:00">
+                            </div>
+                            <div class="form-group">
+                                <label>Venue/Location</label>
+                                <input type="text" name="venue" class="form-input" placeholder="e.g. Main Auditorium">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Max Registrations</label>
+                            <input type="number" name="max_registrations" class="form-input"
+                                placeholder="Leave empty for unlimited">
+                            <small
+                                style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.25rem; display: block;">
+                                Registration will automatically close when limit is reached
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Short Description * (Shown on card)</label>
+                            <input type="text" name="short_desc" class="form-input" placeholder="Brief one-line summary"
+                                maxlength="200" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Full Description * (Shown in details)</label>
+                            <textarea name="full_desc" class="form-textarea"
+                                placeholder="Detailed event information, agenda, what attendees can expect..." rows="5"
+                                required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cover Image URL *</label>
+                            <input type="url" name="image_url" class="form-input"
+                                placeholder="https://images.unsplash.com/..." required>
+                            <small
+                                style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.5rem; display: block;">
+                                Tip: Use Unsplash for free high-quality images. Recommended size: 1200x600
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Event Link / Hyperlink (Optional)</label>
+                            <input type="url" name="event_link" class="form-input"
+                                placeholder="https://forms.google.com/... or external registration link">
+                            <small
+                                style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.5rem; display: block;">
+                                Add an external link for the event (e.g., Google Form, external registration page)
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Brochure Link (Optional)</label>
+                            <input type="url" name="brochure_link" class="form-input"
+                                placeholder="https://drive.google.com/... or PDF link">
+                            <small
+                                style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.5rem; display: block;">
+                                Add a link to the event brochure or information deck
+                            </small>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                            <button type="submit" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                Publish Event
+                            </button>
+                            <button type="reset" class="btn btn-secondary">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Section Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+
+            // Show target section
+            const targetSection = document.getElementById(sectionName + '-section');
+            if (targetSection) {
+                targetSection.classList.add('active');
+                targetSection.style.display = 'block';
+            }
+
+            // Update nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            const activeNav = document.querySelector(`.nav-item[href="#${sectionName}"]`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+        }
+
+        // Filter Events by Status
+        function filterEvents(status) {
+            const rows = document.querySelectorAll('.event-row');
+            const tabs = document.querySelectorAll('.tab-btn');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            rows.forEach(row => {
+                if (status === 'all' || row.dataset.status === status) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Search Registrations
+        function searchRegistrations() {
+            const searchTerm = document.getElementById('search-registrations').value.toLowerCase();
+            const rows = document.querySelectorAll('.reg-row');
+
+            rows.forEach(row => {
+                const name = row.dataset.name;
+                const email = row.dataset.email;
+
+                if (name.includes(searchTerm) || email.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Filter Registrations by Event
+        function filterRegistrations() {
+            const eventId = document.getElementById('filter-event').value;
+            const rows = document.querySelectorAll('.reg-row');
+
+            rows.forEach(row => {
+                if (eventId === 'all' || row.dataset.event === eventId) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Toggle Team Size Fields
+        function toggleTeamFields() {
+            const eventType = document.getElementById('eventType').value;
+            const teamFields = document.getElementById('teamSizeFields');
+            if (eventType === 'team') {
+                teamFields.style.display = 'grid';
+            } else {
+                teamFields.style.display = 'none';
+            }
+        }
+
+        // Initialize - Show dashboard by default
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('dashboard');
+
+            // Auto-hide flash messages
+            setTimeout(() => {
+                const flashContainer = document.querySelector('.flash-container');
+                if (flashContainer) {
+                    flashContainer.style.transition = 'opacity 0.5s ease';
+                    flashContainer.style.opacity = '0';
+                    setTimeout(() => flashContainer.remove(), 500);
+                }
+            }, 4000);
+        });
+    </script>
+</body>
+
+</html>

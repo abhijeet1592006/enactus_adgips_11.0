@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | enactus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Loading Screen Overlay - Premium Design */
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999999;
+            background: linear-gradient(135deg, #0a1612 0%, #0d1f1a 50%, #0a1612 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        #loadingScreen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #loadingScreen video {
+            max-width: 800px;
+            width: 90%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
+        }
+
+
+
+        /* Page starts invisible, fades in after loading */
+        body.is-loading nav,
+        body.is-loading main,
+        body.is-loading footer {
+            opacity: 0;
+        }
+
+        body:not(.is-loading) nav,
+        body:not(.is-loading) main,
+        body:not(.is-loading) footer {
+            opacity: 1;
+            transition: opacity 0.5s ease 0.1s;
+        }
+    </style>
+</head>
+
+<body class="{{ 'is-loading' if request.path == '/' else '' }}">
+    <!-- Emotional Design: Ambient Background -->
+    <div class="ambient-glow">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Loading Screen with Video -->
+    {% if request.path == '/' %}
+    <div id="loadingScreen">
+        <video id="loadingVideo" muted playsinline preload="auto">
+            <source src="{{ url_for('static', filename='video/loading.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+    {% endif %}
+
+    <nav>
+        <div class="logo">
+            <img src="https://enactus-adgips.vercel.app/static/media/encatus.b5c6d776e6567017d63d.png" alt="Enactus Logo">
+            <span class="logo-text">enactus</span>
+        </div>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/team">Our Team</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/store">Store</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <h2>enactus</h2>
+            <p>Empowering action through entrepreneurship.</p>
+            <div class="social-links" style="margin: 1.5rem 0; display: flex; justify-content: center; gap: 1.5rem;">
+                <a href="https://www.instagram.com/enactus.adgips?igsh=MTF5YzgxYjZ5d2V5dg==" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;" onmouseover="this.style.color='#d4a553'" onmouseout="this.style.color='#fff'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.linkedin.com/company/enactus-adgips/" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;" onmouseover="this.style.color='#d4a553'" onmouseout="this.style.color='#fff'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://medium.com/@enactusadgips" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;" onmouseover="this.style.color='#d4a553'" onmouseout="this.style.color='#fff'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728L4.278 6.442v9.155c-.044.287.063.577.28.776l2.368 2.89v.403H.121v-.403l2.39-2.89c.217-.199.324-.489.28-.776V6.887z"></path></svg>
+                    <span>Medium</span>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=enactusadgips@gmail.com" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;" onmouseover="this.style.color='#d4a553'" onmouseout="this.style.color='#fff'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <span>Email Us</span>
+                </a>
+            </div>
+            <br>
+            <p>&copy; 2024 enactus Society. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Global Configuration
+        window.ENACTUS = {
+            isHomePage: {{ 'true' if request.path == '/' else 'false' }}
+        };
+
+        // ========== INTERNAL NAVIGATION HANDLER ==========
+        // Tracks if the user clicked a link on the site to prevent loading screen on internal navigation
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    var href = link.getAttribute('href');
+                    if (href && !href.startsWith('http') && !href.startsWith('//') && !href.startsWith('#')) {
+                        sessionStorage.setItem('internalNavigation', 'true');
+                    }
+                });
+            });
+        });
+
+        // ========== LOADING SCREEN LOGIC ==========
+        if (window.ENACTUS.isHomePage) {
+            (function () {
+                var screen = document.getElementById('loadingScreen');
+                var video = document.getElementById('loadingVideo');
+                var body = document.body;
+                var hidden = false;
+
+                function hideLoadingNow() {
+                    if (hidden) return;
+                    hidden = true;
+                    if (screen) {
+                        screen.style.display = 'none';
+                        screen.classList.add('hidden');
+                    }
+                    body.classList.remove('is-loading');
+                }
+
+                function hideLoadingFade() {
+                    if (hidden) return;
+                    hidden = true;
+                    if (screen) screen.classList.add('hidden');
+                    body.classList.remove('is-loading');
+                }
+
+                // Check navigation type
+                var isInternal = sessionStorage.getItem('internalNavigation') === 'true';
+                var isReload = (performance.getEntriesByType &&
+                    performance.getEntriesByType('navigation')[0] &&
+                    performance.getEntriesByType('navigation')[0].type === 'reload') ||
+                    (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+
+                sessionStorage.removeItem('internalNavigation');
+
+                if (isInternal && !isReload) {
+                    hideLoadingNow();
+                    return;
+                }
+
+                // Video Logic
+                if (video) {
+                    video.playbackRate = 2.0; // 2x Speed
+
+                    var playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(function () {
+                            video.playbackRate = 2.0;
+                        }).catch(function (error) {
+                            console.log('Autoplay blocked:', error);
+                            setTimeout(hideLoadingFade, 500);
+                        });
+                    }
+                    video.onended = hideLoadingFade;
+                }
+
+                // Fallback
+                setTimeout(hideLoadingFade, 2000);
+                window.addEventListener('load', function () {
+                    setTimeout(hideLoadingFade, 1500);
+                });
+            })();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="team-hero">
+    <div class="container">
+        <div class="team-hero-content" data-aos="fade-up">
+            <span class="hero-label">The People Behind The Purpose</span>
+            <h1>Meet Our Core Team</h1>
+            <p class="hero-subtitle">Dedicated individuals working together to create positive change in communities
+                through entrepreneurial action.</p>
+        </div>
+    </div>
+    <div class="hero-pattern"></div>
+</section>
+
+<!-- Tenure Display -->
+<section class="tenure-section">
+    <div class="container">
+        <div class="tenure-display-wrapper" data-aos="fade-up">
+            <div class="tenure-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                    </polygon>
+                </svg>
+                <span class="tenure-text">Enactus 10.0</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Category Tabs -->
+<section class="team-tabs-section">
+    <div class="container">
+        <div class="tabs-container" data-aos="fade-up">
+            <button class="tab-btn active" data-category="council" onclick="switchCategory('council')">
+                <span class="tab-icon">👑</span>
+                Council
+            </button>
+            <button class="tab-btn" data-category="department" onclick="switchCategory('department')">
+                <span class="tab-icon">🎯</span>
+                Department Heads
+            </button>
+            <button class="tab-btn" data-category="project" onclick="switchCategory('project')">
+                <span class="tab-icon">🚀</span>
+                Project Heads
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Team Grid Section -->
+<section class="team-grid-section">
+    <div class="container">
+        <!-- Council Section -->
+        <div id="council-section" class="category-section active">
+            <div class="section-header" data-aos="fade-right">
+                <h2>The Council</h2>
+                <p>The visionaries steering our mission forward</p>
+            </div>
+            <div class="team-portrait-grid" id="councilContainer">
+                <!-- Members injected via JS -->
+            </div>
+        </div>
+
+        <!-- Department Heads Section -->
+        <div id="department-section" class="category-section">
+            <div class="section-header" data-aos="fade-right">
+                <h2>Department Heads</h2>
+                <p>Leading specialized teams to excellence</p>
+            </div>
+            <div class="team-portrait-grid" id="departmentContainer">
+                <!-- Members injected via JS -->
+            </div>
+        </div>
+
+        <!-- Project Heads Section -->
+        <div id="project-section" class="category-section">
+            <div class="section-header" data-aos="fade-right">
+                <h2>Project Heads</h2>
+                <p>Turning ideas into impactful reality</p>
+            </div>
+            <div class="team-portrait-grid" id="projectContainer">
+                <!-- Members injected via JS -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Legacy of Leadership Section -->
+<section class="legacy-section">
+    <div class="container">
+        <div class="legacy-header" data-aos="fade-up">
+            <span class="legacy-label">Our Heritage</span>
+            <h2>Legacy of Leadership</h2>
+            <p>Honoring those who laid the foundation for our journey</p>
+        </div>
+
+        <div class="legacy-table-wrapper" data-aos="fade-up">
+            <table class="legacy-table">
+                <thead>
+                    <tr>
+                        <th>Tenure</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Achievement</th>
+                    </tr>
+                </thead>
+                <tbody id="legacyTableBody">
+                    <!-- Populated via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Quote Section -->
+<section class="quote-section">
+    <div class="container">
+        <div class="quote-content" data-aos="zoom-in">
+            <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                fill="currentColor">
+                <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+            </svg>
+            <blockquote>
+                "Alone we can do so little; together we can do so much. Every member of our team is a thread in the
+                tapestry of change we're weaving."
+            </blockquote>
+            <cite>— Enactus Philosophy</cite>
+        </div>
+    </div>
+</section>
+
+<!-- Dotted Map Script -->
+
+{% endblock %}

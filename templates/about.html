@@ -1,0 +1,663 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- About Hero Section -->
+<section class="about-hero">
+    <div class="container">
+        <div class="about-hero-grid">
+            <div class="about-hero-content" data-aos="fade-right">
+                <span class="about-label">Who We Are</span>
+                <h1 class="about-title">
+                    <span class="line">We Are</span>
+                    <span class="line highlight">Change Makers.</span>
+                </h1>
+                <p class="about-tagline">We are a growing family of over 75 passionate changemakers, innovators, and
+                    student leaders from Dr. Akhilesh Das Gupta Institute of Professional Studies. Operating across 6
+                    specialized departments, our members bring a diverse range of technical and managerial skills to the
+                    table. We aren't just a college society; we are the next generation of socially responsible leaders.
+                    By dedicating our time to 3 active, non-profit projects, we are turning our collective empathy into
+                    actionable, entrepreneurial blueprints for a better world.</p>
+            </div>
+            <div class="about-hero-image-wrapper" data-aos="fade-left" data-aos-delay="200">
+                <div class="about-hero-image-box">
+                    <img src="{{ url_for('static', filename='images/about/about_hero.png') }}"
+                        alt="Enactus Team Impact">
+                    <div class="glass-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-hero-visual"></div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="mission-vision-section">
+    <div class="container">
+        <div class="mv-grid">
+            <!-- Mission Card -->
+            <div class="mv-card mission" data-aos="fade-up">
+                <div class="mv-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 16v-4M12 8h.01"></path>
+                    </svg>
+                </div>
+                <h3>Our Mission</h3>
+                <p>To engineer a better world by forging ADGIPS students into visionary social entrepreneurs. We invest
+                    in student-led action to build sustainable, non-profit solutions that directly uplift marginalized
+                    communities.</p>
+                <div class="mv-accent"></div>
+            </div>
+
+            <!-- Vision Card -->
+            <div class="mv-card vision" data-aos="fade-up" data-aos-delay="100">
+                <div class="mv-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </div>
+                <h3>Our Vision</h3>
+                <p>To be the premier platform for ADGIPS students to experience the profound impact of social
+                    entrepreneurship. We believe that when young minds apply entrepreneurial action for others, it
+                    creates a better world for us all. Our vision is to empower communities to thrive independently
+                    through sustainable, long-term solutions.</p>
+                <div class="mv-accent"></div>
+            </div>
+
+            <!-- Values Card -->
+            <div class="mv-card values" data-aos="fade-up" data-aos-delay="200">
+                <div class="mv-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </div>
+                <h3>Our Values</h3>
+                <p>Guided by Integrity, Innovation, Impact, and Inclusion, Enactus ADGIPS transforms empathy into
+                    sustainable action. We merge diverse campus talent with entrepreneurial problem-solving to deliver
+                    measurable, lasting community upliftment.</p>
+                <div class="mv-accent"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Story Section -->
+<section class="story-section">
+    <div class="container">
+        <div class="story-grid">
+            <div class="story-images" data-aos="fade-right">
+                <div class="story-img-main">
+                    <img src="/static/images/about/badi_vali_photo.jpg" alt="Team collaborating">
+                </div>
+                <div class="story-img-secondary">
+                    <img src="/static/images/about/chhoti_vali_photo.jpeg" alt="Workshop session">
+                </div>
+                <div class="story-badge">
+                    <span class="badge-number">10+</span>
+                    <span class="badge-text">Years of Impact</span>
+                </div>
+            </div>
+            <div class="story-content" data-aos="fade-left">
+                <span class="section-label-alt">Our Story</span>
+                <h2>From a Dream to a Movement</h2>
+                <p class="lead">Founded in 2015, the Enactus ADGIPS chapter began with a simple but powerful premise:
+                    what if students could use their education to solve real-world social problems? We started with just
+                    8 visionary students who believed in the power of entrepreneurial action.</p>
+                <p>Today, that small campus spark has grown into a relentless movement. Over the past decade, we have
+                    successfully launched 15 non-profit projects, earned 8 national awards, and directly impacted over
+                    10,000 lives.</p>
+                <p>What sets us apart is our unwavering commitment to sustainable empowerment—we don't just offer
+                    temporary help; we equip communities with the skills, financial literacy, and entrepreneurial
+                    training they need to build their own futures.</p>
+                <div class="story-milestones">
+                    <div class="milestone">
+                        <span class="milestone-year">2015</span>
+                        <span class="milestone-event">Chapter Founded</span>
+                    </div>
+                    <div class="milestone">
+                        <span class="milestone-year">2018</span>
+                        <span class="milestone-event">First National Recognition</span>
+                    </div>
+                    <div class="milestone">
+                        <span class="milestone-year">2021</span>
+                        <span class="milestone-event">10,000 Lives Impacted</span>
+                    </div>
+                    <div class="milestone">
+                        <span class="milestone-year">2024</span>
+                        <span class="milestone-event">Expanding Horizons</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Stats Section -->
+<section class="about-stats-section">
+    <div class="container">
+        <div class="about-stats-grid">
+            <div class="about-stat-card" data-aos="zoom-in">
+                <div class="stat-visual">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h3 class="stat-number" data-target="75" data-suffix="+">0</h3>
+                <p class="stat-label">Active Members</p>
+            </div>
+            <div class="about-stat-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="stat-visual">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </polygon>
+                    </svg>
+                </div>
+                <h3 class="stat-number" data-target="15" data-suffix="">0</h3>
+                <p class="stat-label">Projects Completed</p>
+            </div>
+            <div class="about-stat-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="stat-visual">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </div>
+                <h3 class="stat-number" data-target="10000" data-suffix="+">0</h3>
+                <p class="stat-label">Lives Impacted</p>
+            </div>
+            <div class="about-stat-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="stat-visual">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="8" r="7"></circle>
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                    </svg>
+                </div>
+                <h3 class="stat-number" data-target="8" data-suffix="">0</h3>
+                <p class="stat-label">Awards Won</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Global Network Section -->
+<section class="global-network-section">
+    <div class="global-network-overlay"></div>
+    <div class="container">
+        <div class="global-network-header" data-aos="fade-up">
+            <span class="network-label">Our Network</span>
+            <h2>Enactus Global Network</h2>
+            <p>Connected across the world through a shared mission of social entrepreneurship. Enactus operates in 33
+                countries with over 72,000 student leaders.</p>
+        </div>
+
+        <div class="network-stats-grid" data-aos="fade-up" data-aos-delay="100">
+            <div class="network-stat-card">
+                <div class="network-stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                </div>
+                <span class="network-stat-number">33</span>
+                <span class="network-stat-label">COUNTRIES</span>
+            </div>
+            <div class="network-stat-card">
+                <div class="network-stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c0 2 4 3 6 3s6-1 6-3v-5"></path>
+                    </svg>
+                </div>
+                <span class="network-stat-number">1,730</span>
+                <span class="network-stat-label">UNIVERSITIES</span>
+            </div>
+            <div class="network-stat-card">
+                <div class="network-stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <span class="network-stat-number">72K+</span>
+                <span class="network-stat-label">STUDENT LEADERS</span>
+            </div>
+            <div class="network-stat-card">
+                <div class="network-stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </div>
+                <span class="network-stat-number">2M+</span>
+                <span class="network-stat-label">LIVES IMPACTED</span>
+            </div>
+        </div>
+
+        <!-- Interactive Constellation Network -->
+        <div class="constellation-network" data-aos="fade-up" data-aos-delay="200">
+            <div class="constellation-wrapper" id="constellationWrapper">
+                <canvas id="constellationCanvas"></canvas>
+                <div id="constellation-tooltip" class="constellation-tooltip"></div>
+            </div>
+            <!-- Network Legend -->
+            <div class="constellation-legend">
+                <div class="legend-item">
+                    <span class="legend-dot hq"></span>
+                    <span>Global Headquarters</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot regional"></span>
+                    <span>Regional Offices</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot adgips-dot"></span>
+                    <span>ADGIPS Chapter</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-line"></span>
+                    <span>Active Connections</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Join Us CTA Section -->
+<section class="about-cta-section">
+    <div class="container">
+        <div class="about-cta-content" data-aos="fade-up">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join our community of changemakers and be part of something bigger than yourself.</p>
+            <div class="cta-buttons">
+                <a href="/team" class="btn-primary">Meet The Team</a>
+                <a href="/events" class="btn-secondary">Upcoming Events</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Constellation Network Script -->
+<script src="{{ url_for('static', filename='js/world_map_data.js') }}?v=2"></script>
+<script>
+    (function () {
+        const canvas = document.getElementById('constellationCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const wrapper = document.getElementById('constellationWrapper');
+        const tooltip = document.getElementById('constellation-tooltip');
+
+        // ... existing code ...
+
+        let mapPath = null;
+        if (window.WORLD_MAP_PATH) {
+            console.log("World map data loaded from window.");
+            try {
+                mapPath = new Path2D(window.WORLD_MAP_PATH);
+            } catch (e) {
+                console.error("Error creating Path2D:", e);
+            }
+        } else {
+            console.warn("World map data NOT loaded (window.WORLD_MAP_PATH is undefined).");
+        }
+        const nodes = [
+            { id: 'hq', name: 'Global HQ — Springfield, USA', x: 24.08, y: 29.32, type: 'hq', label: 'USA' },
+            { id: 'ca', name: 'Enactus Canada — Toronto', x: 27.95, y: 25.75, type: 'regional', label: 'Canada' },
+            { id: 'mx', name: 'Enactus Mexico — Mexico City', x: 22.42, y: 39.24, type: 'regional', label: 'Mexico' },
+            { id: 'br', name: 'Enactus Brazil — São Paulo', x: 37.04, y: 63.09, type: 'regional', label: 'Brazil' },
+            { id: 'uk', name: 'Enactus UK — Nottingham', x: 49.67, y: 20.58, type: 'regional', label: 'UK' },
+            { id: 'fr', name: 'Enactus France — Paris', x: 50.66, y: 22.84, type: 'regional', label: 'France' },
+            { id: 'de', name: 'Enactus Germany — Cologne', x: 51.93, y: 21.70, type: 'regional', label: 'Germany' },
+            { id: 'ma', name: 'Enactus Morocco — Rabat', x: 48.10, y: 31.10, type: 'regional', label: 'Morocco' },
+            { id: 'ng', name: 'Enactus Nigeria — Lagos', x: 51.00, y: 46.41, type: 'regional', label: 'Nigeria' },
+            { id: 'eg', name: 'Enactus Egypt — Sheikh Zayed', x: 58.61, y: 33.31, type: 'regional', label: 'Egypt' },
+            { id: 'ke', name: 'Enactus Kenya — Nairobi', x: 60.23, y: 50.72, type: 'regional', label: 'Kenya' },
+            { id: 'za', name: 'Enactus South Africa — Johannesburg', x: 57.79, y: 64.55, type: 'regional', label: 'S. Africa' },
+            { id: 'in', name: '★ Enactus ADGIPS — New Delhi', x: 72.0, y: 32.5, type: 'adgips', label: 'ADGIPS' },
+            { id: 'cn', name: 'Enactus China — Shanghai', x: 83.74, y: 32.65, type: 'regional', label: 'China' },
+            { id: 'kr', name: 'Enactus Korea — Seoul', x: 85.27, y: 29.13, type: 'regional', label: 'Korea' },
+            { id: 'jp', name: 'Enactus Japan — Himeji', x: 87.41, y: 30.65, type: 'regional', label: 'Japan' },
+            { id: 'au', name: 'Enactus Australia — Sydney', x: 92.00, y: 68.82, type: 'regional', label: 'Australia' }
+        ];
+
+        // ─── Connection Pairs ───
+        const connections = [
+            ['hq', 'uk'], ['hq', 'ca'], ['hq', 'br'], ['hq', 'mx'],
+            ['uk', 'fr'], ['uk', 'de'], ['uk', 'ng'], ['uk', 'in'],
+            ['fr', 'ma'], ['eg', 'ke'], ['ke', 'za'],
+            ['in', 'cn'], ['cn', 'kr'], ['cn', 'jp'], ['cn', 'au'],
+            ['uk', 'za'], ['uk', 'eg']
+        ];
+
+        // ─── State ───
+        let W = 0, H = 0, dpr = 1;
+        let hoveredNode = null;
+        let mouseX = -999, mouseY = -999;
+        let particles = [];
+        let travelingParticles = [];
+        let animTime = 0;
+
+        // ─── Colors ───
+        const COLORS = {
+            hq: '#d4a553',
+            regional: '#c4704f',
+            adgips: '#EAB308',
+            line: 'rgba(212, 165, 83, 0.25)',
+            lineActive: 'rgba(212, 165, 83, 0.6)',
+            particle: 'rgba(212, 165, 83, 0.12)',
+            bg: 'rgba(0, 0, 0, 0.25)',
+            label: 'rgba(255, 255, 255, 0.7)',
+            labelHover: '#ffffff'
+        };
+
+        // ─── Background Particles ───
+        function initParticles() {
+            particles = [];
+            const count = Math.floor((W * H) / 12000);
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    r: Math.random() * 1.5 + 0.5,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.2,
+                    opacity: Math.random() * 0.3 + 0.05
+                });
+            }
+        }
+
+        // ─── Traveling Light Particles ───
+        function initTravelers() {
+            travelingParticles = [];
+            connections.forEach((conn, i) => {
+                travelingParticles.push({
+                    connIdx: i,
+                    t: Math.random(), // position along curve 0..1
+                    speed: 0.002 + Math.random() * 0.003,
+                    size: 2 + Math.random() * 2
+                });
+            });
+        }
+
+        // ─── Resize Handler ───
+        function resize() {
+            const rect = wrapper.getBoundingClientRect();
+            dpr = window.devicePixelRatio || 1;
+            W = rect.width;
+            H = Math.max(400, W * 0.5);
+            canvas.width = W * dpr;
+            canvas.height = H * dpr;
+            canvas.style.width = W + 'px';
+            canvas.style.height = H + 'px';
+            wrapper.style.height = H + 'px';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            initParticles();
+            initTravelers();
+        }
+
+        // ─── Get pixel position from node ───
+        function nodePos(node) {
+            return { x: (node.x / 100) * W, y: (node.y / 100) * H };
+        }
+
+        function findNode(id) {
+            return nodes.find(n => n.id === id);
+        }
+
+        // ─── Quadratic bezier control point (arc upward) ───
+        function getControlPoint(p1, p2) {
+            const mx = (p1.x + p2.x) / 2;
+            const my = (p1.y + p2.y) / 2;
+            const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+            const offset = dist * 0.2;
+            return { x: mx, y: my - offset };
+        }
+
+        // ─── Point on quadratic bezier ───
+        function bezierPoint(p1, cp, p2, t) {
+            const u = 1 - t;
+            return {
+                x: u * u * p1.x + 2 * u * t * cp.x + t * t * p2.x,
+                y: u * u * p1.y + 2 * u * t * cp.y + t * t * p2.y
+            };
+        }
+
+        // Map path already initialized above
+
+        // ─── Draw ───
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+
+            // Background
+            ctx.fillStyle = COLORS.bg;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, W, H, 20);
+            ctx.fill();
+
+            // ── Background Map ──
+            if (mapPath) {
+                ctx.save();
+                // Map data is normalized to 1000x500. Scale to fit canvas.
+                ctx.scale(W / 1000, H / 500);
+
+                // Fill
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+                ctx.fill(mapPath);
+
+                // Stroke (optional, faint)
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+                ctx.lineWidth = 0.5;
+                ctx.stroke(mapPath);
+
+                ctx.restore();
+            }
+
+            // ── Background Particles ──
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = W;
+                if (p.x > W) p.x = 0;
+                if (p.y < 0) p.y = H;
+                if (p.y > H) p.y = 0;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(212, 165, 83, ${p.opacity})`;
+                ctx.fill();
+            });
+
+            // ── Connection Lines ──
+            connections.forEach(([fromId, toId], idx) => {
+                const from = nodePos(findNode(fromId));
+                const to = nodePos(findNode(toId));
+                const cp = getControlPoint(from, to);
+
+                // Animated dash
+                const dashPhase = (animTime * 30 + idx * 50) % 200;
+
+                ctx.beginPath();
+                ctx.moveTo(from.x, from.y);
+                ctx.quadraticCurveTo(cp.x, cp.y, to.x, to.y);
+
+                const isHovered = hoveredNode && (hoveredNode.id === fromId || hoveredNode.id === toId);
+                ctx.strokeStyle = isHovered ? COLORS.lineActive : COLORS.line;
+                ctx.lineWidth = isHovered ? 2 : 1;
+                ctx.setLineDash([8, 12]);
+                ctx.lineDashOffset = -dashPhase;
+                ctx.stroke();
+                ctx.setLineDash([]);
+            });
+
+            // ── Traveling Light Particles ──
+            travelingParticles.forEach(tp => {
+                tp.t += tp.speed;
+                if (tp.t > 1) tp.t = 0;
+
+                const conn = connections[tp.connIdx];
+                const from = nodePos(findNode(conn[0]));
+                const to = nodePos(findNode(conn[1]));
+                const cp = getControlPoint(from, to);
+                const pt = bezierPoint(from, cp, to, tp.t);
+
+                // Glow effect
+                const grad = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, tp.size * 4);
+                grad.addColorStop(0, 'rgba(212, 165, 83, 0.6)');
+                grad.addColorStop(1, 'rgba(212, 165, 83, 0)');
+                ctx.beginPath();
+                ctx.arc(pt.x, pt.y, tp.size * 4, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                // Core
+                ctx.beginPath();
+                ctx.arc(pt.x, pt.y, tp.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.fill();
+            });
+
+            // ── Nodes ──
+            nodes.forEach(node => {
+                const pos = nodePos(node);
+                const isHovered = hoveredNode === node;
+                const baseR = node.type === 'hq' ? 8 : node.type === 'adgips' ? 10 : 5;
+                const r = isHovered ? baseR * 1.5 : baseR;
+                const color = COLORS[node.type];
+
+                // Outer glow pulse
+                const pulse = Math.sin(animTime * 2 + nodes.indexOf(node)) * 0.3 + 0.5;
+
+                if (node.type === 'adgips') {
+                    // Triple ring pulse for ADGIPS
+                    for (let ring = 3; ring >= 1; ring--) {
+                        const ringR = r + ring * 10 + Math.sin(animTime * 3 + ring) * 4;
+                        const ringOpacity = (0.15 / ring) * pulse;
+                        ctx.beginPath();
+                        ctx.arc(pos.x, pos.y, ringR, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(234, 179, 8, ${ringOpacity})`;
+                        ctx.fill();
+                    }
+                }
+
+                // Glow
+                const glowR = r * 3;
+                const glow = ctx.createRadialGradient(pos.x, pos.y, r * 0.5, pos.x, pos.y, glowR);
+                glow.addColorStop(0, color.replace(')', `, ${0.4 * pulse})`).replace('rgb', 'rgba'));
+                glow.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, glowR, 0, Math.PI * 2);
+                ctx.fillStyle = glow;
+                ctx.fill();
+
+                // Main dot
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, r, 0, Math.PI * 2);
+                ctx.fillStyle = color;
+                ctx.fill();
+
+                // White center
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, r * 0.4, 0, Math.PI * 2);
+                ctx.fillStyle = '#fff';
+                ctx.fill();
+
+                // Label
+                const fontSize = isHovered ? 13 : node.type === 'adgips' ? 12 : 10;
+                ctx.font = `${isHovered ? '700' : '600'} ${fontSize}px 'Inter', 'Segoe UI', sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.fillStyle = isHovered ? COLORS.labelHover : COLORS.label;
+
+                // Label background
+                const labelText = node.label;
+                const metrics = ctx.measureText(labelText);
+                const labelY = pos.y + r + 16;
+                const padX = 6, padY = 3;
+
+                ctx.fillStyle = 'rgba(26, 60, 52, 0.8)';
+                ctx.beginPath();
+                ctx.roundRect(
+                    pos.x - metrics.width / 2 - padX,
+                    labelY - fontSize / 2 - padY - 2,
+                    metrics.width + padX * 2,
+                    fontSize + padY * 2,
+                    4
+                );
+                ctx.fill();
+
+                ctx.fillStyle = isHovered ? COLORS.labelHover : COLORS.label;
+                ctx.fillText(labelText, pos.x, labelY + 2);
+            });
+
+            animTime += 0.016;
+            requestAnimationFrame(draw);
+        }
+
+        // ─── Mouse Interaction ───
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+
+            let found = null;
+            const hitR = 20;
+            nodes.forEach(node => {
+                const pos = nodePos(node);
+                const dist = Math.hypot(mouseX - pos.x, mouseY - pos.y);
+                if (dist < hitR) found = node;
+            });
+
+            hoveredNode = found;
+            canvas.style.cursor = found ? 'pointer' : 'default';
+
+            if (found && tooltip) {
+                tooltip.textContent = found.name;
+                tooltip.style.left = mouseX + 'px';
+                tooltip.style.top = (mouseY - 10) + 'px';
+                tooltip.classList.add('visible');
+            } else if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            hoveredNode = null;
+            if (tooltip) tooltip.classList.remove('visible');
+        });
+
+        // ─── Init ───
+        resize();
+        draw();
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resize, 100);
+        });
+    })();
+</script>
+
+{% endblock %}

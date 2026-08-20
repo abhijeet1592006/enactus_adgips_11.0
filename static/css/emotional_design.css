@@ -1,0 +1,89 @@
+/* =========================================
+   EMOTIONAL DESIGN - AMBIENT GLOW
+   ========================================= */
+.ambient-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    /* Behind everything */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: floatOrb 20s infinite ease-in-out;
+}
+
+.orb-1 {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, var(--brand-gold-soft) 0%, rgba(245, 240, 232, 0) 70%);
+    top: -20%;
+    left: -20%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(196, 112, 79, 0.18) 0%, rgba(245, 240, 232, 0) 70%);
+    bottom: -10%;
+    right: -10%;
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(26, 60, 52, 0.08) 0%, rgba(245, 240, 232, 0) 70%);
+    top: 40%;
+    left: 30%;
+    animation-delay: -10s;
+}
+
+@keyframes floatOrb {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.95);
+    }
+}
+
+/* =========================================
+   MICRO-INTERACTIONS 
+   ========================================= */
+.btn-magnetic {
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Breathing Effect for Images */
+.img-breathe {
+    animation: breathe 8s ease-in-out infinite;
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}

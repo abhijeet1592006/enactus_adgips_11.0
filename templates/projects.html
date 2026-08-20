@@ -1,0 +1,269 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Hero Section with Animated Text -->
+<section class="projects-hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="container">
+        <div class="projects-hero-content">
+            <div class="animated-text-wrapper" data-aos="fade-up">
+                <h1 class="hero-title">OUR WORK</h1>
+                <div class="hero-subtitle">Enactus <span class="brand-adgips">ADGIPS</span></div>
+                <p class="hero-description">Enactus ADGIPS focuses on creating practical solutions to real social and environmental challenges. Our work connects academic learning with on-ground action, enabling students to design initiatives that generate measurable and sustainable impact.</p>
+                <p class="hero-description" style="margin-top: 1rem;">Through community engagement, entrepreneurship-driven models, and collaborative efforts, our projects aim to empower individuals, strengthen communities, and promote responsible development. Each initiative is built around the idea that innovative thinking and collective effort can create meaningful, long-term change.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Counter Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid" data-aos="fade-up">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h2 class="stat-number" data-target="90" data-suffix="+">0</h2>
+                <p class="stat-label">Active Members</p>
+                <span class="stat-description">Passionate changemakers working across diverse initiatives.</span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
+                <h2 class="stat-number" data-target="8" data-suffix="">0</h2>
+                <p class="stat-label">Projects Launched</p>
+                <span class="stat-description">Addressing social, economic, and environmental challenges.</span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </div>
+                <h2 class="stat-number" data-target="5000" data-suffix="+">0</h2>
+                <p class="stat-label">Lives Impacted</p>
+                <span class="stat-description">Individuals and communities positively influenced by our work.</span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="7"></circle>
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                    </svg>
+                </div>
+                <h2 class="stat-number" data-target="5" data-suffix="">0</h2>
+                <p class="stat-label">Awards Won</p>
+                <span class="stat-description">Recognition at national and international platforms for impactful projects.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ongoing Projects Section -->
+<section class="ongoing-projects-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Currently Active</span>
+            <h2>Ongoing Projects</h2>
+            <p>Creating sustainable change through focused initiatives</p>
+        </div>
+
+        <div class="ongoing-projects-grid">
+            <!-- Project Navodaya -->
+            <a href="/project/navodaya" class="ongoing-project-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="project-image">
+                    <img src="{{ url_for('static', filename='images/projects/Navodaya_card.png') }}"
+                        alt="Project Navodaya" style="object-fit: cover; width: 100%; height: 100%;">
+                    <div class="project-overlay">
+                        <span class="view-project">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">
+                        <span class="category-dot" style="background: #E91E63;"></span>
+                        Women Empowerment & Sustainable Fashion
+                    </div>
+                    <h3>Project Navodaya</h3>
+                    <p>Project Navodaya is dedicated to empowering unemployed women by teaching them crocheting and other valuable vocational skills to help them earn an independent livelihood. The initiative strongly emphasizes sustainability and circular economy principles by utilizing old clothes and textile waste to create upcycled fashion products for sale. By fostering skill development and providing a direct avenue for income generation, the project helps women build confidence and secure financial independence.</p>
+                    <div class="project-stats">
+                        <span><strong>200+</strong> Women Empowered</span>
+                        <span><strong>5</strong> Communities</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Astitva -->
+            <a href="/project/astitva" class="ongoing-project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-image">
+                    <img src="{{ url_for('static', filename='images/projects/Astitva_card.png') }}"
+                        alt="Project Astitva" style="object-fit: cover; width: 100%; height: 100%;">
+                    <div class="project-overlay">
+                        <span class="view-project">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">
+                        <span class="category-dot" style="background: #4CAF50;"></span>
+                        Education & Skill Development
+                    </div>
+                    <h3>Project Astitva</h3>
+                    <p>Project Astitva focuses on the holistic skill development of youth and individuals by providing a robust platform for learning and self-expression. Through dedicated sessions and workshops, participants develop highly practical skills, including blog writing, article creation, and other professional competencies. A cornerstone of this initiative is the publication of an annual magazine that explores and raises awareness about pressing social topics, giving a powerful voice to the community's thoughts, ideas, and stories.</p>
+                    <div class="project-stats">
+                        <span><strong>250+</strong> Students Trained</span>
+                        <span><strong>6</strong> Editions Published</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Vriksh -->
+            <a href="/project/vriksh" class="ongoing-project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-image">
+                    <img src="{{ url_for('static', filename='images/projects/Vriksh_card.png') }}"
+                        alt="Project Vriksh" style="object-fit: cover; width: 100%; height: 100%;">
+                    <div class="project-overlay">
+                        <span class="view-project">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">
+                        <span class="category-dot" style="background: #8BC34A;"></span>
+                        Environment & Sustainability
+                    </div>
+                    <h3>Project Vriksh</h3>
+                    <p>Project Vriksh focuses on environmental sustainability through tree plantation drives, waste management initiatives, and awareness campaigns. The project encourages communities to adopt responsible environmental practices and participate in conservation efforts. By promoting ecological responsibility and sustainable habits, the initiative aims to contribute to a greener and healthier future.</p>
+                    <div class="project-stats">
+                        <span><strong>100+</strong> Trees Planted</span>
+                        <span><strong>5</strong> Environmental Drives Conducted</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Past Projects Section -->
+<section class="past-projects-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Our Legacy</span>
+            <h2>Past Projects</h2>
+            <p>Completed initiatives that created lasting impact</p>
+        </div>
+
+        <div class="past-projects-scroll" data-aos="fade-up">
+            <div class="past-projects-track">
+                <div class="past-project-card">
+                    <div class="past-project-icon">
+                        <img src="{{ url_for('static', filename='images/projects/vidyut.png') }}" alt="Project Vidyut">
+                    </div>
+                    <h4>Project Vidyut</h4>
+                    <span class="past-project-year">2016-2017</span>
+                </div>
+
+                <div class="past-project-card">
+                    <div class="past-project-icon">
+                        <img src="{{ url_for('static', filename='images/projects/rangmanch.png') }}" alt="Project Rangmanch">
+                    </div>
+                    <h4>Project Rangmanch</h4>
+                    <span class="past-project-year">2016-2017</span>
+                </div>
+
+                <div class="past-project-card">
+                    <div class="past-project-icon">
+                        <img src="{{ url_for('static', filename='images/projects/phoenix.png') }}" alt="Project Phoenix">
+                    </div>
+                    <h4>Project Phoenix</h4>
+                    <span class="past-project-year">2017-2019</span>
+                </div>
+
+                <div class="past-project-card">
+                    <div class="past-project-icon">
+                        <img src="{{ url_for('static', filename='images/projects/navayu.png') }}" alt="Project Navayu">
+                    </div>
+                    <h4>Project Navayu</h4>
+                    <span class="past-project-year">2019-2020</span>
+                </div>
+
+                <div class="past-project-card">
+                    <div class="past-project-icon">
+                        <img src="{{ url_for('static', filename='images/projects/noha.png') }}" alt="Project Noha">
+                    </div>
+                    <h4>Project Noha</h4>
+                    <span class="past-project-year">2019-2020</span>
+                </div>
+
+                <div class="past-project-card">
+                    <div class="past-project-icon">
+                        <img src="{{ url_for('static', filename='images/projects/abeer.png') }}" alt="Project Abeer">
+                    </div>
+                    <h4>Project Abeer</h4>
+                    <span class="past-project-year">2020-2021</span>
+                </div>
+
+                <div class="past-project-card">
+                    <div class="past-project-icon">
+                        <img src="{{ url_for('static', filename='images/projects/mritkala.png') }}" alt="Project Mritkala">
+                    </div>
+                    <h4>Project Mritkala</h4>
+                    <span class="past-project-year">2021-2023</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="projects-cta-section">
+    <div class="container">
+        <div class="cta-content" data-aos="zoom-in">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join us in our mission to create sustainable change through entrepreneurial action.</p>
+            <div class="cta-buttons">
+                <a href="/team" class="btn-primary">Meet Our Team</a>
+                <a href="/events" class="btn-secondary">Upcoming Events</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

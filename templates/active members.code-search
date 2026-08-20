@@ -1,0 +1,23 @@
+# Query: active members
+# ContextLines: 1
+
+4 results - 3 files
+
+enactus2\enactus\templates\about.html:
+   83                  <p class="lead">Founded in 2015, our chapter started with just 8 passionate students who believed in the power of entrepreneurship to solve social problems.</p>
+   84:                 <p>Today, we've grown into a community of 75+ active members, 6 specialized departments, and 3 ongoing projects that directly impact thousands of lives in our community.</p>
+   85                  <p>What sets us apart is our commitment to sustainable solutions. We don't just help—we empower communities to help themselves through skill development, financial literacy, and entrepreneurial training.</p>
+
+  122                  <h3 class="stat-number" data-target="75" data-suffix="+">120</h3>
+  123:                 <p class="stat-label">Active Members</p>
+  124              </div>   
+
+enactus2\enactus\templates\home.html:
+  182                  <span class="home-stat-number" data-target="120" data-suffix="+">120</span>
+  183:                 <span class="home-stat-label">Active Members</span>
+  184              </div>
+
+enactus2\enactus\templates\projects.html:
+  44                  <h2 class="stat-number" data-target="75" data-suffix="+">120</h2>
+  45:                 <p class="stat-label">Active Members</p>
+  46                  <span class="stat-description">Passionate changemakers</span>

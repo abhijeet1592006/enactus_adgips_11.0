@@ -1,0 +1,379 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Project Hero -->
+<section class="project-detail-hero"
+    style="background-image: linear-gradient(rgba(27, 94, 32, 0.65), rgba(46, 125, 50, 0.8)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80'); background-position: center bottom; background-size: cover;">
+    <div class="container">
+        <div class="project-hero-content" data-aos="fade-up">
+            <a href="/projects" class="back-link" style="display: inline-flex; margin-bottom: 2rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back to Projects
+            </a>
+            <div class="project-badge"
+                style="background: rgba(139, 195, 74, 0.2); color: #C5E1A5; margin-bottom: 1.5rem; display: inline-block;">
+                Environment & Sustainability</div>
+            <h1>Project Vriksh</h1>
+            <p class="project-tagline">Nurturing Nature, Growing Futures</p>
+
+            <div class="project-hero-stats"
+                style="margin-top: 5rem; position: relative; z-index: 2; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">800M</span>
+                    <span class="hero-stat-label">Tons Floral Waste/Yr</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">Waste to</span>
+                    <span class="hero-stat-label">Value Model</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">Circular</span>
+                    <span class="hero-stat-label">Approach</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Overview -->
+<section class="project-overview-section">
+    <div class="container">
+        <div class="overview-grid">
+            <div class="overview-content" data-aos="fade-right">
+                <span class="section-label" style="color: #4CAF50;">Overview</span>
+                <h2>Rooting Change Through Floral Waste Upcycling</h2>
+                <p>Project Vriksh (meaning "Tree" in Sanskrit) is an Enactus-led sustainability initiative focused on
+                    transforming floral waste into durable, value-based products through structured upcycling.</p>
+                <p>With nearly 800 million tons of floral waste generated globally each year, a significant portion is
+                    discarded after single use. When unmanaged, this waste contributes to odor, hygiene issues, and
+                    environmental strain. Project Vriksh addresses this challenge by converting discarded flowers into
+                    preserved, market-ready products through structured upcycling.</p>
+                <p>The initiative operates on a circular approach where floral waste is collected, processed, and
+                    transformed into products that extend the lifecycle of natural materials. Alongside upcycling
+                    efforts, the project also promotes environmental awareness through plantation drives and community
+                    engagement activities to encourage long-term ecological responsibility.</p>
+
+                <div class="overview-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Floral Waste Collection</h4>
+                            <p>Sourcing discarded flowers from temples, events, and campus fests</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Resin Encapsulation</h4>
+                            <p>Preservation of dried flowers using structured resin casting upcycling</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Environmental Awareness</h4>
+                            <p>Promotes ecological responsibility and sustainable habits</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overview-image" data-aos="fade-left">
+                <img src="{{ url_for('static', filename='images/projects/Project Vriksh/Overview/Screenshot 2026-03-14 170335.png') }}"
+                    alt="Overview"
+                    style="width: 100%; height: auto; object-fit: contain; border-radius: 12px; max-height: 500px; background: #f9f9f9;">
+                <div class="image-caption">
+                    <span>Initiative by Project Vriksh</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Our Impact & Differentiators -->
+<section class="vriksh-impact-section">
+    <div class="container">
+        <div class="section-header centered" data-aos="fade-up">
+            <span class="section-tag" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">Our Impact</span>
+            <h2>Project Vriksh Impact</h2>
+            <p>Project Vriksh has successfully demonstrated a working waste-to-value model by collecting discarded
+                floral waste and converting it into durable, market-ready products. The initiative validates that
+                structured upcycling can generate both environmental and social impact while promoting responsible waste
+                management practices.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Products & Services -->
+<section class="products-services-section">
+    <div class="container">
+        <div class="section-header centered" data-aos="fade-up">
+            <span class="section-tag">Our Initiatives</span>
+            <h2>Programs & Activities</h2>
+            <p>Comprehensive environmental action programs</p>
+        </div>
+
+        <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));"
+            data-aos="fade-up">
+            <div class="service-card">
+                <div class="service-icon" style="background: linear-gradient(135deg, #4CAF50, #8BC34A);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M12 22c4-4 8-7.582 8-12a8 8 0 1 0-16 0c0 4.418 4 8 8 12z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <h3>Floral Waste Collection</h3>
+                <ul class="service-features" style="margin-top: 10px;">
+                    <li>Sourcing discarded flowers from temples, events, and campus fests</li>
+                    <li>Community-based collection partnerships</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon" style="background: linear-gradient(135deg, #66BB6A, #81C784);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+                <h3>Sorting & Controlled Drying</h3>
+                <ul class="service-features" style="margin-top: 10px;">
+                    <li>Segregation of usable petals and materials</li>
+                    <li>Scientific drying process to retain color and structure</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon" style="background: linear-gradient(135deg, #43A047, #66BB6A);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+                <h3>Resin Encapsulation</h3>
+                <ul class="service-features" style="margin-top: 10px;">
+                    <li>Preservation of dried flowers using resin casting</li>
+                    <li>Creation of durable products such as keychains and keepsakes</li>
+                    <li>Quality finishing and packaging for market readiness</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon" style="background: linear-gradient(135deg, #2E7D32, #43A047);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+                <h3>Market Outreach</h3>
+                <ul class="service-features" style="margin-top: 10px;">
+                    <li>Sales through fests, local exhibitions, and social media platforms</li>
+                    <li>Direct-to-consumer engagement</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon" style="background: linear-gradient(135deg, #1B5E20, #4CAF50);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                </div>
+                <h3>Plantation Drives</h3>
+                <ul class="service-features" style="margin-top: 10px;">
+                    <li>Organization of plantation drives within campus and local communities</li>
+                    <li>Distribution of saplings to promote green cover</li>
+                    <li>Awareness campaigns on sustainable waste management</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Showcase -->
+<section class="impact-gallery-section" style="background-color: #f7f9fc; padding-top: 60px; padding-bottom: 60px;">
+    <div class="container">
+        <div class="section-header centered" data-aos="fade-up">
+            <span class="section-tag">Made with Love</span>
+            <h2>Product Showcase</h2>
+        </div>
+        <style>
+            .product-display-card {
+                background: white;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+                transition: transform 0.3s ease;
+            }
+
+            .product-display-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .product-display-img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+            }
+
+            .product-display-info {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .product-display-info h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.2rem;
+                color: #1a3c34;
+                margin-bottom: 0.5rem;
+            }
+
+            .product-display-info .price {
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                color: #4CAF50;
+                font-size: 1.1rem;
+            }
+        </style>
+        <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;"
+            data-aos="fade-up">
+            <div class="product-display-card">
+                <img src="/static/images/magazine/Vriksh/Resin_Keychain.png" alt="Resin Keychain"
+                    class="product-display-img">
+                <div class="product-display-info">
+                    <h3>Resin Keychain</h3>
+                    <div class="price">₹149</div>
+                </div>
+            </div>
+            <div class="product-display-card">
+                <img src="/static/images/magazine/Vriksh/Resin_Bracelet.png" alt="Resin Bracelet"
+                    class="product-display-img">
+                <div class="product-display-info">
+                    <h3>Resin Bracelet</h3>
+                    <div class="price">₹199</div>
+                </div>
+            </div>
+            <div class="product-display-card">
+                <img src="/static/images/magazine/Vriksh/Resin_Pendant.png" alt="Resin Pendant"
+                    class="product-display-img">
+                <div class="product-display-info">
+                    <h3>Resin Pendant</h3>
+                    <div class="price">₹199</div>
+                </div>
+            </div>
+            <div class="product-display-card">
+                <img src="/static/images/magazine/Vriksh/Vintage_Upcycled_Bookmark.png" alt="Vintage upcycled bookmark"
+                    class="product-display-img">
+                <div class="product-display-info">
+                    <h3>Vintage upcycled bookmark</h3>
+                    <div class="price">₹69</div>
+                </div>
+            </div>
+        </div>
+        <div class="centered" style="margin-top: 3rem;" data-aos="fade-up">
+            <a href="/store" class="btn-primary btn-magnetic">EXPLORE MORE PRODUCTS</a>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Gallery -->
+<section class="impact-gallery-section" style="background: #f7f4f0;">
+    <div class="container">
+        <div class="section-header centered" data-aos="fade-up">
+            <span class="section-tag">In Action</span>
+            <h2>Gallery</h2>
+        </div>
+
+        <div class="gallery-grid" data-aos="fade-up">
+            <div class="gallery-item large">
+                <img src="{{ url_for('static', filename='images/projects/Project Vriksh/Gallery/Big1.png') }}"
+                    alt="Gallery image" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item large">
+                <img src="{{ url_for('static', filename='images/projects/Project Vriksh/Gallery/Big2.jpeg') }}"
+                    alt="Gallery image" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Vriksh/Gallery/Small1.jpg') }}"
+                    alt="Gallery image" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Vriksh/Gallery/Small2.jpg') }}"
+                    alt="Gallery image" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Vriksh/Gallery/Small3.jpg') }}"
+                    alt="Gallery image" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Vriksh/Gallery/Small4.jpeg') }}"
+                    alt="Gallery image" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Vriksh/Gallery/Small5.jpg') }}"
+                    alt="Gallery image" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/projects/Project Vriksh/Gallery/Small6.jpg') }}"
+                    alt="Gallery image" style="object-fit: cover; width: 100%; height: 100%;">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Get Involved CTA -->
+<section class="project-cta-section" style="background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);">
+    <div class="container">
+        <div class="project-cta-content" data-aos="fade-up">
+            <h2>Plant a Tree, Grow a Future</h2>
+            <p>Join our next plantation drive or adopt a tree. Every green action counts towards a sustainable tomorrow.
+            </p>
+            <div class="cta-buttons">
+                <a href="/store" class="btn-primary" style="background: #fff; color: #2E7D32;">Visit Store</a>
+                <a href="/team" class="btn-secondary" style="border-color: #fff; color: #fff;">Our Team</a>
+                <a href="https://www.instagram.com/projectvriksh?igsh=dHR1ajI4Nnd4eWxt" target="_blank"
+                    rel="noopener noreferrer" class="btn-secondary"
+                    style="border-color: #fff; color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
