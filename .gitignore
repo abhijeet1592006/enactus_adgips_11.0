@@ -17,3 +17,5 @@ update_about_script.py
 new_map_script.txt
 store_response.html
 new_images/
+vercel.json
+.vercelignore
