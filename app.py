@@ -101,6 +101,9 @@ def astitva_magazines(): return render_template('astitva_magazines.html', title=
 @app.route('/project/vriksh')
 def project_vriksh(): return render_template('project_vriksh.html', title="Project Vriksh")
 
+@app.route('/project/amulya')
+def project_amulya(): return render_template('project_amulya.html', title="Project Amulya")
+
 @app.route('/team')
 def team(): return render_template('team.html', title="Our Team")
 

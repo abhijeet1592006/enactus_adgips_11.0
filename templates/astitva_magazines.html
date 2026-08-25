@@ -205,28 +205,6 @@
     }
 
     /* PDF Viewer Wrapper */
-    .pdf-viewer-wrapper {
-        background: #fff;
-        padding: 2rem;
-        border-radius: 24px;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
-        position: relative;
-    }
-
-    .pdf-viewer-inner {
-        background: #f8f9fa;
-        border-radius: 16px;
-        padding: 10px;
-        border: 1px solid rgba(0, 0, 0, 0.03);
-    }
-
-    .pdf-viewer-inner iframe {
-        border-radius: 8px;
-        display: block;
-        border: none;
-        background: #fff;
-    }
 
     @media (max-width: 992px) {
         .magazine-intro-grid {
@@ -269,7 +247,8 @@
 
             <!-- Quick Edition Selector (Filters) -->
             <div class="magazine-filters">
-                <button class="filter-btn active" onclick="showEdition('edition7')">Edition 7 (10.0)</button>
+                <button class="filter-btn active" onclick="showEdition('edition8')">Edition 8 (11.0)</button>
+                <button class="filter-btn" onclick="showEdition('edition7')">Edition 7 (10.0)</button>
                 <button class="filter-btn" onclick="showEdition('edition6')">Edition 6 (9.0)</button>
                 <button class="filter-btn" onclick="showEdition('edition5')">Edition 5 (8.0)</button>
                 <button class="filter-btn" onclick="showEdition('edition4')">Edition 4 (7.0)</button>
@@ -287,8 +266,43 @@
 
     <div class="container" style="position: relative; z-index: 1;">
 
+        <!-- EDITION 8 -->
+        <div id="edition8" class="edition-container" style="display: block;">
+            <div class="magazine-intro-grid" data-aos="fade-up">
+                <div class="intro-text-side">
+                    <span class="section-tag">Latest Release: Tenure 11.0</span>
+                    <h2 class="gradient-text">Gutargu Edition 8</h2>
+                    <div class="edition-description">
+                        <p>Gutargu Edition 8 marks a fresh chapter for Enactus ADGIPS in its 11.0 tenure. This issue
+                            captures the spirit of a new team carrying forward a decade of legacy while charting its
+                            own course of entrepreneurial action.</p>
+                        <p>Inside, you will find stories of resilience, creativity, and community impact — a
+                            testament to the changemakers who turn ideas into ventures and empathy into action.</p>
+                    </div>
+                    <div class="edition-actions">
+                        <a href="{{ url_for('static', filename='magazines/edition_8.pdf') }}" target="_blank"
+                            class="skeuo-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                <div class="intro-image-side">
+                    <div class="image-box">
+                        <img src="/static/media/edition_8_cover.png" alt="Gutargu Edition 8 Theme">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <!-- EDITION 7 -->
-        <div id="edition7" class="edition-container" style="display: block;">
+        <div id="edition7" class="edition-container" style="display: none;">
             <div class="magazine-intro-grid" data-aos="fade-up">
                 <div class="intro-text-side">
                     <span class="section-tag">Latest Release: Media Manipulation</span>
@@ -322,12 +336,6 @@
                 </div>
             </div>
 
-            <div class="pdf-viewer-wrapper" data-aos="fade-up" data-aos-delay="100">
-                <div class="pdf-viewer-inner">
-                    <iframe src="{{ url_for('static', filename='magazines/edition_7.pdf') }}#view=FitH" width="100%"
-                        height="800px"></iframe>
-                </div>
-            </div>
         </div>
 
         <!-- EDITION 6 -->
@@ -363,12 +371,6 @@
                 </div>
             </div>
 
-            <div class="pdf-viewer-wrapper">
-                <div class="pdf-viewer-inner">
-                    <iframe src="{{ url_for('static', filename='magazines/edition_6.pdf') }}#view=FitH" width="100%"
-                        height="800px"></iframe>
-                </div>
-            </div>
         </div>
 
         <!-- EDITION 5 -->
@@ -404,12 +406,6 @@
                 </div>
             </div>
 
-            <div class="pdf-viewer-wrapper">
-                <div class="pdf-viewer-inner">
-                    <iframe src="{{ url_for('static', filename='magazines/edition_5.pdf') }}#view=FitH" width="100%"
-                        height="800px"></iframe>
-                </div>
-            </div>
         </div>
 
         <!-- EDITION 4 -->
@@ -445,12 +441,6 @@
                 </div>
             </div>
 
-            <div class="pdf-viewer-wrapper">
-                <div class="pdf-viewer-inner">
-                    <iframe src="{{ url_for('static', filename='magazines/edition_4.pdf') }}#view=FitH" width="100%"
-                        height="800px"></iframe>
-                </div>
-            </div>
         </div>
 
         <!-- EDITION 3 -->
@@ -485,18 +475,99 @@
                 </div>
             </div>
 
-            <div class="pdf-viewer-wrapper">
-                <div class="pdf-viewer-inner">
-                    <iframe src="{{ url_for('static', filename='magazines/edition_3.pdf') }}#view=FitH" width="100%"
-                        height="800px"></iframe>
-                </div>
+        </div>
+
+        <!-- Prominent Download Bar -->
+        <div class="edition-download-bar" data-aos="fade-up">
+            <div class="download-bar-text">
+                <h3>Keep a copy with you</h3>
+                <p id="downloadEditionName">Download Gutargu Edition 8 (PDF)</p>
             </div>
+            <a href="/static/magazines/edition_8.pdf" download id="editionDownloadBtn" class="edition-download-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download This Edition
+            </a>
         </div>
 
     </div>
 </section>
 
+<style>
+    .edition-download-bar {
+        max-width: 900px;
+        margin: 3rem auto 0;
+        background: linear-gradient(135deg, #1a3c34 0%, #2a5c4d 100%);
+        border-radius: 20px;
+        padding: 2rem 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        box-shadow: 0 20px 50px rgba(26, 60, 52, 0.25);
+        position: relative;
+        z-index: 1;
+    }
+
+    .edition-download-bar h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        color: #fff;
+        margin-bottom: 0.3rem;
+    }
+
+    .edition-download-bar p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .edition-download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: #d4a553;
+        color: #1a3c34;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 1rem 1.75rem;
+        border-radius: 12px;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        box-shadow: 0 8px 25px rgba(212, 165, 83, 0.35);
+    }
+
+    .edition-download-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(212, 165, 83, 0.45);
+        background: #e0b569;
+        color: #1a3c34;
+    }
+
+    @media (max-width: 768px) {
+        .edition-download-bar {
+            flex-direction: column;
+            text-align: center;
+            padding: 1.75rem 1.5rem;
+        }
+    }
+</style>
+
 <script>
+    const editionFiles = {
+        edition8: { file: '/static/magazines/edition_8.pdf', name: 'Gutargu Edition 8' },
+        edition7: { file: '/static/magazines/edition_7.pdf', name: 'Gutargu Edition 7' },
+        edition6: { file: '/static/magazines/edition_6.pdf', name: 'Astitva Edition 6' },
+        edition5: { file: '/static/magazines/edition_5.pdf', name: 'Astitva Edition 5' },
+        edition4: { file: '/static/magazines/edition_4.pdf', name: 'Gutargu Edition 4' },
+        edition3: { file: '/static/magazines/edition_3.pdf', name: 'Gutargu Edition 3' }
+    };
+
     function showEdition(editionId) {
         const containers = document.querySelectorAll('.edition-container');
         containers.forEach(container => container.style.display = 'none');
@@ -508,6 +579,14 @@
         const buttons = document.querySelectorAll('.filter-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
         event.currentTarget.classList.add('active');
+
+        const info = editionFiles[editionId];
+        if (info) {
+            const btn = document.getElementById('editionDownloadBtn');
+            const label = document.getElementById('downloadEditionName');
+            if (btn) btn.href = info.file;
+            if (label) label.textContent = 'Download ' + info.name + ' (PDF)';
+        }
     }
 
     const style = document.createElement('style');
