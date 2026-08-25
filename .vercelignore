@@ -1,7 +1,5 @@
-static/magazines/
 new_images/
 *.db
-*.pdf
 *.HEIC
 *.heic
 __pycache__/

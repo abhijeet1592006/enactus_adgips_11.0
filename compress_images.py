@@ -5,7 +5,8 @@ import glob
 
 STATIC_DIR = r"D:\enactus_adgips\enactus2\enactus\static"
 MAX_DIMENSION = 1920
-JPEG_QUALITY = 85
+MAX_DIMENSION_PNG = 1200
+JPEG_QUALITY = 82
 PNG_COMPRESS_LEVEL = 9
 
 
@@ -27,8 +28,9 @@ def compress_image(filepath):
             img = img.convert('RGB')
 
         w, h = img.size
-        if w > MAX_DIMENSION or h > MAX_DIMENSION:
-            ratio = min(MAX_DIMENSION / w, MAX_DIMENSION / h)
+        max_dim = MAX_DIMENSION_PNG if ext == '.png' else MAX_DIMENSION
+        if w > max_dim or h > max_dim:
+            ratio = min(max_dim / w, max_dim / h)
             new_size = (int(w * ratio), int(h * ratio))
             img = img.resize(new_size, Image.LANCZOS)
 

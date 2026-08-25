@@ -283,29 +283,29 @@ function initGalleryDrag(wrapper) {
 const teamData = {
     "11.0": {
         council: [
-            { name: "Aman", role: "President", img: "/static/images/team/Council/1) President.jpg", linkedin: "#", instagram: "#" },
-            { name: "Priyanshu", role: "Vice President & PR Head", img: "/static/images/team/Council/2) Vice President & PR Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Ankit", role: "General Secretary", img: "/static/images/team/Council/3) General Secretary.jpg", linkedin: "#", instagram: "#" }
+            { name: "Aman", role: "President", img: "/static/images/team/Council/01_president.jpg", linkedin: "#", instagram: "#" },
+            { name: "Priyanshu", role: "Vice President & PR Head", img: "/static/images/team/Council/02_vice_president_pr_head.jpg", linkedin: "#", instagram: "#" },
+            { name: "Ankit", role: "General Secretary", img: "/static/images/team/Council/03_general_secretary.jpg", linkedin: "#", instagram: "#" }
         ],
         department: [
-            { name: "Abhijeet Singh", role: "Technical Head", img: "/static/images/team/Department heads/8) Technical Head.jpg", linkedin: "#", instagram: "#", pos: "center 50%", scale: "1" },
-            { name: "Ananya", role: "Graphics & Photography Head", img: "/static/images/team/Department heads/1) Graphics & Photography Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Suhani", role: "Graphics & Photography Head", img: "/static/images/team/Department heads/2) Graphics & Photography Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Tripti Ghildiyal", role: "Social Media Head", img: "/static/images/team/Department heads/3) Social Media Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Namrta", role: "Social Media Head", img: "/static/images/team/Department heads/4) Social Media Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Bhavik Jain", role: "Marketing & Campaigns Head", img: "/static/images/team/Department heads/5) Marketing & Campaigns Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Bhavya Bansal", role: "Sponsorship Head", img: "/static/images/team/Department heads/6) Sponsorship Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "AKASH YADAV", role: "Research & Content Head", img: "/static/images/team/Department heads/7) Research & Content Head.jpg", linkedin: "#", instagram: "#" }
+            { name: "Abhijeet Singh", role: "Technical Head", img: "/static/images/team/department_heads/08_technical.jpg", linkedin: "#", instagram: "#", pos: "center 50%", scale: "1" },
+            { name: "Ananya", role: "Graphics & Photography Head", img: "/static/images/team/department_heads/01_graphics_photography_1.jpg", linkedin: "#", instagram: "#" },
+            { name: "Suhani", role: "Graphics & Photography Head", img: "/static/images/team/department_heads/02_graphics_photography_2.jpg", linkedin: "#", instagram: "#" },
+            { name: "Tripti Ghildiyal", role: "Social Media Head", img: "/static/images/team/department_heads/03_social_media_1.jpg", linkedin: "#", instagram: "#" },
+            { name: "Namrta", role: "Social Media Head", img: "/static/images/team/department_heads/04_social_media_2.jpg", linkedin: "#", instagram: "#" },
+            { name: "Bhavik Jain", role: "Marketing & Campaigns Head", img: "/static/images/team/department_heads/05_marketing_campaigns.jpg", linkedin: "#", instagram: "#" },
+            { name: "Bhavya Bansal", role: "Sponsorship Head", img: "/static/images/team/department_heads/06_sponsorship.jpg", linkedin: "#", instagram: "#" },
+            { name: "AKASH YADAV", role: "Research & Content Head", img: "/static/images/team/department_heads/07_research_content.jpg", linkedin: "#", instagram: "#" }
         ],
         project: [
-            { name: "Rishita Vohra", role: "Project Navodaya Head", img: "/static/images/team/Project heads/1) Project Navodaya Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Vansh Sharma", role: "Project Navodaya Head", img: "/static/images/team/Project heads/2) Project Navodaya Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Anamika", role: "Project Vriksh Head", img: "/static/images/team/Project heads/3) Project Vriksh Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Khushi", role: "Project Vriksh Head", img: "/static/images/team/Project heads/4) Project Vriksh Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Teena", role: "Project Astitva Head", img: "/static/images/team/Project heads/5) Project Astitva Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "MOHD SAAD", role: "Project Astitva Head", img: "/static/images/team/Project heads/6) Project Astitva Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Jai", role: "Project Amulya Head", img: "/static/images/team/Project heads/7) Project Amulya Head.jpg", linkedin: "#", instagram: "#" },
-            { name: "Yashaswi", role: "Project Amulya Head", img: "/static/images/team/Project heads/8) Project Amulya Head.jpg", linkedin: "#", instagram: "#" }
+            { name: "Rishita Vohra", role: "Project Navodaya Head", img: "/static/images/team/project_heads/01_navodaya.jpg", linkedin: "#", instagram: "#" },
+            { name: "Vansh Sharma", role: "Project Navodaya Head", img: "/static/images/team/project_heads/02_navodaya.jpg", linkedin: "#", instagram: "#" },
+            { name: "Anamika", role: "Project Vriksh Head", img: "/static/images/team/project_heads/03_vriksh.jpg", linkedin: "#", instagram: "#" },
+            { name: "Khushi", role: "Project Vriksh Head", img: "/static/images/team/project_heads/04_vriksh.jpg", linkedin: "#", instagram: "#" },
+            { name: "Teena", role: "Project Astitva Head", img: "/static/images/team/project_heads/05_astitva.jpg", linkedin: "#", instagram: "#" },
+            { name: "MOHD SAAD", role: "Project Astitva Head", img: "/static/images/team/project_heads/06_astitva.jpg", linkedin: "#", instagram: "#" },
+            { name: "Jai", role: "Project Amulya Head", img: "/static/images/team/project_heads/07_amulya.jpg", linkedin: "#", instagram: "#" },
+            { name: "Yashaswi", role: "Project Amulya Head", img: "/static/images/team/project_heads/08_amulya.jpg", linkedin: "#", instagram: "#" }
         ]
     }
 };
