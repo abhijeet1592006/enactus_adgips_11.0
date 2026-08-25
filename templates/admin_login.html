@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Access | Enactus</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Restricted Access | Enactus ADGIPS</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,199 +15,221 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --paper: #f4f0e6;
+            --card: #fffdf8;
+            --ink: #1f2a26;
+            --ink-soft: #5c6660;
+            --ink-faint: #8a938d;
+            --forest: #1a3c34;
+            --forest-soft: #2a5c4d;
+            --gold: #b08a3c;
+            --rule: #ddd5c4;
+            --rule-soft: #eae4d6;
+            --green: #2e7d4f;
+            --red: #b3402f;
+            --shadow: 0 1px 2px rgba(31, 42, 38, 0.05), 0 18px 50px rgba(31, 42, 38, 0.12);
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0a1a15 0%, #1a3c34 50%, #0f2922 100%);
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            background-image:
+                radial-gradient(circle at 20% 15%, rgba(176, 138, 60, 0.06), transparent 45%),
+                radial-gradient(circle at 80% 85%, rgba(26, 60, 52, 0.05), transparent 45%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
+            padding: 1.5rem;
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Animated Background Pattern */
+        /* Subtle paper grain */
         body::before {
             content: '';
-            position: absolute;
+            position: fixed;
             inset: 0;
-            background-image:
-                radial-gradient(circle at 20% 80%, rgba(212, 165, 83, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(196, 112, 79, 0.06) 0%, transparent 50%);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
             pointer-events: none;
+            z-index: 0;
         }
 
-        /* Floating Particles */
-        .particles {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(212, 165, 83, 0.3);
-            border-radius: 50%;
-            animation: floatParticle 15s infinite ease-in-out;
-        }
-
-        .particle:nth-child(1) {
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .particle:nth-child(2) {
-            left: 20%;
-            animation-delay: 2s;
-        }
-
-        .particle:nth-child(3) {
-            left: 30%;
-            animation-delay: 4s;
-        }
-
-        .particle:nth-child(4) {
-            left: 40%;
-            animation-delay: 6s;
-        }
-
-        .particle:nth-child(5) {
-            left: 50%;
-            animation-delay: 8s;
-        }
-
-        .particle:nth-child(6) {
-            left: 60%;
-            animation-delay: 10s;
-        }
-
-        .particle:nth-child(7) {
-            left: 70%;
-            animation-delay: 12s;
-        }
-
-        .particle:nth-child(8) {
-            left: 80%;
-            animation-delay: 14s;
-        }
-
-        @keyframes floatParticle {
-
-            0%,
-            100% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-                transform: translateY(80vh) scale(1);
-            }
-
-            90% {
-                opacity: 1;
-                transform: translateY(10vh) scale(1);
-            }
-
-            100% {
-                transform: translateY(0) scale(0);
-                opacity: 0;
-            }
-        }
-
-        .login-container {
+        .doc-wrapper {
             position: relative;
-            z-index: 10;
+            z-index: 1;
             width: 100%;
             max-width: 440px;
-            padding: 0 20px;
+            animation: docIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .login-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 3rem;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        @keyframes docIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.985);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
-        .login-header {
+        /* The document sheet */
+        .doc-sheet {
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            padding: 2.75rem 2.5rem 2.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-sheet::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--forest);
+        }
+
+        .doc-sheet::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        /* Letterhead */
+        .letterhead {
             text-align: center;
-            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
+            border-bottom: 2px solid var(--forest);
+            position: relative;
         }
 
-        .login-logo {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #d4a553 0%, #c4704f 100%);
-            border-radius: 16px;
+        .letterhead::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -5px;
+            border-bottom: 1px solid var(--gold);
+        }
+
+        .crest {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 1rem;
+            border: 1.5px solid var(--forest);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 10px 30px rgba(212, 165, 83, 0.3);
+            position: relative;
         }
 
-        .login-logo svg {
-            width: 32px;
-            height: 32px;
-            color: #fff;
+        .crest::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
         }
 
-        .login-header h1 {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.75rem;
+        .crest svg {
+            width: 26px;
+            height: 26px;
+            color: var(--forest);
+        }
+
+        .doc-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.65rem;
             font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.5rem;
+            color: var(--forest);
+            letter-spacing: -0.01em;
         }
 
-        .login-header p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.95rem;
+        .doc-subtitle {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.64rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-top: 0.45rem;
         }
 
-        /* Flash Messages */
+        /* Restricted stamp */
+        .restricted-stamp {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.75rem;
+        }
+
+        .restricted-stamp span {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--red);
+            border: 1.5px solid var(--red);
+            border-radius: 3px;
+            padding: 0.4rem 1rem;
+            transform: rotate(-2deg);
+            background: rgba(179, 64, 47, 0.05);
+        }
+
+        /* Flash messages */
         .flash-message {
-            padding: 1rem 1.25rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
+            padding: 0.85rem 1.1rem;
+            border-radius: 4px;
+            margin-bottom: 1.4rem;
+            font-size: 0.86rem;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-        }
-
-        .flash-message.error {
-            background: rgba(220, 38, 38, 0.15);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            color: #fca5a5;
+            gap: 0.65rem;
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-left: 4px solid var(--red);
         }
 
         .flash-message.success {
-            background: rgba(34, 197, 94, 0.15);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: #86efac;
+            border-left-color: var(--green);
         }
 
+        .flash-message.error {
+            color: var(--red);
+        }
+
+        .flash-message.success {
+            color: var(--green);
+        }
+
+        /* Form */
         .form-group {
             margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.8rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.66rem;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
+            color: var(--ink-soft);
+            margin-bottom: 0.6rem;
         }
 
         .input-wrapper {
@@ -217,127 +241,148 @@
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            color: rgba(255, 255, 255, 0.3);
-            transition: color 0.3s ease;
+            width: 17px;
+            height: 17px;
+            color: var(--ink-faint);
+            transition: color 0.2s ease;
         }
 
         .form-input {
             width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            font-size: 1rem;
-            color: #fff;
-            transition: all 0.3s ease;
-            letter-spacing: 0.1em;
+            padding: 0.85rem 1rem 0.85rem 2.75rem;
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-bottom: 2px solid var(--rule);
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            letter-spacing: 0.08em;
+            transition: all 0.2s ease;
         }
 
         .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
+            color: var(--ink-faint);
             letter-spacing: normal;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #d4a553;
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 0 3px rgba(212, 165, 83, 0.15);
+            border-color: var(--gold);
+            border-bottom-color: var(--gold);
+            box-shadow: 0 1px 0 rgba(176, 138, 60, 0.25);
         }
 
-        .form-input:focus+svg,
         .input-wrapper:focus-within svg {
-            color: #d4a553;
+            color: var(--gold);
         }
 
-        .login-btn {
+        .submit-btn {
             width: 100%;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #d4a553 0%, #c4704f 100%);
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
+            padding: 0.9rem 2rem;
+            background: var(--forest);
+            color: #fdfbf5;
+            border: 1px solid var(--forest);
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem;
             font-weight: 600;
-            color: #fff;
             cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 0.6rem;
             margin-top: 0.5rem;
+            transition: all 0.2s ease;
         }
 
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(212, 165, 83, 0.4);
+        .submit-btn:hover {
+            background: var(--forest-soft);
+            box-shadow: 0 6px 18px rgba(26, 60, 52, 0.25);
         }
 
-        .login-btn:active {
-            transform: translateY(0);
+        .submit-btn:active {
+            transform: translateY(1px);
         }
 
-        .login-footer {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        .submit-btn svg {
+            width: 17px;
+            height: 17px;
         }
 
-        .login-footer a {
-            color: rgba(255, 255, 255, 0.5);
+        /* Footer */
+        .doc-footer {
+            margin-top: 1.75rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--rule-soft);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: var(--ink-soft);
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
         }
 
-        .login-footer a:hover {
-            color: #d4a553;
+        .back-link:hover {
+            color: var(--forest);
         }
 
-        .security-badge {
+        .doc-ref {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+        }
+
+        /* Signature line */
+        .signature-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.76rem;
+            color: var(--ink-faint);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.3);
+            gap: 0.45rem;
         }
 
-        .security-badge svg {
-            width: 14px;
-            height: 14px;
+        .signature-note svg {
+            width: 13px;
+            height: 13px;
+            color: var(--gold);
+        }
+
+        @media (max-width: 480px) {
+            .doc-sheet {
+                padding: 2.25rem 1.5rem 1.75rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Floating Particles -->
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-
-    <div class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <div class="login-logo">
+    <div class="doc-wrapper">
+        <div class="doc-sheet">
+            <!-- Letterhead -->
+            <div class="letterhead">
+                <div class="crest">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
+                        stroke-width="1.75">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                     </svg>
                 </div>
-                <h1>Admin Access</h1>
-                <p>Secure dashboard login</p>
+                <h1 class="doc-title">Enactus ADGIPS</h1>
+                <p class="doc-subtitle">Internal Records Office</p>
+            </div>
+
+            <!-- Restricted Stamp -->
+            <div class="restricted-stamp">
+                <span>Authorized Personnel Only</span>
             </div>
 
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -345,14 +390,14 @@
             {% for category, message in messages %}
             <div class="flash-message {{ category }}">
                 {% if category == 'error' %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"></circle>
                     <line x1="15" y1="9" x2="9" y2="15"></line>
                     <line x1="9" y1="9" x2="15" y2="15"></line>
                 </svg>
                 {% else %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -378,18 +423,18 @@
                     </div>
                 </div>
 
-                <button type="submit" class="login-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2">
+                <button type="submit" class="submit-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
                         <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                         <polyline points="10 17 15 12 10 7"></polyline>
                         <line x1="15" y1="12" x2="3" y2="12"></line>
                     </svg>
-                    Access Dashboard
+                    Access Registry
                 </button>
             </form>
 
-            <div class="security-badge">
+            <div class="signature-note">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -397,8 +442,9 @@
                 Protected by secure authentication
             </div>
 
-            <div class="login-footer">
-                <a href="/">← Back to Website</a>
+            <div class="doc-footer">
+                <a href="/" class="back-link">&larr; Back to Website</a>
+                <span class="doc-ref">Form AD-00</span>
             </div>
         </div>
     </div>

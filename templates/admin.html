@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | Enactus</title>
+    <title>Administrative Registry | Enactus ADGIPS</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
     <style>
         * {
@@ -16,26 +16,35 @@
         }
 
         :root {
-            --sidebar-width: 280px;
-            --header-height: 70px;
-            --bg-dark: #0f1419;
-            --bg-card: #1a1f26;
-            --bg-hover: #252b35;
-            --text-primary: #fff;
-            --text-secondary: #8b949e;
-            --accent-gold: #d4a553;
-            --accent-terracotta: #c4704f;
-            --accent-green: #22c55e;
-            --accent-red: #ef4444;
-            --accent-blue: #3b82f6;
-            --border-color: rgba(255, 255, 255, 0.08);
+            --sidebar-width: 264px;
+            --paper: #fbf9f4;
+            --paper-deep: #f4f0e6;
+            --card: #fffdf8;
+            --ink: #1f2a26;
+            --ink-soft: #5c6660;
+            --ink-faint: #8a938d;
+            --forest: #1a3c34;
+            --forest-soft: #2a5c4d;
+            --gold: #b08a3c;
+            --gold-soft: #e6d5b8;
+            --rule: #ddd5c4;
+            --rule-soft: #eae4d6;
+            --green: #2e7d4f;
+            --red: #b3402f;
+            --blue: #33628c;
+            --shadow: 0 1px 2px rgba(31, 42, 38, 0.05), 0 6px 24px rgba(31, 42, 38, 0.07);
+            --shadow-lift: 0 2px 4px rgba(31, 42, 38, 0.06), 0 14px 40px rgba(31, 42, 38, 0.12);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(176, 138, 60, 0.04), transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(26, 60, 52, 0.04), transparent 40%);
+            color: var(--ink);
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* ===== SIDEBAR ===== */
@@ -45,48 +54,60 @@
             top: 0;
             width: var(--sidebar-width);
             height: 100vh;
-            background: var(--bg-card);
-            border-right: 1px solid var(--border-color);
+            background: var(--card);
+            border-right: 1px solid var(--rule);
             display: flex;
             flex-direction: column;
             z-index: 100;
         }
 
         .sidebar-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 1.75rem 1.5rem 1.5rem;
+            border-bottom: 1px solid var(--rule-soft);
+            text-align: center;
         }
 
-        .sidebar-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
-            border-radius: 10px;
+        .crest {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 0.85rem;
+            border: 1.5px solid var(--forest);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
-        .logo-icon svg {
-            width: 22px;
-            height: 22px;
-            color: #fff;
+        .crest::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
         }
 
-        .logo-text {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.25rem;
+        .crest svg {
+            width: 24px;
+            height: 24px;
+            color: var(--forest);
+        }
+
+        .masthead-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
             font-weight: 700;
+            color: var(--forest);
+            letter-spacing: 0.02em;
         }
 
-        .logo-text span {
-            color: var(--accent-gold);
+        .masthead-sub {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-top: 0.35rem;
         }
 
         .sidebar-nav {
@@ -96,398 +117,376 @@
         }
 
         .nav-section {
-            margin-bottom: 2rem;
+            margin-bottom: 1.75rem;
         }
 
         .nav-section-title {
-            font-size: 0.7rem;
-            font-weight: 700;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.62rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
+            letter-spacing: 0.2em;
+            color: var(--ink-faint);
             padding: 0 0.75rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.875rem 1rem;
-            border-radius: 10px;
-            color: var(--text-secondary);
+            gap: 0.7rem;
+            padding: 0.7rem 0.9rem;
+            color: var(--ink-soft);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 500;
-            transition: all 0.2s ease;
-            margin-bottom: 0.25rem;
+            border-left: 2px solid transparent;
+            transition: all 0.18s ease;
+            margin-bottom: 1px;
             cursor: pointer;
         }
 
         .nav-item:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
+            background: var(--paper-deep);
+            color: var(--ink);
         }
 
         .nav-item.active {
-            background: rgba(212, 165, 83, 0.15);
-            color: var(--accent-gold);
+            background: var(--paper-deep);
+            border-left-color: var(--gold);
+            color: var(--forest);
+            font-weight: 600;
         }
 
         .nav-item svg {
-            width: 20px;
-            height: 20px;
+            width: 17px;
+            height: 17px;
             flex-shrink: 0;
+            opacity: 0.75;
+        }
+
+        .nav-item.active svg {
+            opacity: 1;
         }
 
         .nav-item .badge {
             margin-left: auto;
-            background: var(--accent-gold);
-            color: var(--bg-dark);
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.2rem 0.5rem;
-            border-radius: 10px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--gold);
+            background: rgba(176, 138, 60, 0.1);
+            padding: 0.12rem 0.5rem;
+            border-radius: 3px;
         }
 
         .sidebar-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--rule-soft);
         }
 
         .user-card {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.75rem;
-            background: var(--bg-hover);
-            border-radius: 10px;
         }
 
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
-            border-radius: 10px;
+        .user-seal {
+            width: 38px;
+            height: 38px;
+            border: 1.5px solid var(--forest);
+            color: var(--forest);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 1rem;
-        }
-
-        .user-info {
-            flex: 1;
+            font-size: 0.95rem;
+            flex-shrink: 0;
         }
 
         .user-name {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
         }
 
         .user-role {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
         }
 
-        /* ===== MAIN CONTENT ===== */
+        /* ===== MAIN ===== */
         .main-content {
             margin-left: var(--sidebar-width);
             min-height: 100vh;
         }
 
-        /* Header */
+        /* Letterhead Header */
         .main-header {
             position: sticky;
             top: 0;
-            height: var(--header-height);
-            background: rgba(15, 20, 25, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
+            background: rgba(251, 249, 244, 0.92);
+            backdrop-filter: blur(8px);
+            padding: 1.4rem 2.5rem 1.1rem;
             z-index: 50;
         }
 
+        .header-rule {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 2px solid var(--forest);
+            position: relative;
+        }
+
+        .header-rule::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -5px;
+            border-bottom: 1px solid var(--gold);
+        }
+
         .header-title h1 {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
             font-weight: 700;
+            color: var(--forest);
+            letter-spacing: -0.01em;
         }
 
         .header-title p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.66rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-top: 0.3rem;
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.6rem;
+            flex-shrink: 0;
         }
 
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.25rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
+            gap: 0.45rem;
+            padding: 0.6rem 1.1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.82rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
             text-decoration: none;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(212, 165, 83, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-danger {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--accent-red);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-
-        .btn-danger:hover {
-            background: rgba(239, 68, 68, 0.25);
-        }
-
-        .btn-success {
-            background: rgba(34, 197, 94, 0.15);
-            color: var(--accent-green);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-
-        .btn-success:hover {
-            background: rgba(34, 197, 94, 0.25);
+            border-radius: 4px;
+            transition: all 0.18s ease;
         }
 
         .btn svg {
-            width: 18px;
-            height: 18px;
+            width: 15px;
+            height: 15px;
         }
 
-        /* Content Area */
+        .btn-primary {
+            background: var(--forest);
+            color: #fdfbf5;
+            border: 1px solid var(--forest);
+        }
+
+        .btn-primary:hover {
+            background: var(--forest-soft);
+            box-shadow: 0 4px 14px rgba(26, 60, 52, 0.25);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--forest);
+            border: 1px solid var(--rule);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--forest);
+            background: var(--paper-deep);
+        }
+
+        .btn-outline.excel {
+            color: #1e6b45;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink-soft);
+            border: 1px solid transparent;
+        }
+
+        .btn-ghost:hover {
+            color: var(--red);
+        }
+
+        /* Content */
         .content-area {
-            padding: 2rem;
+            padding: 2.25rem 2.5rem 4rem;
+            display: none;
         }
 
-        /* Stats Grid */
+        .content-area.active {
+            display: block;
+            animation: paperIn 0.35s ease;
+        }
+
+        @keyframes paperIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .section-head h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--forest);
+        }
+
+        .section-head .meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+        }
+
+        /* Stat Cards — index card style */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            gap: 1.25rem;
             margin-bottom: 2rem;
         }
 
         .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 1.4rem 1.5rem 1.25rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-line, var(--gold));
         }
 
         .stat-card:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lift);
         }
 
-        .stat-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
+        .stat-card.c-forest {
+            --accent-line: var(--forest);
         }
 
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .stat-card.c-green {
+            --accent-line: var(--green);
         }
 
-        .stat-icon.gold {
-            background: rgba(212, 165, 83, 0.15);
-            color: var(--accent-gold);
+        .stat-card.c-gold {
+            --accent-line: var(--gold);
         }
 
-        .stat-icon.green {
-            background: rgba(34, 197, 94, 0.15);
-            color: var(--accent-green);
-        }
-
-        .stat-icon.blue {
-            background: rgba(59, 130, 246, 0.15);
-            color: var(--accent-blue);
-        }
-
-        .stat-icon.red {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--accent-red);
-        }
-
-        .stat-icon svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .stat-trend {
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-        }
-
-        .stat-trend.up {
-            background: rgba(34, 197, 94, 0.15);
-            color: var(--accent-green);
-        }
-
-        .stat-trend.down {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--accent-red);
-        }
-
-        .stat-value {
-            font-family: 'Sora', sans-serif;
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
+        .stat-card.c-red {
+            --accent-line: var(--red);
         }
 
         .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.64rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 0.6rem;
         }
 
-        /* Section Title */
-        .section-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.25rem;
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
             font-weight: 700;
+            color: var(--ink);
+            line-height: 1;
         }
 
-        /* Cards */
+        .stat-note {
+            font-size: 0.78rem;
+            color: var(--ink-soft);
+            margin-top: 0.45rem;
+        }
+
+        /* Cards / Sheets */
         .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            box-shadow: var(--shadow);
             overflow: hidden;
         }
 
         .card-header {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 1.05rem 1.5rem;
+            border-bottom: 1px solid var(--rule-soft);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            background: linear-gradient(var(--card), var(--paper-deep));
         }
 
         .card-header h3 {
-            font-size: 1rem;
-            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--forest);
         }
 
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        /* Grid Layout */
         .grid-2 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.9fr 1fr;
             gap: 1.5rem;
         }
 
-        .grid-3 {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
-        }
-
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            background: var(--bg-hover);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            transition: all 0.2s ease;
-            font-family: inherit;
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(212, 165, 83, 0.15);
-        }
-
-        .form-input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        /* Table Styles */
+        /* Ledger Tables */
         .table-container {
             overflow-x: auto;
         }
@@ -499,188 +498,212 @@
 
         .data-table th {
             text-align: left;
-            padding: 1rem 1.5rem;
-            font-size: 0.75rem;
-            font-weight: 700;
+            padding: 0.85rem 1.5rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.64rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-secondary);
-            background: var(--bg-hover);
-            border-bottom: 1px solid var(--border-color);
+            letter-spacing: 0.16em;
+            color: var(--ink-faint);
+            background: var(--paper-deep);
+            border-bottom: 1px solid var(--rule);
+            white-space: nowrap;
         }
 
         .data-table td {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 0.95rem 1.5rem;
+            border-bottom: 1px solid var(--rule-soft);
             vertical-align: middle;
+            font-size: 0.9rem;
         }
 
-        .data-table tr:hover td {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .data-table tr:last-child td {
+        .data-table tbody tr:last-child td {
             border-bottom: none;
         }
 
-        /* Event Row */
+        .data-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .data-table tbody tr:hover {
+            background: rgba(176, 138, 60, 0.045);
+        }
+
+        /* Event identity */
         .event-info {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-        .event-date-badge {
-            width: 50px;
-            height: 50px;
-            background: var(--bg-hover);
-            border-radius: 10px;
+        .date-stamp {
+            width: 48px;
+            height: 48px;
+            border: 1.5px solid var(--rule);
+            border-radius: 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            background: var(--paper-deep);
         }
 
-        .event-date-badge .day {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.25rem;
+        .date-stamp .day {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
             font-weight: 700;
+            color: var(--forest);
             line-height: 1;
         }
 
-        .event-date-badge .month {
-            font-size: 0.65rem;
+        .date-stamp .month {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.56rem;
             text-transform: uppercase;
-            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            margin-top: 2px;
         }
 
         .event-details h4 {
-            font-size: 0.95rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            font-size: 0.94rem;
+            margin-bottom: 0.15rem;
+            color: var(--ink);
         }
 
         .event-details p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+            font-size: 0.8rem;
+            color: var(--ink-faint);
         }
 
-        /* Status Badge */
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
+        /* Rubber-stamp statuses */
+        .stamp {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.66rem;
             font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 0.32rem 0.7rem;
+            border: 1.5px solid currentColor;
+            border-radius: 3px;
+            transform: rotate(-1.5deg);
+            opacity: 0.9;
+            white-space: nowrap;
         }
 
-        .status-badge.open {
-            background: rgba(34, 197, 94, 0.15);
-            color: var(--accent-green);
+        .stamp.open {
+            color: var(--green);
+            background: rgba(46, 125, 79, 0.06);
         }
 
-        .status-badge.closed {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--accent-red);
+        .stamp.closed {
+            color: var(--red);
+            background: rgba(179, 64, 47, 0.06);
+            transform: rotate(1.5deg);
         }
 
-        .status-badge.past {
-            background: rgba(139, 148, 158, 0.15);
-            color: var(--text-secondary);
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: currentColor;
-        }
-
-        /* Registration Count */
         .reg-count {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--ink-soft);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
+            gap: 0.4rem;
         }
 
         .reg-count svg {
-            width: 16px;
-            height: 16px;
-            color: var(--text-secondary);
+            width: 14px;
+            height: 14px;
+            opacity: 0.6;
         }
 
-        /* Action Buttons */
+        /* Actions */
         .action-btns {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .action-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: transparent;
-            color: var(--text-secondary);
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            border: 1px solid var(--rule);
+            background: var(--card);
+            color: var(--ink-soft);
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .action-btn:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-        }
-
-        .action-btn.edit:hover {
-            color: var(--accent-blue);
-            border-color: var(--accent-blue);
-        }
-
-        .action-btn.toggle:hover {
-            color: var(--accent-gold);
-            border-color: var(--accent-gold);
-        }
-
-        .action-btn.delete:hover {
-            color: var(--accent-red);
-            border-color: var(--accent-red);
+            transition: all 0.15s ease;
+            text-decoration: none;
         }
 
         .action-btn svg {
-            width: 16px;
-            height: 16px;
+            width: 15px;
+            height: 15px;
         }
 
-        /* Registration List */
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        .action-btn.pdf:hover {
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        .action-btn.excel:hover {
+            color: #1e6b45;
+            border-color: #1e6b45;
+        }
+
+        .action-btn.edit:hover {
+            color: var(--blue);
+            border-color: var(--blue);
+        }
+
+        .action-btn.toggle:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .action-btn.delete:hover {
+            color: var(--red);
+            border-color: var(--red);
+            background: rgba(179, 64, 47, 0.05);
+        }
+
+        /* Registrations list (dashboard) */
         .reg-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
+            gap: 0.85rem;
+            padding: 0.9rem 1.5rem;
+            border-bottom: 1px solid var(--rule-soft);
         }
 
         .reg-item:last-child {
             border-bottom: none;
         }
 
-        .reg-avatar {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
-            border-radius: 10px;
+        .reg-seal {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--rule);
+            border-radius: 50%;
+            background: var(--paper-deep);
+            color: var(--forest);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             flex-shrink: 0;
         }
 
@@ -691,198 +714,67 @@
 
         .reg-name {
             font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
+            font-size: 0.88rem;
         }
 
         .reg-meta {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            display: flex;
-            gap: 1rem;
-        }
-
-        .reg-event-badge {
-            background: rgba(212, 165, 83, 0.15);
-            color: var(--accent-gold);
-            padding: 0.25rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.76rem;
+            color: var(--ink-faint);
+            overflow: hidden;
+            text-overflow: ellipsis;
             white-space: nowrap;
         }
 
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-secondary);
-        }
-
-        .empty-state svg {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        .empty-state h4 {
-            font-size: 1rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Flash Messages */
-        .flash-container {
-            position: fixed;
-            top: calc(var(--header-height) + 1rem);
-            right: 2rem;
-            z-index: 200;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .flash-message {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
+        .reg-event-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.64rem;
             font-weight: 500;
-            animation: slideIn 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .flash-message.success {
-            background: rgba(34, 197, 94, 0.95);
-            color: #fff;
-        }
-
-        .flash-message.error {
-            background: rgba(239, 68, 68, 0.95);
-            color: #fff;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            background: rgba(176, 138, 60, 0.09);
+            border: 1px solid rgba(176, 138, 60, 0.25);
+            padding: 0.22rem 0.55rem;
+            border-radius: 3px;
+            white-space: nowrap;
         }
 
         /* Tabs */
         .tabs {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.25rem;
             margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--rule);
         }
 
         .tab-btn {
-            padding: 0.75rem 1.25rem;
+            padding: 0.65rem 1.2rem;
             border: none;
             background: transparent;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--ink-soft);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
             font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all 0.18s ease;
         }
 
         .tab-btn:hover {
-            color: var(--text-primary);
-            background: var(--bg-hover);
+            color: var(--ink);
         }
 
         .tab-btn.active {
-            color: var(--accent-gold);
-            background: rgba(212, 165, 83, 0.15);
-        }
-
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .modal-header h3 {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        .modal-close {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: transparent;
-            color: var(--text-secondary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .modal-close:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        .modal-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.75rem;
+            color: var(--forest);
+            border-bottom-color: var(--gold);
         }
 
         /* Search & Filter */
         .search-filter {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             margin-bottom: 1.5rem;
         }
 
@@ -893,37 +785,198 @@
 
         .search-box svg {
             position: absolute;
-            left: 1rem;
+            left: 0.95rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            color: var(--text-secondary);
+            width: 16px;
+            height: 16px;
+            color: var(--ink-faint);
         }
 
-        .search-box input {
+        .search-box input,
+        .filter-select {
             width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.75rem;
-            background: var(--bg-hover);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: var(--accent-gold);
+            padding: 0.7rem 1rem 0.7rem 2.6rem;
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            color: var(--ink);
         }
 
         .filter-select {
+            flex: 0 0 240px;
+            padding-right: 1rem;
+        }
+
+        .search-box input:focus,
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(176, 138, 60, 0.12);
+        }
+
+        /* Forms — official document style */
+        .form-sheet {
+            max-width: 820px;
+        }
+
+        .form-body {
+            padding: 2rem 2.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
             padding: 0.75rem 1rem;
-            background: var(--bg-hover);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-bottom: 2px solid var(--rule);
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem;
+            color: var(--ink);
+            transition: all 0.18s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            border-bottom-color: var(--gold);
+            box-shadow: 0 1px 0 rgba(176, 138, 60, 0.25);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.1rem;
+        }
+
+        .form-hint {
+            font-size: 0.76rem;
+            color: var(--ink-faint);
+            margin-top: 0.4rem;
+            display: block;
+        }
+
+        .form-divider {
+            border: none;
+            border-top: 1px solid var(--rule-soft);
+            margin: 1.75rem 0;
+            position: relative;
+        }
+
+        .form-divider::after {
+            content: '§';
+            position: absolute;
+            top: -0.72rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card);
+            padding: 0 0.75rem;
+            color: var(--ink-faint);
+            font-family: 'Playfair Display', serif;
             font-size: 0.9rem;
-            color: var(--text-primary);
-            min-width: 150px;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--ink-faint);
+        }
+
+        .empty-state svg {
+            width: 44px;
+            height: 44px;
+            margin-bottom: 0.9rem;
+            opacity: 0.4;
+        }
+
+        .empty-state h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+            margin-bottom: 0.3rem;
+        }
+
+        .empty-state p {
+            font-size: 0.84rem;
+        }
+
+        /* Flash messages — telegram slips */
+        .flash-container {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.5rem;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .flash-message {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.85rem 1.3rem;
+            border-radius: 4px;
+            font-size: 0.87rem;
+            font-weight: 500;
+            animation: slipIn 0.3s ease;
+            box-shadow: var(--shadow-lift);
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-left: 4px solid var(--green);
+            color: var(--ink);
+        }
+
+        .flash-message.error {
+            border-left-color: var(--red);
+        }
+
+        .flash-message.success svg {
+            color: var(--green);
+        }
+
+        .flash-message.error svg {
+            color: var(--red);
+        }
+
+        @keyframes slipIn {
+            from {
+                transform: translateX(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         /* Responsive */
@@ -932,30 +985,47 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .grid-3 {
+            .grid-2 {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
             .sidebar {
-                transform: translateX(-100%);
+                display: none;
             }
 
             .main-content {
                 margin-left: 0;
             }
 
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .content-area {
+                padding: 1.5rem 1.25rem 3rem;
             }
 
-            .grid-2 {
+            .main-header {
+                padding: 1.1rem 1.25rem 1rem;
+            }
+
+            .header-rule {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
 
             .form-row {
                 grid-template-columns: 1fr;
+            }
+
+            .search-filter {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                flex: 1;
             }
         }
     </style>
@@ -965,15 +1035,14 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <div class="sidebar-logo">
-                <div class="logo-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                </div>
-                <span class="logo-text">enactus<span>.</span></span>
+            <div class="crest">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.75">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
             </div>
+            <div class="masthead-name">Enactus</div>
+            <div class="masthead-sub">ADGIPS · Registry</div>
         </div>
 
         <nav class="sidebar-nav">
@@ -992,7 +1061,7 @@
             </div>
 
             <div class="nav-section">
-                <div class="nav-section-title">Management</div>
+                <div class="nav-section-title">Records</div>
                 <a href="#events" class="nav-item" onclick="showSection('events')">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2">
@@ -1022,12 +1091,12 @@
                         <line x1="12" y1="8" x2="12" y2="16"></line>
                         <line x1="8" y1="12" x2="16" y2="12"></line>
                     </svg>
-                    Create Event
+                    New Event
                 </a>
             </div>
 
             <div class="nav-section">
-                <div class="nav-section-title">Quick Links</div>
+                <div class="nav-section-title">Reference</div>
                 <a href="/" class="nav-item" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2">
@@ -1050,9 +1119,9 @@
 
         <div class="sidebar-footer">
             <div class="user-card">
-                <div class="user-avatar">A</div>
-                <div class="user-info">
-                    <div class="user-name">Admin</div>
+                <div class="user-seal">A</div>
+                <div>
+                    <div class="user-name">Administrator</div>
                     <div class="user-role">Super Admin</div>
                 </div>
             </div>
@@ -1061,41 +1130,43 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Header -->
+        <!-- Letterhead -->
         <header class="main-header">
-            <div class="header-title">
-                <h1>Admin Dashboard</h1>
-                <p>Manage events, registrations, and more</p>
-            </div>
-            <div class="header-actions">
-                <a href="/export_all_pdf" class="btn btn-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    Export All PDF
-                </a>
-                <a href="/export_all_excel" class="btn btn-primary" style="background: #217346;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                    </svg>
-                    Export All Excel
-                </a>
-                <a href="/logout" class="btn btn-secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                        <polyline points="16 17 21 12 16 7"></polyline>
-                        <line x1="21" y1="12" x2="9" y2="12"></line>
-                    </svg>
-                    Logout
-                </a>
+            <div class="header-rule">
+                <div class="header-title">
+                    <h1>Administrative Registry</h1>
+                    <p>Enactus ADGIPS &mdash; Internal Records Office</p>
+                </div>
+                <div class="header-actions">
+                    <a href="/export_all_pdf" class="btn btn-outline">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Export PDF
+                    </a>
+                    <a href="/export_all_excel" class="btn btn-outline excel">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                        Export Excel
+                    </a>
+                    <a href="/logout" class="btn btn-ghost">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Sign Out
+                    </a>
+                </div>
             </div>
         </header>
 
@@ -1106,13 +1177,13 @@
             {% for category, message in messages %}
             <div class="flash-message {{ category }}">
                 {% if category == 'success' %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
                 {% else %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"></circle>
                     <line x1="15" y1="9" x2="9" y2="15"></line>
@@ -1126,80 +1197,39 @@
         {% endif %}
         {% endwith %}
 
-        <!-- Dashboard Section -->
-        <section id="dashboard-section" class="content-area section-content active">
-            <!-- Stats -->
+        <!-- Dashboard -->
+        <section id="dashboard-section" class="content-area active">
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div class="stat-icon gold">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="stat-value">{{ events|length }}</div>
+                <div class="stat-card c-forest">
                     <div class="stat-label">Total Events</div>
+                    <div class="stat-value">{{ events|length }}</div>
+                    <div class="stat-note">on record</div>
                 </div>
-
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div class="stat-icon green">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="stat-value">{{ events|selectattr('is_open', 'equalto', true)|list|length }}</div>
+                <div class="stat-card c-green">
                     <div class="stat-label">Active Events</div>
+                    <div class="stat-value">{{ events|selectattr('is_open', 'equalto', true)|list|length }}</div>
+                    <div class="stat-note">accepting registrations</div>
                 </div>
-
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div class="stat-icon blue">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                        </div>
-                    </div>
+                <div class="stat-card c-gold">
+                    <div class="stat-label">Registrations</div>
                     <div class="stat-value">{{ regs|length }}</div>
-                    <div class="stat-label">Total Registrations</div>
+                    <div class="stat-note">total received</div>
                 </div>
-
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div class="stat-icon red">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="15" y1="9" x2="9" y2="15"></line>
-                                <line x1="9" y1="9" x2="15" y2="15"></line>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="stat-value">{{ events|selectattr('is_open', 'equalto', false)|list|length }}</div>
+                <div class="stat-card c-red">
                     <div class="stat-label">Closed Events</div>
+                    <div class="stat-value">{{ events|selectattr('is_open', 'equalto', false)|list|length }}</div>
+                    <div class="stat-note">archived / full</div>
                 </div>
             </div>
 
-            <!-- Quick Overview -->
-            <div class="grid-3">
-                <!-- Recent Events -->
+            <div class="grid-2">
+                <!-- Recent Events Ledger -->
                 <div class="card">
                     <div class="card-header">
                         <h3>Recent Events</h3>
-                        <a href="#events" onclick="showSection('events')" class="btn btn-secondary"
-                            style="padding: 0.5rem 1rem; font-size: 0.8rem;">View All</a>
+                        <a href="#events" onclick="showSection('events')"
+                            style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;">View
+                            All &rarr;</a>
                     </div>
                     <div class="table-container">
                         <table class="data-table">
@@ -1207,7 +1237,7 @@
                                 <tr>
                                     <th>Event</th>
                                     <th>Status</th>
-                                    <th>Registrations</th>
+                                    <th>Entries</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1215,39 +1245,41 @@
                                 <tr>
                                     <td>
                                         <div class="event-info">
-                                            <div class="event-date-badge">
+                                            <div class="date-stamp">
                                                 <span class="day">{{ event.date_day }}</span>
                                                 <span class="month">{{ event.date_month }}</span>
                                             </div>
                                             <div class="event-details">
                                                 <h4>{{ event.title }}</h4>
-                                                <p>{{ event.short_desc[:40] }}...</p>
+                                                <p>{{ event.short_desc[:42] }}{% if event.short_desc|length > 42
+                                                    %}&hellip;{% endif %}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         {% if event.is_open %}
-                                        <span class="status-badge open"><span class="status-dot"></span> Open</span>
+                                        <span class="stamp open">Open</span>
                                         {% else %}
-                                        <span class="status-badge closed"><span class="status-dot"></span> Closed</span>
+                                        <span class="stamp closed">Closed</span>
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <div class="reg-count">
+                                        <span class="reg-count">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2">
                                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                                 <circle cx="9" cy="7" r="4"></circle>
                                             </svg>
                                             {{ event.registrations|length }}
-                                        </div>
+                                        </span>
                                     </td>
                                 </tr>
                                 {% else %}
                                 <tr>
                                     <td colspan="3">
                                         <div class="empty-state">
-                                            <p>No events created yet</p>
+                                            <h4>No events on record</h4>
+                                            <p>Create your first event to begin.</p>
                                         </div>
                                     </td>
                                 </tr>
@@ -1260,19 +1292,18 @@
                 <!-- Recent Registrations -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Recent Registrations</h3>
+                        <h3>Latest Entries</h3>
                     </div>
-                    <div class="card-body" style="padding: 0; max-height: 400px; overflow-y: auto;">
+                    <div style="max-height: 420px; overflow-y: auto;">
                         {% for reg in regs[-5:]|reverse %}
                         <div class="reg-item">
-                            <div class="reg-avatar">{{ reg.name[0] }}</div>
+                            <div class="reg-seal">{{ (reg.team_name or reg.name or 'U')[0] }}</div>
                             <div class="reg-info">
-                                <div class="reg-name">{{ reg.name }}</div>
-                                <div class="reg-meta">
-                                    <span>{{ reg.email }}</span>
-                                </div>
+                                <div class="reg-name">{{ reg.team_name or reg.name }}</div>
+                                <div class="reg-meta">{{ reg.leader_email or reg.email }}</div>
                             </div>
-                            <span class="reg-event-badge">{{ reg.event.title[:15] }}...</span>
+                            <span class="reg-event-badge">{{ reg.event.title[:14] }}{% if reg.event.title|length > 14
+                                %}&hellip;{% endif %}</span>
                         </div>
                         {% else %}
                         <div class="empty-state">
@@ -1281,8 +1312,8 @@
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="9" cy="7" r="4"></circle>
                             </svg>
-                            <h4>No registrations yet</h4>
-                            <p>Registrations will appear here</p>
+                            <h4>No entries yet</h4>
+                            <p>Registrations will appear here.</p>
                         </div>
                         {% endfor %}
                     </div>
@@ -1290,24 +1321,18 @@
             </div>
         </section>
 
-        <!-- Events Management Section -->
-        <section id="events-section" class="content-area section-content">
-            <div class="section-title">
-                <h2>Event Management</h2>
-                <button class="btn btn-primary" onclick="showSection('create-event')">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="8" x2="12" y2="16"></line>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg>
-                    Create Event
-                </button>
+        <!-- Events Management -->
+        <section id="events-section" class="content-area">
+            <div class="section-head">
+                <h2>Event Records</h2>
+                <div style="display:flex;align-items:center;gap:1rem;">
+                    <span class="meta">{{ events|length }} on file</span>
+                    <button class="btn btn-primary" onclick="showSection('create-event')">+ New Event</button>
+                </div>
             </div>
 
-            <!-- Tabs -->
             <div class="tabs">
-                <button class="tab-btn active" onclick="filterEvents('all')">All Events</button>
+                <button class="tab-btn active" onclick="filterEvents('all')">All</button>
                 <button class="tab-btn" onclick="filterEvents('open')">Open</button>
                 <button class="tab-btn" onclick="filterEvents('closed')">Closed</button>
             </div>
@@ -1320,7 +1345,7 @@
                                 <th>Event</th>
                                 <th>Date</th>
                                 <th>Status</th>
-                                <th>Registrations</th>
+                                <th>Entries</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -1329,39 +1354,40 @@
                             <tr class="event-row" data-status="{{ 'open' if event.is_open else 'closed' }}">
                                 <td>
                                     <div class="event-info">
-                                        <div class="event-date-badge">
+                                        <div class="date-stamp">
                                             <span class="day">{{ event.date_day }}</span>
                                             <span class="month">{{ event.date_month }}</span>
                                         </div>
                                         <div class="event-details">
                                             <h4>{{ event.title }}</h4>
-                                            <p>{{ event.short_desc[:50] }}...</p>
+                                            <p>{{ event.short_desc[:48] }}{% if event.short_desc|length > 48
+                                                %}&hellip;{% endif %}</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{ event.date_day }} {{ event.date_month }}</td>
+                                <td style="font-size:0.85rem;color:var(--ink-soft);white-space:nowrap;">{{ event.date_day
+                                    }} {{ event.date_month }}</td>
                                 <td>
                                     {% if event.is_open %}
-                                    <span class="status-badge open"><span class="status-dot"></span> Registration
-                                        Open</span>
+                                    <span class="stamp open">Registration Open</span>
                                     {% else %}
-                                    <span class="status-badge closed"><span class="status-dot"></span> Closed</span>
+                                    <span class="stamp closed">Closed</span>
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <div class="reg-count">
+                                    <span class="reg-count">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2">
                                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                             <circle cx="9" cy="7" r="4"></circle>
                                         </svg>
-                                        {{ event.registrations|length }} registered
-                                    </div>
+                                        {{ event.registrations|length }}
+                                    </span>
                                 </td>
                                 <td>
                                     <div class="action-btns">
-                                        <a href="/export_event_pdf/{{ event.id }}" class="action-btn" title="Export PDF"
-                                            style="color: var(--accent-green);">
+                                        <a href="/export_event_pdf/{{ event.id }}" class="action-btn pdf"
+                                            title="Export PDF">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2">
                                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -1369,8 +1395,8 @@
                                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                                             </svg>
                                         </a>
-                                        <a href="/export_event_excel/{{ event.id }}" class="action-btn"
-                                            title="Export Excel" style="color: #217346;">
+                                        <a href="/export_event_excel/{{ event.id }}" class="action-btn excel"
+                                            title="Export Excel">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2">
                                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
@@ -1380,7 +1406,7 @@
                                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                                             </svg>
                                         </a>
-                                        <a href="/edit_event/{{ event.id }}" class="action-btn edit" title="Edit Event">
+                                        <a href="/edit_event/{{ event.id }}" class="action-btn edit" title="Edit">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2">
                                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
@@ -1389,8 +1415,7 @@
                                                 </path>
                                             </svg>
                                         </a>
-                                        <form action="/toggle_event/{{ event.id }}" method="POST"
-                                            style="display: inline;">
+                                        <form action="/toggle_event/{{ event.id }}" method="POST" style="display:inline;">
                                             <button type="submit" class="action-btn toggle"
                                                 title="{{ 'Close Registration' if event.is_open else 'Open Registration' }}">
                                                 {% if event.is_open %}
@@ -1408,10 +1433,9 @@
                                                 {% endif %}
                                             </button>
                                         </form>
-                                        <form action="/delete_event/{{ event.id }}" method="POST"
-                                            style="display: inline;"
+                                        <form action="/delete_event/{{ event.id }}" method="POST" style="display:inline;"
                                             onsubmit="return confirm('Are you sure you want to delete this event? This will also delete all registrations.');">
-                                            <button type="submit" class="action-btn delete" title="Delete Event">
+                                            <button type="submit" class="action-btn delete" title="Delete">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2">
                                                     <polyline points="3 6 5 6 21 6"></polyline>
@@ -1435,8 +1459,8 @@
                                             <line x1="8" y1="2" x2="8" y2="6"></line>
                                             <line x1="3" y1="10" x2="21" y2="10"></line>
                                         </svg>
-                                        <h4>No events yet</h4>
-                                        <p>Create your first event to get started</p>
+                                        <h4>No events on file</h4>
+                                        <p>Create your first event to get started.</p>
                                     </div>
                                 </td>
                             </tr>
@@ -1447,14 +1471,13 @@
             </div>
         </section>
 
-        <!-- Registrations Section -->
-        <section id="registrations-section" class="content-area section-content">
-            <div class="section-title">
-                <h2>Registration Management</h2>
-                <span style="color: var(--text-secondary);">{{ regs|length }} total registrations</span>
+        <!-- Registrations -->
+        <section id="registrations-section" class="content-area">
+            <div class="section-head">
+                <h2>Registration Ledger</h2>
+                <span class="meta">{{ regs|length }} entries</span>
             </div>
 
-            <!-- Search & Filter -->
             <div class="search-filter">
                 <div class="search-box">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1462,7 +1485,7 @@
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="search-registrations" placeholder="Search by name or email..."
+                    <input type="text" id="search-registrations" placeholder="Search by name or email&hellip;"
                         onkeyup="searchRegistrations()">
                 </div>
                 <select class="filter-select" id="filter-event" onchange="filterRegistrations()">
@@ -1481,7 +1504,7 @@
                                 <th>Participant</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Student ID / Team Size</th>
+                                <th>ID / Team Size</th>
                                 <th>Branch</th>
                                 <th>College</th>
                                 <th>Event</th>
@@ -1493,66 +1516,58 @@
                             <tr class="reg-row" data-event="{{ reg.event_id }}"
                                 data-name="{{ (reg.team_name or reg.name or '')|lower }}"
                                 data-email="{{ (reg.leader_email or reg.email or '')|lower }}">
-                                <!-- Name / Team Name -->
                                 <td>
-                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                        <div class="reg-avatar">{{ (reg.team_name or reg.name or 'U')[0] }}</div>
+                                    <div style="display:flex;align-items:center;gap:0.75rem;">
+                                        <div class="reg-seal">{{ (reg.team_name or reg.name or 'U')[0] }}</div>
                                         <div>
                                             {% if reg.registration_type == 'team' %}
-                                            <span style="font-weight: 600; color: #d4a553;">{{ reg.team_name or 'Team'
+                                            <span
+                                                style="font-weight:600;color:var(--gold);">{{ reg.team_name or 'Team'
                                                 }}</span>
-                                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Leader: {{
+                                            <div style="font-size:0.74rem;color:var(--ink-faint);">Leader: {{
                                                 reg.leader_name or reg.name or 'N/A' }}</div>
                                             {% else %}
-                                            <span style="font-weight: 600;">{{ reg.name or 'N/A' }}</span>
+                                            <span style="font-weight:600;">{{ reg.name or 'N/A' }}</span>
                                             <span
-                                                style="display: block; font-size: 0.7rem; color: var(--accent-blue);">Solo</span>
+                                                style="display:block;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);">Solo</span>
                                             {% endif %}
                                         </div>
                                     </div>
                                 </td>
-                                <!-- Email -->
-                                <td style="font-size: 0.85rem;">{{ reg.leader_email or reg.email or 'N/A' }}</td>
-                                <!-- Phone -->
-                                <td style="font-size: 0.85rem;">{{ reg.leader_contact or reg.contact_no or 'N/A' }}</td>
-                                <!-- Student ID / Team Size -->
+                                <td style="font-size:0.84rem;">{{ reg.leader_email or reg.email or 'N/A' }}</td>
+                                <td style="font-size:0.84rem;">{{ reg.leader_contact or reg.contact_no or 'N/A' }}</td>
                                 <td>
                                     {% if reg.registration_type == 'team' %}
-                                    <span style="font-weight: 500; color: #22c55e;">{{ reg.team_size or '?' }}
+                                    <span style="font-weight:600;color:var(--green);">{{ reg.team_size or '?' }}
                                         members</span>
                                     {% else %}
-                                    <span style="font-weight: 500;">{{ reg.student_id or 'N/A' }}</span>
+                                    <span style="font-size:0.84rem;">{{ reg.student_id or 'N/A' }}</span>
                                     {% endif %}
                                 </td>
-                                <!-- Branch -->
-                                <td style="font-size: 0.85rem;">
+                                <td style="font-size:0.84rem;">
                                     {% if reg.registration_type == 'team' %}
-                                    <span style="color: var(--text-secondary);">—</span>
+                                    <span style="color:var(--ink-faint);">&mdash;</span>
                                     {% else %}
                                     {{ reg.branch or 'N/A' }}
                                     {% endif %}
                                 </td>
-                                <!-- College -->
-                                <td style="font-size: 0.85rem; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                                <td style="font-size:0.84rem;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
                                     title="{{ reg.college_name or 'N/A' }}">
                                     {{ reg.college_name or 'N/A' }}
                                 </td>
-                                <!-- Event -->
                                 <td>
                                     <span class="reg-event-badge">{{ reg.event.title }}</span>
                                     {% if reg.registration_type == 'team' %}
                                     <span
-                                        style="display: block; font-size: 0.65rem; color: #d4a553; margin-top: 0.15rem;">Team
+                                        style="display:block;font-family:'IBM Plex Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-top:0.2rem;">Team
                                         Event</span>
                                     {% endif %}
                                 </td>
-                                <!-- Actions -->
                                 <td>
                                     <div class="action-btns">
                                         <form action="/delete_registration/{{ reg.id }}" method="POST"
-                                            style="display: inline;"
-                                            onsubmit="return confirm('Delete this registration?');">
-                                            <button type="submit" class="action-btn delete" title="Delete Registration">
+                                            style="display:inline;" onsubmit="return confirm('Delete this registration?');">
+                                            <button type="submit" class="action-btn delete" title="Delete Entry">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2">
                                                     <polyline points="3 6 5 6 21 6"></polyline>
@@ -1574,8 +1589,8 @@
                                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                             <circle cx="9" cy="7" r="4"></circle>
                                         </svg>
-                                        <h4>No registrations yet</h4>
-                                        <p>Registrations will appear here when people sign up for events</p>
+                                        <h4>Ledger is empty</h4>
+                                        <p>Registrations will appear here when people sign up.</p>
                                     </div>
                                 </td>
                             </tr>
@@ -1586,17 +1601,18 @@
             </div>
         </section>
 
-        <!-- Create Event Section -->
-        <section id="create-event-section" class="content-area section-content">
-            <div class="section-title">
-                <h2>Create New Event</h2>
+        <!-- Create Event -->
+        <section id="create-event-section" class="content-area">
+            <div class="section-head">
+                <h2>New Event Filing</h2>
+                <span class="meta">Form EV-01</span>
             </div>
 
-            <div class="card" style="max-width: 800px;">
+            <div class="card form-sheet">
                 <div class="card-header">
                     <h3>Event Details</h3>
                 </div>
-                <div class="card-body">
+                <div class="form-body">
                     <form action="/add_event" method="POST">
                         <div class="form-group">
                             <label>Event Title *</label>
@@ -1604,7 +1620,6 @@
                                 placeholder="e.g. Social Entrepreneurship Summit" required>
                         </div>
 
-                        <!-- Event Type Selector -->
                         <div class="form-group">
                             <label>Event Type *</label>
                             <select name="event_type" class="form-select" id="eventType" onchange="toggleTeamFields()"
@@ -1614,8 +1629,7 @@
                             </select>
                         </div>
 
-                        <!-- Team Size Fields (Hidden by default) -->
-                        <div class="form-row" id="teamSizeFields" style="display: none;">
+                        <div class="form-row" id="teamSizeFields" style="display:none;">
                             <div class="form-group">
                                 <label>Min Team Size</label>
                                 <input type="number" name="min_team_size" class="form-input" placeholder="e.g. 2"
@@ -1627,6 +1641,8 @@
                                     min="2">
                             </div>
                         </div>
+
+                        <hr class="form-divider">
 
                         <div class="form-row">
                             <div class="form-group">
@@ -1646,7 +1662,7 @@
                                 <input type="time" name="time" class="form-input" placeholder="10:00">
                             </div>
                             <div class="form-group">
-                                <label>Venue/Location</label>
+                                <label>Venue / Location</label>
                                 <input type="text" name="venue" class="form-input" placeholder="e.g. Main Auditorium">
                             </div>
                         </div>
@@ -1655,65 +1671,57 @@
                             <label>Max Registrations</label>
                             <input type="number" name="max_registrations" class="form-input"
                                 placeholder="Leave empty for unlimited">
-                            <small
-                                style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.25rem; display: block;">
-                                Registration will automatically close when limit is reached
-                            </small>
+                            <small class="form-hint">Registration will close automatically when the limit is
+                                reached.</small>
                         </div>
+
+                        <hr class="form-divider">
 
                         <div class="form-group">
                             <label>Short Description * (Shown on card)</label>
-                            <input type="text" name="short_desc" class="form-input" placeholder="Brief one-line summary"
-                                maxlength="200" required>
+                            <input type="text" name="short_desc" class="form-input"
+                                placeholder="Brief one-line summary" maxlength="200" required>
                         </div>
 
                         <div class="form-group">
                             <label>Full Description * (Shown in details)</label>
                             <textarea name="full_desc" class="form-textarea"
-                                placeholder="Detailed event information, agenda, what attendees can expect..." rows="5"
-                                required></textarea>
+                                placeholder="Detailed event information, agenda, what attendees can expect&hellip;"
+                                rows="5" required></textarea>
                         </div>
 
                         <div class="form-group">
                             <label>Cover Image URL *</label>
                             <input type="url" name="image_url" class="form-input"
-                                placeholder="https://images.unsplash.com/..." required>
-                            <small
-                                style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.5rem; display: block;">
-                                Tip: Use Unsplash for free high-quality images. Recommended size: 1200x600
-                            </small>
+                                placeholder="https://images.unsplash.com/&hellip;" required>
+                            <small class="form-hint">Tip: Use Unsplash for free high-quality images. Recommended size:
+                                1200&times;600.</small>
                         </div>
 
                         <div class="form-group">
-                            <label>Event Link / Hyperlink (Optional)</label>
+                            <label>Event Link (Optional)</label>
                             <input type="url" name="event_link" class="form-input"
-                                placeholder="https://forms.google.com/... or external registration link">
-                            <small
-                                style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.5rem; display: block;">
-                                Add an external link for the event (e.g., Google Form, external registration page)
-                            </small>
+                                placeholder="https://forms.google.com/&hellip; or external registration link">
+                            <small class="form-hint">External link for the event (e.g., Google Form).</small>
                         </div>
 
                         <div class="form-group">
                             <label>Brochure Link (Optional)</label>
                             <input type="url" name="brochure_link" class="form-input"
-                                placeholder="https://drive.google.com/... or PDF link">
-                            <small
-                                style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.5rem; display: block;">
-                                Add a link to the event brochure or information deck
-                            </small>
+                                placeholder="https://drive.google.com/&hellip; or PDF link">
+                            <small class="form-hint">Link to the event brochure or information deck.</small>
                         </div>
 
-                        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <div style="display:flex;gap:0.75rem;margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--rule-soft);">
                             <button type="submit" class="btn btn-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2">
                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
-                                Publish Event
+                                File &amp; Publish
                             </button>
-                            <button type="reset" class="btn btn-secondary">Clear Form</button>
+                            <button type="reset" class="btn btn-outline">Clear Form</button>
                         </div>
                     </form>
                 </div>
@@ -1724,20 +1732,17 @@
     <script>
         // Section Navigation
         function showSection(sectionName) {
-            // Hide all sections
             document.querySelectorAll('.section-content').forEach(section => {
                 section.classList.remove('active');
                 section.style.display = 'none';
             });
 
-            // Show target section
             const targetSection = document.getElementById(sectionName + '-section');
             if (targetSection) {
                 targetSection.classList.add('active');
                 targetSection.style.display = 'block';
             }
 
-            // Update nav items
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
@@ -1807,11 +1812,10 @@
             }
         }
 
-        // Initialize - Show dashboard by default
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             showSection('dashboard');
 
-            // Auto-hide flash messages
             setTimeout(() => {
                 const flashContainer = document.querySelector('.flash-container');
                 if (flashContainer) {
