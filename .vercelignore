@@ -1,0 +1,10 @@
+static/magazines/
+static/images/team/
+static/images/projects/
+static/images/magazine/
+static/images/home/gallery/
+*.db
+*.pdf
+*.HEIC
+__pycache__/
+*.pyc
